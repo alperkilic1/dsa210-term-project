@@ -1,16 +1,15 @@
-# DSA210 Term Project Proposal — Incident Genome
+# DSA210 Term Project Proposal
 
-**Student:** Alper Kılıç
-**Date:** March 28, 2026
+**Alper Kılıç**
 
-## Data Source
+## Where will I get the data?
 
-The data comes from public Statuspage API endpoints that major cloud services use to report incidents. These APIs are freely accessible without authentication and return structured JSON data containing incident details, affected components, timeline updates, and resolution status. I will collect data from 15 services: GitHub, OpenAI, Cloudflare, Twilio, Datadog, Atlassian (Jira/Confluence), Reddit, Discord, Dropbox, Vercel, Netlify, Heroku, DigitalOcean, Linear, and Notion.
+I'm going to use public status page APIs from cloud services like GitHub, OpenAI, Cloudflare, Discord, etc. These services have a public endpoint (`/api/v2/incidents.json`) that gives you their incident history as JSON without needing any API key. I'm planning to collect from about 10-15 services.
 
-## Data Collection Method
+## How will I collect it?
 
-A Python script (`collect_data.py`) sends paginated GET requests to each service's `/api/v2/incidents.json` endpoint, collecting all available historical incidents. Each incident record includes: creation time, resolution time, impact level (none/minor/major/critical), number of status updates, affected components, and the first update text. The script computes derived features such as incident duration (in minutes), hour/weekday of occurrence, and component count. Raw JSON responses are saved for reproducibility, and parsed records are stored in a unified `incidents.json` file.
+I wrote a Python script that goes through each service's API and pulls all the incident records. It paginates through the results and saves the raw JSON files. Then I parse each incident to get things like when it started, when it was resolved, how many components were affected, and the severity level.
 
-## Data Characteristics
+## Data characteristics
 
-Based on preliminary collection from 8 accessible services (GitHub, OpenAI, Cloudflare, Discord, Atlassian, Reddit, Vercel, Netlify), the first page alone yields 359 incidents. Full pagination is expected to produce 1500–3000 incidents spanning 2–5 years. Average incident durations vary widely: GitHub averages 114 minutes, OpenAI 379 minutes, and Atlassian 1237 minutes. Each record has 15+ features including categorical (service name, impact level, weekday), numerical (duration in minutes, number of updates, component count), and temporal (hour, month, year) variables. The target variable for prediction is incident duration, which can be modeled as a regression task or classified into bins (short: <30min, medium: 30–120min, long: >120min).
+So far I've done a quick test run and got 359 incidents from 8 services. The full collection should give around 1500-3000 incidents going back a few years. Each incident has about 15 features — stuff like duration (in minutes), impact level (minor/major/critical), number of status updates, day of week, hour of day, etc. Some services have way longer average outages than others (GitHub averages about 2 hours, but Atlassian averages over 20 hours which is crazy). I want to see if I can predict whether an outage will be short or long based on the early signals.
