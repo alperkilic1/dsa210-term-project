@@ -1,0 +1,791 @@
+[
+  {
+    "id": "2vjc8h5hrrq5",
+    "name": "Degraded performance for reddit.com",
+    "status": "resolved",
+    "created_at": "2026-03-03T16:35:10.545-08:00",
+    "updated_at": "2026-03-03T16:46:56.034-08:00",
+    "monitoring_at": "2026-03-03T16:39:24.624-08:00",
+    "resolved_at": "2026-03-03T16:46:56.019-08:00",
+    "impact": "major",
+    "shortlink": "https://stspg.io/r3qtn0n6yvbg",
+    "started_at": "2026-03-03T16:35:10.539-08:00",
+    "page_id": "2kbc0d48tv3j",
+    "incident_updates": [
+      {
+        "id": "g7jnbl1rngc5",
+        "status": "resolved",
+        "body": "This incident has been resolved.",
+        "incident_id": "2vjc8h5hrrq5",
+        "created_at": "2026-03-03T16:46:56.019-08:00",
+        "updated_at": "2026-03-03T16:46:56.019-08:00",
+        "display_at": "2026-03-03T16:46:56.019-08:00",
+        "affected_components": null,
+        "deliver_notifications": false,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "f20967y325lc",
+        "status": "monitoring",
+        "body": "A fix has been implemented and we are monitoring the results.",
+        "incident_id": "2vjc8h5hrrq5",
+        "created_at": "2026-03-03T16:39:24.624-08:00",
+        "updated_at": "2026-03-03T16:39:24.624-08:00",
+        "display_at": "2026-03-03T16:39:24.624-08:00",
+        "affected_components": null,
+        "deliver_notifications": false,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "csbh47v7x9y0",
+        "status": "investigating",
+        "body": "We are currently investigating this issue.",
+        "incident_id": "2vjc8h5hrrq5",
+        "created_at": "2026-03-03T16:35:10.586-08:00",
+        "updated_at": "2026-03-03T16:35:10.586-08:00",
+        "display_at": "2026-03-03T16:35:10.586-08:00",
+        "affected_components": null,
+        "deliver_notifications": false,
+        "custom_tweet": null,
+        "tweet_id": null
+      }
+    ],
+    "components": [],
+    "reminder_intervals": null
+  },
+  {
+    "id": "kcnnpj79625y",
+    "name": "Elevated Errors",
+    "status": "resolved",
+    "created_at": "2026-01-18T13:33:14.290-08:00",
+    "updated_at": "2026-01-18T13:44:11.952-08:00",
+    "monitoring_at": "2026-01-18T13:43:51.885-08:00",
+    "resolved_at": "2026-01-18T13:44:11.934-08:00",
+    "impact": "none",
+    "shortlink": "https://stspg.io/3yg99dzq3rwt",
+    "started_at": "2026-01-18T13:33:14.278-08:00",
+    "page_id": "2kbc0d48tv3j",
+    "incident_updates": [
+      {
+        "id": "m7rh1db2b368",
+        "status": "resolved",
+        "body": "This incident has been resolved.",
+        "incident_id": "kcnnpj79625y",
+        "created_at": "2026-01-18T13:44:11.934-08:00",
+        "updated_at": "2026-01-18T13:44:11.934-08:00",
+        "display_at": "2026-01-18T13:44:11.934-08:00",
+        "affected_components": [
+          {
+            "code": "0wf8j1vtry0v",
+            "name": "reddit.com - Desktop Web",
+            "old_status": "operational",
+            "new_status": "operational"
+          },
+          {
+            "code": "jx663dxlwgdt",
+            "name": "reddit.com - Mobile Web",
+            "old_status": "operational",
+            "new_status": "operational"
+          },
+          {
+            "code": "jk8d05fz3nwg",
+            "name": "reddit.com - Native Mobile Apps",
+            "old_status": "operational",
+            "new_status": "operational"
+          },
+          {
+            "code": "yk5b49px4hk8",
+            "name": "Reddit Infrastructure",
+            "old_status": "operational",
+            "new_status": "operational"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "3gcwh1jly45j",
+        "status": "monitoring",
+        "body": "A fix has been implemented and we are monitoring the results.",
+        "incident_id": "kcnnpj79625y",
+        "created_at": "2026-01-18T13:43:51.885-08:00",
+        "updated_at": "2026-01-18T13:43:51.885-08:00",
+        "display_at": "2026-01-18T13:43:51.885-08:00",
+        "affected_components": [
+          {
+            "code": "0wf8j1vtry0v",
+            "name": "reddit.com - Desktop Web",
+            "old_status": "operational",
+            "new_status": "operational"
+          },
+          {
+            "code": "jx663dxlwgdt",
+            "name": "reddit.com - Mobile Web",
+            "old_status": "operational",
+            "new_status": "operational"
+          },
+          {
+            "code": "jk8d05fz3nwg",
+            "name": "reddit.com - Native Mobile Apps",
+            "old_status": "operational",
+            "new_status": "operational"
+          },
+          {
+            "code": "yk5b49px4hk8",
+            "name": "Reddit Infrastructure",
+            "old_status": "operational",
+            "new_status": "operational"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "r75ynfp80tt6",
+        "status": "identified",
+        "body": "The issue has been identified and a fix is being implemented.",
+        "incident_id": "kcnnpj79625y",
+        "created_at": "2026-01-18T13:42:33.102-08:00",
+        "updated_at": "2026-01-18T13:42:33.387-08:00",
+        "display_at": "2026-01-18T13:42:33.102-08:00",
+        "affected_components": [
+          {
+            "code": "0wf8j1vtry0v",
+            "name": "reddit.com - Desktop Web",
+            "old_status": "operational",
+            "new_status": "operational"
+          },
+          {
+            "code": "jx663dxlwgdt",
+            "name": "reddit.com - Mobile Web",
+            "old_status": "operational",
+            "new_status": "operational"
+          },
+          {
+            "code": "jk8d05fz3nwg",
+            "name": "reddit.com - Native Mobile Apps",
+            "old_status": "operational",
+            "new_status": "operational"
+          },
+          {
+            "code": "yk5b49px4hk8",
+            "name": "Reddit Infrastructure",
+            "old_status": "operational",
+            "new_status": "operational"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": 2013004105711759466
+      },
+      {
+        "id": "dgr7p3t3tz7g",
+        "status": "investigating",
+        "body": "We're experiencing elevated error rates including creating and viewing posts or comments that have images or video media. We are currently looking into the issue.",
+        "incident_id": "kcnnpj79625y",
+        "created_at": "2026-01-18T13:33:14.355-08:00",
+        "updated_at": "2026-01-18T13:33:14.355-08:00",
+        "display_at": "2026-01-18T13:33:14.355-08:00",
+        "affected_components": [
+          {
+            "code": "0wf8j1vtry0v",
+            "name": "reddit.com - Desktop Web",
+            "old_status": "operational",
+            "new_status": "operational"
+          },
+          {
+            "code": "jx663dxlwgdt",
+            "name": "reddit.com - Mobile Web",
+            "old_status": "operational",
+            "new_status": "operational"
+          },
+          {
+            "code": "jk8d05fz3nwg",
+            "name": "reddit.com - Native Mobile Apps",
+            "old_status": "operational",
+            "new_status": "operational"
+          },
+          {
+            "code": "yk5b49px4hk8",
+            "name": "Reddit Infrastructure",
+            "old_status": "operational",
+            "new_status": "operational"
+          }
+        ],
+        "deliver_notifications": false,
+        "custom_tweet": null,
+        "tweet_id": null
+      }
+    ],
+    "components": [
+      {
+        "id": "0wf8j1vtry0v",
+        "name": "Desktop Web",
+        "status": "operational",
+        "created_at": "2014-11-11T14:24:29.734-08:00",
+        "updated_at": "2026-01-16T19:37:58.671-08:00",
+        "position": 1,
+        "description": null,
+        "showcase": true,
+        "start_date": null,
+        "group_id": "74dvc0qj8zdp",
+        "page_id": "2kbc0d48tv3j",
+        "group": false,
+        "only_show_if_degraded": false
+      },
+      {
+        "id": "yk5b49px4hk8",
+        "name": "Reddit Infrastructure",
+        "status": "operational",
+        "created_at": "2016-07-19T12:13:13.667-07:00",
+        "updated_at": "2026-02-25T12:53:32.737-08:00",
+        "position": 3,
+        "description": "The underlying servers that support Reddit.",
+        "showcase": false,
+        "start_date": null,
+        "group_id": null,
+        "page_id": "2kbc0d48tv3j",
+        "group": false,
+        "only_show_if_degraded": false
+      },
+      {
+        "id": "jx663dxlwgdt",
+        "name": "Mobile Web",
+        "status": "operational",
+        "created_at": "2015-04-21T17:02:10.663-07:00",
+        "updated_at": "2026-01-16T19:37:58.695-08:00",
+        "position": 4,
+        "description": "m.reddit.com",
+        "showcase": true,
+        "start_date": null,
+        "group_id": "74dvc0qj8zdp",
+        "page_id": "2kbc0d48tv3j",
+        "group": false,
+        "only_show_if_degraded": false
+      },
+      {
+        "id": "jk8d05fz3nwg",
+        "name": "Native Mobile Apps",
+        "status": "operational",
+        "created_at": "2017-03-23T10:14:35.718-07:00",
+        "updated_at": "2026-01-16T19:37:58.717-08:00",
+        "position": 6,
+        "description": "The API used by our native mobile applications",
+        "showcase": true,
+        "start_date": null,
+        "group_id": "74dvc0qj8zdp",
+        "page_id": "2kbc0d48tv3j",
+        "group": false,
+        "only_show_if_degraded": false
+      }
+    ],
+    "reminder_intervals": null
+  },
+  {
+    "id": "brsn0q8r649z",
+    "name": "Increased error rates across the site",
+    "status": "resolved",
+    "created_at": "2026-01-16T16:20:31.666-08:00",
+    "updated_at": "2026-01-16T19:37:59.231-08:00",
+    "monitoring_at": null,
+    "resolved_at": "2026-01-16T19:37:58.779-08:00",
+    "impact": "major",
+    "shortlink": "https://stspg.io/dkfn5906f13c",
+    "started_at": "2026-01-16T16:20:31.652-08:00",
+    "page_id": "2kbc0d48tv3j",
+    "incident_updates": [
+      {
+        "id": "pkpcs05mjqq5",
+        "status": "resolved",
+        "body": "Everything is now resolved.",
+        "incident_id": "brsn0q8r649z",
+        "created_at": "2026-01-16T19:37:58.779-08:00",
+        "updated_at": "2026-01-16T19:37:59.225-08:00",
+        "display_at": "2026-01-16T19:37:58.779-08:00",
+        "affected_components": [
+          {
+            "code": "0wf8j1vtry0v",
+            "name": "reddit.com - Desktop Web",
+            "old_status": "partial_outage",
+            "new_status": "operational"
+          },
+          {
+            "code": "jx663dxlwgdt",
+            "name": "reddit.com - Mobile Web",
+            "old_status": "partial_outage",
+            "new_status": "operational"
+          },
+          {
+            "code": "jk8d05fz3nwg",
+            "name": "reddit.com - Native Mobile Apps",
+            "old_status": "partial_outage",
+            "new_status": "operational"
+          },
+          {
+            "code": "fggy4fg1hdmj",
+            "name": "reddit.com - Comment Processing",
+            "old_status": "partial_outage",
+            "new_status": "operational"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": 2012368776935911470
+      },
+      {
+        "id": "pj3mglvxk2sc",
+        "status": "identified",
+        "body": "Users are experiencing increased error rates when posting images in comments or posts, signing up for accounts, or deleting accounts. We've identified the underlying cause and are working on a resolution.",
+        "incident_id": "brsn0q8r649z",
+        "created_at": "2026-01-16T17:23:21.307-08:00",
+        "updated_at": "2026-01-16T17:23:21.307-08:00",
+        "display_at": "2026-01-16T17:23:21.307-08:00",
+        "affected_components": [
+          {
+            "code": "0wf8j1vtry0v",
+            "name": "reddit.com - Desktop Web",
+            "old_status": "partial_outage",
+            "new_status": "partial_outage"
+          },
+          {
+            "code": "jx663dxlwgdt",
+            "name": "reddit.com - Mobile Web",
+            "old_status": "partial_outage",
+            "new_status": "partial_outage"
+          },
+          {
+            "code": "jk8d05fz3nwg",
+            "name": "reddit.com - Native Mobile Apps",
+            "old_status": "partial_outage",
+            "new_status": "partial_outage"
+          },
+          {
+            "code": "fggy4fg1hdmj",
+            "name": "reddit.com - Comment Processing",
+            "old_status": "partial_outage",
+            "new_status": "partial_outage"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "h725svjjycvb",
+        "status": "identified",
+        "body": "Users are experiencing increased error rates when posting images or signing up for accounts. We've identified the underlying cause and are working on a resolution.",
+        "incident_id": "brsn0q8r649z",
+        "created_at": "2026-01-16T16:20:31.859-08:00",
+        "updated_at": "2026-01-16T16:20:32.302-08:00",
+        "display_at": "2026-01-16T16:20:31.859-08:00",
+        "affected_components": [
+          {
+            "code": "0wf8j1vtry0v",
+            "name": "reddit.com - Desktop Web",
+            "old_status": "operational",
+            "new_status": "partial_outage"
+          },
+          {
+            "code": "jx663dxlwgdt",
+            "name": "reddit.com - Mobile Web",
+            "old_status": "operational",
+            "new_status": "partial_outage"
+          },
+          {
+            "code": "jk8d05fz3nwg",
+            "name": "reddit.com - Native Mobile Apps",
+            "old_status": "operational",
+            "new_status": "partial_outage"
+          },
+          {
+            "code": "fggy4fg1hdmj",
+            "name": "reddit.com - Comment Processing",
+            "old_status": "operational",
+            "new_status": "partial_outage"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": 2012319087389704381
+      }
+    ],
+    "components": [
+      {
+        "id": "0wf8j1vtry0v",
+        "name": "Desktop Web",
+        "status": "operational",
+        "created_at": "2014-11-11T14:24:29.734-08:00",
+        "updated_at": "2026-01-16T19:37:58.671-08:00",
+        "position": 1,
+        "description": null,
+        "showcase": true,
+        "start_date": null,
+        "group_id": "74dvc0qj8zdp",
+        "page_id": "2kbc0d48tv3j",
+        "group": false,
+        "only_show_if_degraded": false
+      },
+      {
+        "id": "jx663dxlwgdt",
+        "name": "Mobile Web",
+        "status": "operational",
+        "created_at": "2015-04-21T17:02:10.663-07:00",
+        "updated_at": "2026-01-16T19:37:58.695-08:00",
+        "position": 4,
+        "description": "m.reddit.com",
+        "showcase": true,
+        "start_date": null,
+        "group_id": "74dvc0qj8zdp",
+        "page_id": "2kbc0d48tv3j",
+        "group": false,
+        "only_show_if_degraded": false
+      },
+      {
+        "id": "jk8d05fz3nwg",
+        "name": "Native Mobile Apps",
+        "status": "operational",
+        "created_at": "2017-03-23T10:14:35.718-07:00",
+        "updated_at": "2026-01-16T19:37:58.717-08:00",
+        "position": 6,
+        "description": "The API used by our native mobile applications",
+        "showcase": true,
+        "start_date": null,
+        "group_id": "74dvc0qj8zdp",
+        "page_id": "2kbc0d48tv3j",
+        "group": false,
+        "only_show_if_degraded": false
+      },
+      {
+        "id": "fggy4fg1hdmj",
+        "name": "Comment Processing",
+        "status": "operational",
+        "created_at": "2017-07-11T12:06:02.012-07:00",
+        "updated_at": "2026-01-16T19:37:58.739-08:00",
+        "position": 8,
+        "description": "Addition of new comments to posts.",
+        "showcase": true,
+        "start_date": null,
+        "group_id": "74dvc0qj8zdp",
+        "page_id": "2kbc0d48tv3j",
+        "group": false,
+        "only_show_if_degraded": false
+      }
+    ],
+    "reminder_intervals": null
+  },
+  {
+    "id": "j9smpl5kwyl5",
+    "name": "Investigating elevated errors across reddit.com and native apps",
+    "status": "resolved",
+    "created_at": "2026-01-13T09:01:09.468-08:00",
+    "updated_at": "2026-01-13T10:04:17.906-08:00",
+    "monitoring_at": "2026-01-13T09:53:48.968-08:00",
+    "resolved_at": "2026-01-13T10:04:17.556-08:00",
+    "impact": "minor",
+    "shortlink": "https://stspg.io/hztf5ylc19sz",
+    "started_at": "2026-01-13T09:01:09.460-08:00",
+    "page_id": "2kbc0d48tv3j",
+    "incident_updates": [
+      {
+        "id": "lkqhnw5nwr5q",
+        "status": "resolved",
+        "body": "This incident has been resolved.",
+        "incident_id": "j9smpl5kwyl5",
+        "created_at": "2026-01-13T10:04:17.556-08:00",
+        "updated_at": "2026-01-13T10:04:17.901-08:00",
+        "display_at": "2026-01-13T10:04:17.556-08:00",
+        "affected_components": [
+          {
+            "code": "0wf8j1vtry0v",
+            "name": "reddit.com - Desktop Web",
+            "old_status": "degraded_performance",
+            "new_status": "operational"
+          },
+          {
+            "code": "jk8d05fz3nwg",
+            "name": "reddit.com - Native Mobile Apps",
+            "old_status": "degraded_performance",
+            "new_status": "operational"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": 2011137239863214568
+      },
+      {
+        "id": "ystcqh3sgcll",
+        "status": "monitoring",
+        "body": "A fix has been implemented and we are monitoring the results.",
+        "incident_id": "j9smpl5kwyl5",
+        "created_at": "2026-01-13T09:53:48.968-08:00",
+        "updated_at": "2026-01-13T09:53:48.968-08:00",
+        "display_at": "2026-01-13T09:53:48.968-08:00",
+        "affected_components": [
+          {
+            "code": "0wf8j1vtry0v",
+            "name": "reddit.com - Desktop Web",
+            "old_status": "degraded_performance",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "jk8d05fz3nwg",
+            "name": "reddit.com - Native Mobile Apps",
+            "old_status": "degraded_performance",
+            "new_status": "degraded_performance"
+          }
+        ],
+        "deliver_notifications": false,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "mclvds7ghmn3",
+        "status": "identified",
+        "body": "The issue has been identified and a fix is being implemented.",
+        "incident_id": "j9smpl5kwyl5",
+        "created_at": "2026-01-13T09:03:18.143-08:00",
+        "updated_at": "2026-01-13T09:03:18.143-08:00",
+        "display_at": "2026-01-13T09:03:18.143-08:00",
+        "affected_components": [
+          {
+            "code": "0wf8j1vtry0v",
+            "name": "reddit.com - Desktop Web",
+            "old_status": "operational",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "jk8d05fz3nwg",
+            "name": "reddit.com - Native Mobile Apps",
+            "old_status": "operational",
+            "new_status": "degraded_performance"
+          }
+        ],
+        "deliver_notifications": false,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "rwqk2t5z57h5",
+        "status": "investigating",
+        "body": "We are currently investigating this issue.",
+        "incident_id": "j9smpl5kwyl5",
+        "created_at": "2026-01-13T09:01:09.510-08:00",
+        "updated_at": "2026-01-13T09:01:09.764-08:00",
+        "display_at": "2026-01-13T09:01:09.510-08:00",
+        "affected_components": [
+          {
+            "code": "0wf8j1vtry0v",
+            "name": "reddit.com - Desktop Web",
+            "old_status": "operational",
+            "new_status": "operational"
+          },
+          {
+            "code": "jk8d05fz3nwg",
+            "name": "reddit.com - Native Mobile Apps",
+            "old_status": "operational",
+            "new_status": "operational"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": 2011121351369822480
+      }
+    ],
+    "components": [
+      {
+        "id": "0wf8j1vtry0v",
+        "name": "Desktop Web",
+        "status": "operational",
+        "created_at": "2014-11-11T14:24:29.734-08:00",
+        "updated_at": "2026-01-16T19:37:58.671-08:00",
+        "position": 1,
+        "description": null,
+        "showcase": true,
+        "start_date": null,
+        "group_id": "74dvc0qj8zdp",
+        "page_id": "2kbc0d48tv3j",
+        "group": false,
+        "only_show_if_degraded": false
+      },
+      {
+        "id": "jk8d05fz3nwg",
+        "name": "Native Mobile Apps",
+        "status": "operational",
+        "created_at": "2017-03-23T10:14:35.718-07:00",
+        "updated_at": "2026-01-16T19:37:58.717-08:00",
+        "position": 6,
+        "description": "The API used by our native mobile applications",
+        "showcase": true,
+        "start_date": null,
+        "group_id": "74dvc0qj8zdp",
+        "page_id": "2kbc0d48tv3j",
+        "group": false,
+        "only_show_if_degraded": false
+      }
+    ],
+    "reminder_intervals": null
+  },
+  {
+    "id": "pxtc317vq3qj",
+    "name": "Video posts are not displaying correctly",
+    "status": "resolved",
+    "created_at": "2025-12-18T14:49:44.000-08:00",
+    "updated_at": "2025-12-18T17:00:31.802-08:00",
+    "monitoring_at": null,
+    "resolved_at": "2025-12-18T17:00:31.380-08:00",
+    "impact": "minor",
+    "shortlink": "https://stspg.io/wknmsvcm18rl",
+    "started_at": "2025-12-18T14:49:44.000-08:00",
+    "page_id": "2kbc0d48tv3j",
+    "incident_updates": [
+      {
+        "id": "qljlcpqfxgkt",
+        "status": "resolved",
+        "body": "A fix has been rolled out and we have fixed the issues with impacted video posts.",
+        "incident_id": "pxtc317vq3qj",
+        "created_at": "2025-12-18T17:00:31.380-08:00",
+        "updated_at": "2025-12-18T17:00:31.784-08:00",
+        "display_at": "2025-12-18T17:00:31.380-08:00",
+        "affected_components": [
+          {
+            "code": "0wf8j1vtry0v",
+            "name": "reddit.com - Desktop Web",
+            "old_status": "degraded_performance",
+            "new_status": "operational"
+          },
+          {
+            "code": "jx663dxlwgdt",
+            "name": "reddit.com - Mobile Web",
+            "old_status": "degraded_performance",
+            "new_status": "operational"
+          },
+          {
+            "code": "jk8d05fz3nwg",
+            "name": "reddit.com - Native Mobile Apps",
+            "old_status": "degraded_performance",
+            "new_status": "operational"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": 2001819903440097421
+      },
+      {
+        "id": "5hvjdfwfmg86",
+        "status": "identified",
+        "body": "We've identified and mitigated the underlying problem. Newly uploaded videos should now appear correctly, and we're working on a fix for videos uploaded during the outage.",
+        "incident_id": "pxtc317vq3qj",
+        "created_at": "2025-12-18T15:06:51.585-08:00",
+        "updated_at": "2025-12-18T15:06:51.904-08:00",
+        "display_at": "2025-12-18T15:06:51.585-08:00",
+        "affected_components": [
+          {
+            "code": "0wf8j1vtry0v",
+            "name": "reddit.com - Desktop Web",
+            "old_status": "degraded_performance",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "jx663dxlwgdt",
+            "name": "reddit.com - Mobile Web",
+            "old_status": "degraded_performance",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "jk8d05fz3nwg",
+            "name": "reddit.com - Native Mobile Apps",
+            "old_status": "degraded_performance",
+            "new_status": "degraded_performance"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": 2001791298710442221
+      },
+      {
+        "id": "7qw9svbv1067",
+        "status": "investigating",
+        "body": "We are currently investigating reports that some video posts are displaying as images.",
+        "incident_id": "pxtc317vq3qj",
+        "created_at": "2025-12-18T14:49:44.544-08:00",
+        "updated_at": "2025-12-18T14:49:59.420-08:00",
+        "display_at": "2025-12-18T14:49:44.000-08:00",
+        "affected_components": [
+          {
+            "code": "0wf8j1vtry0v",
+            "name": "reddit.com - Desktop Web",
+            "old_status": "operational",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "jx663dxlwgdt",
+            "name": "reddit.com - Mobile Web",
+            "old_status": "operational",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "jk8d05fz3nwg",
+            "name": "reddit.com - Native Mobile Apps",
+            "old_status": "operational",
+            "new_status": "degraded_performance"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": 2001786991227343197
+      }
+    ],
+    "components": [
+      {
+        "id": "0wf8j1vtry0v",
+        "name": "Desktop Web",
+        "status": "operational",
+        "created_at": "2014-11-11T14:24:29.734-08:00",
+        "updated_at": "2026-01-16T19:37:58.671-08:00",
+        "position": 1,
+        "description": null,
+        "showcase": true,
+        "start_date": null,
+        "group_id": "74dvc0qj8zdp",
+        "page_id": "2kbc0d48tv3j",
+        "group": false,
+        "only_show_if_degraded": false
+      },
+      {
+        "id": "jx663dxlwgdt",
+        "name": "Mobile Web",
+        "status": "operational",
+        "created_at": "2015-04-21T17:02:10.663-07:00",
+        "updated_at": "2026-01-16T19:37:58.695-08:00",
+        "position": 4,
+        "description": "m.reddit.com",
+        "showcase": true,
+        "start_date": null,
+        "group_id": "74dvc0qj8zdp",
+        "page_id": "2kbc0d48tv3j",
+        "group": false,
+        "only_show_if_degraded": false
+      },
+      {
+        "id": "jk8d05fz3nwg",
+        "name": "Native Mobile Apps",
+        "status": "operational",
+        "created_at": "2017-03-23T10:14:35.718-07:00",
+        "updated_at": "2026-01-16T19:37:58.717-08:00",
+        "position": 6,
+        "description": "The API used by our native mobile applications",
+        "showcase": true,
+        "start_date": null,
+        "group_id": "74dvc0qj8zdp",
+        "page_id": "2kbc0d48tv3j",
+        "group": false,
+        "only_show_if_degraded": false
+      }
+    ],
+    "reminder_intervals": null
+  }
+]

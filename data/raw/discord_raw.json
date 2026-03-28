@@ -1,0 +1,435 @@
+[
+  {
+    "id": "9sng5r2j71sq",
+    "name": "Issues connecting to Discord",
+    "status": "resolved",
+    "created_at": "2026-03-25T12:21:47.075-07:00",
+    "updated_at": "2026-03-25T15:38:17.924-07:00",
+    "monitoring_at": "2026-03-25T14:26:33.030-07:00",
+    "resolved_at": "2026-03-25T15:38:17.907-07:00",
+    "impact": "critical",
+    "shortlink": "https://stspg.io/61fw0d5ddysp",
+    "started_at": "2026-03-25T12:21:47.067-07:00",
+    "page_id": "srhpyqt94yxb",
+    "incident_updates": [
+      {
+        "id": "vds4bd6rwkb0",
+        "status": "resolved",
+        "body": "This incident has been resolved.",
+        "incident_id": "9sng5r2j71sq",
+        "created_at": "2026-03-25T15:38:17.907-07:00",
+        "updated_at": "2026-03-25T15:38:17.907-07:00",
+        "display_at": "2026-03-25T15:38:17.907-07:00",
+        "affected_components": [
+          {
+            "code": "rhznvxg4v7yh",
+            "name": "API",
+            "old_status": "major_outage",
+            "new_status": "operational"
+          },
+          {
+            "code": "x7rnz0t7dpnp",
+            "name": "Gateway",
+            "old_status": "major_outage",
+            "new_status": "operational"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "xbds3rks500f",
+        "status": "monitoring",
+        "body": "Voice and video should have recovered and users should be able to connect to voice calls. \nWe are still tracking down issues with our API.",
+        "incident_id": "9sng5r2j71sq",
+        "created_at": "2026-03-25T14:26:33.030-07:00",
+        "updated_at": "2026-03-25T14:26:33.030-07:00",
+        "display_at": "2026-03-25T14:26:33.030-07:00",
+        "affected_components": [
+          {
+            "code": "rhznvxg4v7yh",
+            "name": "API",
+            "old_status": "major_outage",
+            "new_status": "major_outage"
+          },
+          {
+            "code": "x7rnz0t7dpnp",
+            "name": "Gateway",
+            "old_status": "major_outage",
+            "new_status": "major_outage"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "hjkhzt0m09qv",
+        "status": "identified",
+        "body": "We believe we have identified the issue and are taking action to try and restore voice traffic",
+        "incident_id": "9sng5r2j71sq",
+        "created_at": "2026-03-25T13:07:21.196-07:00",
+        "updated_at": "2026-03-25T13:07:21.196-07:00",
+        "display_at": "2026-03-25T13:07:21.196-07:00",
+        "affected_components": [
+          {
+            "code": "rhznvxg4v7yh",
+            "name": "API",
+            "old_status": "major_outage",
+            "new_status": "major_outage"
+          },
+          {
+            "code": "x7rnz0t7dpnp",
+            "name": "Gateway",
+            "old_status": "major_outage",
+            "new_status": "major_outage"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "byf8yw910c3t",
+        "status": "investigating",
+        "body": "We're continuing to investigate impacts to voice connectivity. There may be some temporary impacts to other features as we work to accelerate recovery.",
+        "incident_id": "9sng5r2j71sq",
+        "created_at": "2026-03-25T12:46:21.899-07:00",
+        "updated_at": "2026-03-25T12:46:21.899-07:00",
+        "display_at": "2026-03-25T12:46:21.899-07:00",
+        "affected_components": [
+          {
+            "code": "rhznvxg4v7yh",
+            "name": "API",
+            "old_status": "major_outage",
+            "new_status": "major_outage"
+          },
+          {
+            "code": "x7rnz0t7dpnp",
+            "name": "Gateway",
+            "old_status": "major_outage",
+            "new_status": "major_outage"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "mc4t19580x1r",
+        "status": "investigating",
+        "body": "We're aware of an issue that is preventing people from connecting to Discord - we're actively investigating",
+        "incident_id": "9sng5r2j71sq",
+        "created_at": "2026-03-25T12:21:47.195-07:00",
+        "updated_at": "2026-03-25T12:21:47.195-07:00",
+        "display_at": "2026-03-25T12:21:47.195-07:00",
+        "affected_components": [
+          {
+            "code": "rhznvxg4v7yh",
+            "name": "API",
+            "old_status": "operational",
+            "new_status": "major_outage"
+          },
+          {
+            "code": "x7rnz0t7dpnp",
+            "name": "Gateway",
+            "old_status": "operational",
+            "new_status": "major_outage"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      }
+    ],
+    "components": [
+      {
+        "id": "rhznvxg4v7yh",
+        "name": "API",
+        "status": "operational",
+        "created_at": "2015-07-30T18:55:43.739-07:00",
+        "updated_at": "2026-03-25T15:38:17.865-07:00",
+        "position": 1,
+        "description": "The API is responsible for sending and receiving messages, and general operations on the platform. If this is down, chances are you'll have trouble connecting and/or sending messages.",
+        "showcase": true,
+        "start_date": null,
+        "group_id": null,
+        "page_id": "srhpyqt94yxb",
+        "group": false,
+        "only_show_if_degraded": false
+      },
+      {
+        "id": "x7rnz0t7dpnp",
+        "name": "Gateway",
+        "status": "operational",
+        "created_at": "2023-06-20T11:08:14.987-07:00",
+        "updated_at": "2026-03-25T15:38:17.878-07:00",
+        "position": 3,
+        "description": "If this is down, you may be unable to connect to Discord, or your client may not display up-to-date information.",
+        "showcase": true,
+        "start_date": "2023-06-20",
+        "group_id": null,
+        "page_id": "srhpyqt94yxb",
+        "group": false,
+        "only_show_if_degraded": false
+      }
+    ],
+    "reminder_intervals": null
+  },
+  {
+    "id": "hm33xk31dk46",
+    "name": "Elevated errors for streaming and messaging",
+    "status": "resolved",
+    "created_at": "2026-03-25T08:18:46.585-07:00",
+    "updated_at": "2026-03-25T08:51:12.780-07:00",
+    "monitoring_at": "2026-03-25T08:43:58.035-07:00",
+    "resolved_at": "2026-03-25T08:51:12.759-07:00",
+    "impact": "minor",
+    "shortlink": "https://stspg.io/fdnrlv6w4jkw",
+    "started_at": "2026-03-25T08:18:46.575-07:00",
+    "page_id": "srhpyqt94yxb",
+    "incident_updates": [
+      {
+        "id": "2qnh5rdhsf7y",
+        "status": "resolved",
+        "body": "This incident has been resolved.",
+        "incident_id": "hm33xk31dk46",
+        "created_at": "2026-03-25T08:51:12.759-07:00",
+        "updated_at": "2026-03-25T08:51:12.759-07:00",
+        "display_at": "2026-03-25T08:51:12.759-07:00",
+        "affected_components": [
+          {
+            "code": "rhznvxg4v7yh",
+            "name": "API",
+            "old_status": "degraded_performance",
+            "new_status": "operational"
+          },
+          {
+            "code": "354mn7xfxz1h",
+            "name": "Push Notifications",
+            "old_status": "degraded_performance",
+            "new_status": "operational"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "sc1xbr9j0p2q",
+        "status": "monitoring",
+        "body": "We have identified the source of the issues and are monitoring recovery.",
+        "incident_id": "hm33xk31dk46",
+        "created_at": "2026-03-25T08:43:58.035-07:00",
+        "updated_at": "2026-03-25T08:43:58.035-07:00",
+        "display_at": "2026-03-25T08:43:58.035-07:00",
+        "affected_components": [
+          {
+            "code": "rhznvxg4v7yh",
+            "name": "API",
+            "old_status": "degraded_performance",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "354mn7xfxz1h",
+            "name": "Push Notifications",
+            "old_status": "degraded_performance",
+            "new_status": "degraded_performance"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "kgmhk6n5pmh1",
+        "status": "investigating",
+        "body": "We are investigating degraded performance affecting some Discord features, including streaming and messaging, due to a networking issue beginning at approximately 7:53 AM PT; our team is actively engaged with our cloud provider to resolve the issue.",
+        "incident_id": "hm33xk31dk46",
+        "created_at": "2026-03-25T08:18:46.700-07:00",
+        "updated_at": "2026-03-25T08:18:46.700-07:00",
+        "display_at": "2026-03-25T08:18:46.700-07:00",
+        "affected_components": [
+          {
+            "code": "rhznvxg4v7yh",
+            "name": "API",
+            "old_status": "operational",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "354mn7xfxz1h",
+            "name": "Push Notifications",
+            "old_status": "operational",
+            "new_status": "degraded_performance"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      }
+    ],
+    "components": [
+      {
+        "id": "rhznvxg4v7yh",
+        "name": "API",
+        "status": "operational",
+        "created_at": "2015-07-30T18:55:43.739-07:00",
+        "updated_at": "2026-03-25T15:38:17.865-07:00",
+        "position": 1,
+        "description": "The API is responsible for sending and receiving messages, and general operations on the platform. If this is down, chances are you'll have trouble connecting and/or sending messages.",
+        "showcase": true,
+        "start_date": null,
+        "group_id": null,
+        "page_id": "srhpyqt94yxb",
+        "group": false,
+        "only_show_if_degraded": false
+      },
+      {
+        "id": "354mn7xfxz1h",
+        "name": "Push Notifications",
+        "status": "operational",
+        "created_at": "2020-04-30T18:41:38.158-07:00",
+        "updated_at": "2026-03-25T08:51:12.727-07:00",
+        "position": 4,
+        "description": "System for sending push notifications to users.",
+        "showcase": true,
+        "start_date": null,
+        "group_id": null,
+        "page_id": "srhpyqt94yxb",
+        "group": false,
+        "only_show_if_degraded": false
+      }
+    ],
+    "reminder_intervals": null
+  },
+  {
+    "id": "2vw56wyzvjqn",
+    "name": "Failure to start new voice calls",
+    "status": "resolved",
+    "created_at": "2026-03-19T19:47:07.528-07:00",
+    "updated_at": "2026-03-19T22:56:47.686-07:00",
+    "monitoring_at": "2026-03-19T22:43:58.267-07:00",
+    "resolved_at": "2026-03-19T22:56:47.669-07:00",
+    "impact": "major",
+    "shortlink": "https://stspg.io/4lq25k7pwl99",
+    "started_at": "2026-03-19T19:47:07.521-07:00",
+    "page_id": "srhpyqt94yxb",
+    "incident_updates": [
+      {
+        "id": "b7jxh2rfzn21",
+        "status": "resolved",
+        "body": "This incident has been resolved.",
+        "incident_id": "2vw56wyzvjqn",
+        "created_at": "2026-03-19T22:56:47.669-07:00",
+        "updated_at": "2026-03-19T22:56:47.669-07:00",
+        "display_at": "2026-03-19T22:56:47.669-07:00",
+        "affected_components": null,
+        "deliver_notifications": false,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "wx0vpl2sw6yf",
+        "status": "monitoring",
+        "body": "A fix has been implemented and we are monitoring the results.",
+        "incident_id": "2vw56wyzvjqn",
+        "created_at": "2026-03-19T22:43:58.267-07:00",
+        "updated_at": "2026-03-19T22:43:58.267-07:00",
+        "display_at": "2026-03-19T22:43:58.267-07:00",
+        "affected_components": null,
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "9vvvymlvl303",
+        "status": "investigating",
+        "body": "New voice calls are failing to be created. We are currently investigating.",
+        "incident_id": "2vw56wyzvjqn",
+        "created_at": "2026-03-19T19:47:07.575-07:00",
+        "updated_at": "2026-03-19T19:47:07.575-07:00",
+        "display_at": "2026-03-19T19:47:07.575-07:00",
+        "affected_components": null,
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      }
+    ],
+    "components": [],
+    "reminder_intervals": null
+  },
+  {
+    "id": "dsv750sj44fn",
+    "name": "Applications experiencing 503 errors",
+    "status": "resolved",
+    "created_at": "2026-03-12T13:50:26.853-07:00",
+    "updated_at": "2026-03-12T14:06:00.575-07:00",
+    "monitoring_at": null,
+    "resolved_at": "2026-03-12T14:06:00.560-07:00",
+    "impact": "major",
+    "shortlink": "https://stspg.io/lyp50tfbf531",
+    "started_at": "2026-03-12T13:50:26.847-07:00",
+    "page_id": "srhpyqt94yxb",
+    "incident_updates": [
+      {
+        "id": "yqrw75b885sz",
+        "status": "resolved",
+        "body": "We believe the 503s have been resolved.",
+        "incident_id": "dsv750sj44fn",
+        "created_at": "2026-03-12T14:06:00.560-07:00",
+        "updated_at": "2026-03-12T14:06:00.560-07:00",
+        "display_at": "2026-03-12T14:06:00.560-07:00",
+        "affected_components": null,
+        "deliver_notifications": false,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "04rbbqjg21pv",
+        "status": "investigating",
+        "body": "We are aware that bot traffic may be hitting 503 errors and are investigating the issue.",
+        "incident_id": "dsv750sj44fn",
+        "created_at": "2026-03-12T13:50:26.891-07:00",
+        "updated_at": "2026-03-12T13:50:26.891-07:00",
+        "display_at": "2026-03-12T13:50:26.891-07:00",
+        "affected_components": null,
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      }
+    ],
+    "components": [],
+    "reminder_intervals": null
+  },
+  {
+    "id": "jxpmdts24t6d",
+    "name": "Applications experiencing 503 errors",
+    "status": "resolved",
+    "created_at": "2026-03-12T14:04:13.338-07:00",
+    "updated_at": "2026-03-12T14:04:13.398-07:00",
+    "monitoring_at": null,
+    "resolved_at": "2026-03-12T14:04:13.386-07:00",
+    "impact": "major",
+    "shortlink": "https://stspg.io/mznzwkb63ghw",
+    "started_at": "2026-03-12T14:04:13.333-07:00",
+    "page_id": "srhpyqt94yxb",
+    "incident_updates": [
+      {
+        "id": "xq71ssbbf75q",
+        "status": "resolved",
+        "body": "We believe that the 503s have been resolved.",
+        "incident_id": "jxpmdts24t6d",
+        "created_at": "2026-03-12T14:04:13.386-07:00",
+        "updated_at": "2026-03-12T14:04:13.386-07:00",
+        "display_at": "2026-03-12T14:04:13.386-07:00",
+        "affected_components": null,
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      }
+    ],
+    "components": [],
+    "reminder_intervals": null
+  }
+]

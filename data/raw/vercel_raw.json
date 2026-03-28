@@ -1,0 +1,533 @@
+[
+  {
+    "id": "dqhgwhqy8rcm",
+    "name": "Elevated Dashboard Errors",
+    "status": "resolved",
+    "created_at": "2026-03-25T16:32:01.875Z",
+    "updated_at": "2026-03-25T17:31:26.525Z",
+    "monitoring_at": "2026-03-25T16:41:39.249Z",
+    "resolved_at": "2026-03-25T17:31:26.508Z",
+    "impact": "minor",
+    "shortlink": "https://stspg.io/0x3myt2tpynq",
+    "started_at": "2026-03-25T16:32:01.863Z",
+    "page_id": "lvglq8h0mdyh",
+    "incident_updates": [
+      {
+        "id": "kj2z30lh6rys",
+        "status": "resolved",
+        "body": "This incident has been resolved.",
+        "incident_id": "dqhgwhqy8rcm",
+        "created_at": "2026-03-25T17:31:26.508Z",
+        "updated_at": "2026-03-25T17:31:26.508Z",
+        "display_at": "2026-03-25T17:31:26.508Z",
+        "affected_components": [
+          {
+            "code": "rxynwj392p81",
+            "name": "API",
+            "old_status": "degraded_performance",
+            "new_status": "operational"
+          },
+          {
+            "code": "7ckq6xr6nsbv",
+            "name": "Build & Deploy - Builds",
+            "old_status": "degraded_performance",
+            "new_status": "operational"
+          },
+          {
+            "code": "fk66q26xp7hh",
+            "name": "Dashboard - Dashboard",
+            "old_status": "degraded_performance",
+            "new_status": "operational"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "vb437mbmdb0m",
+        "status": "monitoring",
+        "body": "A fix has been implemented and we are monitoring the results.",
+        "incident_id": "dqhgwhqy8rcm",
+        "created_at": "2026-03-25T16:41:39.249Z",
+        "updated_at": "2026-03-25T16:41:39.249Z",
+        "display_at": "2026-03-25T16:41:39.249Z",
+        "affected_components": [
+          {
+            "code": "rxynwj392p81",
+            "name": "API",
+            "old_status": "degraded_performance",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "7ckq6xr6nsbv",
+            "name": "Build & Deploy - Builds",
+            "old_status": "degraded_performance",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "fk66q26xp7hh",
+            "name": "Dashboard - Dashboard",
+            "old_status": "degraded_performance",
+            "new_status": "degraded_performance"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "05104k1jwct9",
+        "status": "investigating",
+        "body": "We are currently investigating reports of elevated error rates on the Vercel Dashboard. Existing deployments and live traffic are not affected by this issue. We will share updates as they become available.",
+        "incident_id": "dqhgwhqy8rcm",
+        "created_at": "2026-03-25T16:32:01.986Z",
+        "updated_at": "2026-03-25T16:32:01.986Z",
+        "display_at": "2026-03-25T16:32:01.986Z",
+        "affected_components": [
+          {
+            "code": "rxynwj392p81",
+            "name": "API",
+            "old_status": "operational",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "7ckq6xr6nsbv",
+            "name": "Build & Deploy - Builds",
+            "old_status": "operational",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "fk66q26xp7hh",
+            "name": "Dashboard - Dashboard",
+            "old_status": "operational",
+            "new_status": "degraded_performance"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      }
+    ],
+    "components": [
+      {
+        "id": "fk66q26xp7hh",
+        "name": "Dashboard",
+        "status": "operational",
+        "created_at": "2020-04-21T16:08:01.695Z",
+        "updated_at": "2026-03-25T17:31:26.446Z",
+        "position": 1,
+        "description": null,
+        "showcase": true,
+        "start_date": null,
+        "group_id": "gyymyc4bc36j",
+        "page_id": "lvglq8h0mdyh",
+        "group": false,
+        "only_show_if_degraded": false
+      },
+      {
+        "id": "7ckq6xr6nsbv",
+        "name": "Builds",
+        "status": "operational",
+        "created_at": "2020-04-22T16:48:44.914Z",
+        "updated_at": "2026-03-25T17:31:26.462Z",
+        "position": 1,
+        "description": null,
+        "showcase": true,
+        "start_date": null,
+        "group_id": "47ltvgp4g9fb",
+        "page_id": "lvglq8h0mdyh",
+        "group": false,
+        "only_show_if_degraded": false
+      },
+      {
+        "id": "rxynwj392p81",
+        "name": "API",
+        "status": "operational",
+        "created_at": "2020-04-21T16:08:01.662Z",
+        "updated_at": "2026-03-25T17:31:26.474Z",
+        "position": 2,
+        "description": null,
+        "showcase": true,
+        "start_date": null,
+        "group_id": null,
+        "page_id": "lvglq8h0mdyh",
+        "group": false,
+        "only_show_if_degraded": false
+      }
+    ],
+    "reminder_intervals": null
+  },
+  {
+    "id": "wlpkbhxlkxqf",
+    "name": "Elevated Errors Loading Deployments on Dashboard",
+    "status": "resolved",
+    "created_at": "2026-03-24T15:19:45.882Z",
+    "updated_at": "2026-03-24T16:31:02.890Z",
+    "monitoring_at": "2026-03-24T16:14:40.053Z",
+    "resolved_at": "2026-03-24T16:31:02.875Z",
+    "impact": "minor",
+    "shortlink": "https://stspg.io/d6hjcnlnk09d",
+    "started_at": "2026-03-24T15:19:45.870Z",
+    "page_id": "lvglq8h0mdyh",
+    "incident_updates": [
+      {
+        "id": "0fzg6n31x8k9",
+        "status": "resolved",
+        "body": "This incident has been resolved.",
+        "incident_id": "wlpkbhxlkxqf",
+        "created_at": "2026-03-24T16:31:02.875Z",
+        "updated_at": "2026-03-24T16:31:02.875Z",
+        "display_at": "2026-03-24T16:31:02.875Z",
+        "affected_components": [
+          {
+            "code": "fk66q26xp7hh",
+            "name": "Dashboard - Dashboard",
+            "old_status": "operational",
+            "new_status": "operational"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "mmwvtt4mj059",
+        "status": "monitoring",
+        "body": "A fix has been implemented and we are monitoring the results.",
+        "incident_id": "wlpkbhxlkxqf",
+        "created_at": "2026-03-24T16:14:40.053Z",
+        "updated_at": "2026-03-24T16:14:40.053Z",
+        "display_at": "2026-03-24T16:14:40.053Z",
+        "affected_components": [
+          {
+            "code": "fk66q26xp7hh",
+            "name": "Dashboard - Dashboard",
+            "old_status": "degraded_performance",
+            "new_status": "operational"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "x8w76b7wv8rf",
+        "status": "investigating",
+        "body": "We are currently investigating reports of elevated error rates loading the Deployment Overview on the Vercel Dashboard. Existing deployments and live traffic are not affected by this issue. We will share updates as they become available.",
+        "incident_id": "wlpkbhxlkxqf",
+        "created_at": "2026-03-24T15:19:45.960Z",
+        "updated_at": "2026-03-24T15:19:45.960Z",
+        "display_at": "2026-03-24T15:19:45.960Z",
+        "affected_components": [
+          {
+            "code": "fk66q26xp7hh",
+            "name": "Dashboard - Dashboard",
+            "old_status": "operational",
+            "new_status": "degraded_performance"
+          }
+        ],
+        "deliver_notifications": false,
+        "custom_tweet": null,
+        "tweet_id": null
+      }
+    ],
+    "components": [
+      {
+        "id": "fk66q26xp7hh",
+        "name": "Dashboard",
+        "status": "operational",
+        "created_at": "2020-04-21T16:08:01.695Z",
+        "updated_at": "2026-03-25T17:31:26.446Z",
+        "position": 1,
+        "description": null,
+        "showcase": true,
+        "start_date": null,
+        "group_id": "gyymyc4bc36j",
+        "page_id": "lvglq8h0mdyh",
+        "group": false,
+        "only_show_if_degraded": false
+      }
+    ],
+    "reminder_intervals": null
+  },
+  {
+    "id": "p1n63rfd8yvm",
+    "name": "Elevated errors creating Vercel Functions in sin1 (Singapore)",
+    "status": "resolved",
+    "created_at": "2026-03-24T03:43:08.175Z",
+    "updated_at": "2026-03-24T05:01:18.448Z",
+    "monitoring_at": "2026-03-24T04:40:22.478Z",
+    "resolved_at": "2026-03-24T05:01:18.422Z",
+    "impact": "minor",
+    "shortlink": "https://stspg.io/0zq9zpny4l50",
+    "started_at": "2026-03-24T03:43:08.165Z",
+    "page_id": "lvglq8h0mdyh",
+    "incident_updates": [
+      {
+        "id": "nbt0vj7qnywk",
+        "status": "resolved",
+        "body": "This incident has been resolved.",
+        "incident_id": "p1n63rfd8yvm",
+        "created_at": "2026-03-24T05:01:18.422Z",
+        "updated_at": "2026-03-24T05:01:18.422Z",
+        "display_at": "2026-03-24T05:01:18.422Z",
+        "affected_components": [
+          {
+            "code": "7ckq6xr6nsbv",
+            "name": "Build & Deploy - Builds",
+            "old_status": "operational",
+            "new_status": "operational"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "pg2ql1jz59qm",
+        "status": "monitoring",
+        "body": "A fix has been implemented and we are monitoring the results.",
+        "incident_id": "p1n63rfd8yvm",
+        "created_at": "2026-03-24T04:40:22.478Z",
+        "updated_at": "2026-03-24T04:40:22.478Z",
+        "display_at": "2026-03-24T04:40:22.478Z",
+        "affected_components": [
+          {
+            "code": "7ckq6xr6nsbv",
+            "name": "Build & Deploy - Builds",
+            "old_status": "partial_outage",
+            "new_status": "operational"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "1bby179f4772",
+        "status": "identified",
+        "body": "We are observing elevated errors creating Vercel Functions in the `sin1` region. To mitigate errors creating deployments, we have temporarily disabled provisioning new Vercel Functions in this region. Existing deployments and live traffic are not affected by this issue. We will share updates as they become available.",
+        "incident_id": "p1n63rfd8yvm",
+        "created_at": "2026-03-24T03:43:08.261Z",
+        "updated_at": "2026-03-24T03:43:08.261Z",
+        "display_at": "2026-03-24T03:43:08.261Z",
+        "affected_components": [
+          {
+            "code": "7ckq6xr6nsbv",
+            "name": "Build & Deploy - Builds",
+            "old_status": "operational",
+            "new_status": "partial_outage"
+          }
+        ],
+        "deliver_notifications": false,
+        "custom_tweet": null,
+        "tweet_id": null
+      }
+    ],
+    "components": [
+      {
+        "id": "7ckq6xr6nsbv",
+        "name": "Builds",
+        "status": "operational",
+        "created_at": "2020-04-22T16:48:44.914Z",
+        "updated_at": "2026-03-25T17:31:26.462Z",
+        "position": 1,
+        "description": null,
+        "showcase": true,
+        "start_date": null,
+        "group_id": "47ltvgp4g9fb",
+        "page_id": "lvglq8h0mdyh",
+        "group": false,
+        "only_show_if_degraded": false
+      }
+    ],
+    "reminder_intervals": null
+  },
+  {
+    "id": "20v5r3njkcwc",
+    "name": "Dubai region (dxb1) is unavailable and traffic is being re-routed",
+    "status": "resolved",
+    "created_at": "2026-03-02T15:29:37.000Z",
+    "updated_at": "2026-03-16T18:50:30.122Z",
+    "monitoring_at": "2026-03-02T18:23:53.540Z",
+    "resolved_at": "2026-03-16T18:44:04.000Z",
+    "impact": "minor",
+    "shortlink": "https://stspg.io/zlddb1nrtlgw",
+    "started_at": "2026-03-02T15:29:37.000Z",
+    "page_id": "lvglq8h0mdyh",
+    "incident_updates": [
+      {
+        "id": "f5jf2hmr5dc5",
+        "status": "resolved",
+        "body": "Due to ongoing issues in the dxb1 region, traffic and regional Vercel services are currently re-routed to bom1. We will share more details on recovery when they become available.",
+        "incident_id": "20v5r3njkcwc",
+        "created_at": "2026-03-16T18:44:04.404Z",
+        "updated_at": "2026-03-16T18:50:30.105Z",
+        "display_at": "2026-03-16T18:44:04.000Z",
+        "affected_components": [
+          {
+            "code": "xqxqkh85qkqn",
+            "name": "Edge Network - DXB1 - Dubai, UAE",
+            "old_status": "major_outage",
+            "new_status": "operational"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "7b4nhpkc3d06",
+        "status": "monitoring",
+        "body": "We are monitoring the situation and continue to work toward restoring capacity in the dxb1 region. We will send further updates when new information is available.",
+        "incident_id": "20v5r3njkcwc",
+        "created_at": "2026-03-02T18:23:53.540Z",
+        "updated_at": "2026-03-02T18:23:53.540Z",
+        "display_at": "2026-03-02T18:23:53.540Z",
+        "affected_components": [
+          {
+            "code": "xqxqkh85qkqn",
+            "name": "Edge Network - DXB1 - Dubai, UAE",
+            "old_status": "major_outage",
+            "new_status": "major_outage"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "c3dbph0sb13v",
+        "status": "identified",
+        "body": "Due to operational issues in the dxb1 region, traffic is currently re-routed to bom1. Additionally, dxb1 is currently unavailable as a Function Region for new deployments.\n\nIf your existing deployments that use the dxb1 region are experiencing elevated function invocation errors, we strongly recommend switching to the nearest region (such as bom1) and redeploy until capacity is restored in dxb1. Deployments using multiple regions or failover regions are not affected since traffic is automatically routed to the nearest region based on the configured settings.",
+        "incident_id": "20v5r3njkcwc",
+        "created_at": "2026-03-02T15:29:37.618Z",
+        "updated_at": "2026-03-02T18:04:54.898Z",
+        "display_at": "2026-03-02T15:29:37.000Z",
+        "affected_components": [
+          {
+            "code": "xqxqkh85qkqn",
+            "name": "Edge Network - DXB1 - Dubai, UAE",
+            "old_status": "operational",
+            "new_status": "major_outage"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      }
+    ],
+    "components": [
+      {
+        "id": "xqxqkh85qkqn",
+        "name": "DXB1 - Dubai, UAE",
+        "status": "operational",
+        "created_at": "2026-03-02T15:28:32.989Z",
+        "updated_at": "2026-03-24T04:41:55.795Z",
+        "position": 7,
+        "description": null,
+        "showcase": true,
+        "start_date": "2025-07-01",
+        "group_id": "j7g76bfzc8hw",
+        "page_id": "lvglq8h0mdyh",
+        "group": false,
+        "only_show_if_degraded": false
+      }
+    ],
+    "reminder_intervals": null
+  },
+  {
+    "id": "85wwyvtyqs91",
+    "name": "Elevated Build Errors",
+    "status": "resolved",
+    "created_at": "2026-03-13T22:32:52.317Z",
+    "updated_at": "2026-03-13T23:15:00.391Z",
+    "monitoring_at": "2026-03-13T22:53:59.190Z",
+    "resolved_at": "2026-03-13T23:15:00.374Z",
+    "impact": "major",
+    "shortlink": "https://stspg.io/d055j8vzkkm9",
+    "started_at": "2026-03-13T22:32:52.309Z",
+    "page_id": "lvglq8h0mdyh",
+    "incident_updates": [
+      {
+        "id": "rzq67rgrw2f7",
+        "status": "resolved",
+        "body": "This incident has been resolved.",
+        "incident_id": "85wwyvtyqs91",
+        "created_at": "2026-03-13T23:15:00.374Z",
+        "updated_at": "2026-03-13T23:15:00.374Z",
+        "display_at": "2026-03-13T23:15:00.374Z",
+        "affected_components": [
+          {
+            "code": "7ckq6xr6nsbv",
+            "name": "Build & Deploy - Builds",
+            "old_status": "operational",
+            "new_status": "operational"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "6tj5hjyjtsjh",
+        "status": "monitoring",
+        "body": "A fix has been implemented and we are monitoring the results.",
+        "incident_id": "85wwyvtyqs91",
+        "created_at": "2026-03-13T22:53:59.190Z",
+        "updated_at": "2026-03-13T22:53:59.190Z",
+        "display_at": "2026-03-13T22:53:59.190Z",
+        "affected_components": [
+          {
+            "code": "7ckq6xr6nsbv",
+            "name": "Build & Deploy - Builds",
+            "old_status": "partial_outage",
+            "new_status": "operational"
+          }
+        ],
+        "deliver_notifications": true,
+        "custom_tweet": null,
+        "tweet_id": null
+      },
+      {
+        "id": "m7m4dcqvr8r1",
+        "status": "investigating",
+        "body": "We are currently investigating elevated error reports of deployment creation during the build phase. Existing deployments and live traffic are not affected by this issue. We will share updates as they become available.",
+        "incident_id": "85wwyvtyqs91",
+        "created_at": "2026-03-13T22:32:52.401Z",
+        "updated_at": "2026-03-13T22:32:52.401Z",
+        "display_at": "2026-03-13T22:32:52.401Z",
+        "affected_components": [
+          {
+            "code": "7ckq6xr6nsbv",
+            "name": "Build & Deploy - Builds",
+            "old_status": "operational",
+            "new_status": "partial_outage"
+          }
+        ],
+        "deliver_notifications": false,
+        "custom_tweet": null,
+        "tweet_id": null
+      }
+    ],
+    "components": [
+      {
+        "id": "7ckq6xr6nsbv",
+        "name": "Builds",
+        "status": "operational",
+        "created_at": "2020-04-22T16:48:44.914Z",
+        "updated_at": "2026-03-25T17:31:26.462Z",
+        "position": 1,
+        "description": null,
+        "showcase": true,
+        "start_date": null,
+        "group_id": "47ltvgp4g9fb",
+        "page_id": "lvglq8h0mdyh",
+        "group": false,
+        "only_show_if_degraded": false
+      }
+    ],
+    "reminder_intervals": null
+  }
+]
