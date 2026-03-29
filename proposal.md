@@ -12,4 +12,8 @@ I wrote a Python script that goes through each service's API and pulls all the i
 
 ## Data characteristics
 
-So far I've done a quick test run and got 359 incidents from 8 services. The full collection should give around 1500-3000 incidents going back a few years. Each incident has about 15 features — stuff like duration (in minutes), impact level (minor/major/critical), number of status updates, day of week, hour of day, etc. Some services have way longer average outages than others (GitHub averages about 2 hours, but Atlassian averages over 20 hours which is crazy). I want to see if I can predict whether an outage will be short or long based on the early signals.
+So far I've done a quick test run and got 359 incidents from 8 services. The full collection should give around 1500-3000 incidents going back a few years. Each incident has about 15 features — stuff like duration (in minutes), impact level (minor/major/critical), number of status updates, day of week, hour of day, etc. Some services have way longer average outages than others (GitHub averages about 2 hours, but Atlassian averages over 20 hours which is crazy).
+
+## What I plan to analyze
+
+I have a few things I want to look into. First, I want to check if outages happen more on certain days or times — like do Fridays have more incidents because of last-minute deploys? Second, I want to test whether incidents with more affected components tend to last longer (hypothesis testing with t-test or similar). Third, I want to try building a simple classifier (like logistic regression or decision tree) that predicts whether an outage will be "short" (under 1 hour) or "long" based on early signals like impact level, number of components, and time of day. I'll use scikit-learn for this part and evaluate with accuracy and confusion matrix.
