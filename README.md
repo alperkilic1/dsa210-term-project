@@ -22,3 +22,6 @@ I plan to collect data from around 15 services.
 
 ## Tools
 Python, pandas, matplotlib, scikit-learn
+
+## AI Assistance
+I used ChatGPT and Claude for help with debugging the data collection script and formatting the proposal document. All project ideas, data source selection, and analysis planning were done by me.
