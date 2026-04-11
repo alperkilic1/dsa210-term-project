@@ -1,46 +1,81 @@
 {
-  "collected_at": "2026-03-29T00:01:45.883387",
-  "total": 359,
+  "collected_at": "2026-04-11T23:29:16.687957",
+  "total": 869,
   "services": {
     "atlassian": {
       "total": 34,
+      "resolved": 31,
       "avg_duration_min": 1237.4
     },
     "cloudflare": {
+      "total": 110,
+      "resolved": 110,
+      "avg_duration_min": 241.7
+    },
+    "datadog": {
       "total": 50,
-      "avg_duration_min": 346.1
+      "resolved": 50,
+      "avg_duration_min": 226.6
+    },
+    "digitalocean": {
+      "total": 107,
+      "resolved": 107,
+      "avg_duration_min": 393.4
     },
     "discord": {
       "total": 50,
-      "avg_duration_min": 613.8
+      "resolved": 50,
+      "avg_duration_min": 560.1
+    },
+    "dropbox": {
+      "total": 55,
+      "resolved": 55,
+      "avg_duration_min": 1385.5
     },
     "github": {
-      "total": 50,
-      "avg_duration_min": 113.5
+      "total": 110,
+      "resolved": 110,
+      "avg_duration_min": 118.9
     },
     "heroku": {
       "total": 0,
+      "resolved": 0,
       "avg_duration_min": null
+    },
+    "linear": {
+      "total": 25,
+      "resolved": 25,
+      "avg_duration_min": 136.6
     },
     "netlify": {
-      "total": 50,
-      "avg_duration_min": 771.7
+      "total": 61,
+      "resolved": 61,
+      "avg_duration_min": 687.6
     },
     "notion": {
-      "total": 0,
-      "avg_duration_min": null
+      "total": 10,
+      "resolved": 9,
+      "avg_duration_min": 1087.6
     },
     "openai": {
       "total": 25,
-      "avg_duration_min": 379.3
+      "resolved": 25,
+      "avg_duration_min": 168.5
     },
     "reddit": {
       "total": 50,
-      "avg_duration_min": 166.1
+      "resolved": 50,
+      "avg_duration_min": 164.7
+    },
+    "twilio": {
+      "total": 110,
+      "resolved": 109,
+      "avg_duration_min": 508.8
     },
     "vercel": {
-      "total": 50,
-      "avg_duration_min": 673.0
+      "total": 72,
+      "resolved": 72,
+      "avg_duration_min": 522.8
     }
   }
 }

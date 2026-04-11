@@ -1,0 +1,1044 @@
+[
+  {
+    "name": "Notion is aware of issues with using microphone to talk to NotionAI",
+    "status": "resolved",
+    "created_at": "2026-04-10T09:15:12.957-07:00",
+    "updated_at": "2026-04-10T09:17:00.483-07:00",
+    "monitoring_at": null,
+    "resolved_at": "2026-04-10T09:17:00.468-07:00",
+    "impact": "none",
+    "shortlink": "https://stspg.io/x03ggp6cn2g7",
+    "scheduled_for": null,
+    "scheduled_until": null,
+    "scheduled_remind_prior": false,
+    "scheduled_reminded_at": null,
+    "impact_override": null,
+    "scheduled_auto_in_progress": false,
+    "scheduled_auto_completed": false,
+    "metadata": {},
+    "started_at": "2026-04-10T09:15:12.950-07:00",
+    "reminder_intervals": null,
+    "id": "g5kgbn5bknkk",
+    "page_id": "kgl53swp0yg1",
+    "incident_updates": [
+      {
+        "status": "resolved",
+        "body": "This incident is now resolved",
+        "created_at": "2026-04-10T09:17:00.468-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-04-10T09:17:00.468-07:00",
+        "display_at": "2026-04-10T09:17:00.468-07:00",
+        "deliver_notifications": false,
+        "tweet_id": null,
+        "id": "7wp1qhdzz4rj",
+        "incident_id": "g5kgbn5bknkk",
+        "custom_tweet": null,
+        "affected_components": null
+      },
+      {
+        "status": "identified",
+        "body": "Our engineers have identified the issue and are looking into a fix.",
+        "created_at": "2026-04-10T09:15:12.993-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-04-10T09:15:12.993-07:00",
+        "display_at": "2026-04-10T09:15:12.993-07:00",
+        "deliver_notifications": false,
+        "tweet_id": null,
+        "id": "1ggq9r5d2t7l",
+        "incident_id": "g5kgbn5bknkk",
+        "custom_tweet": null,
+        "affected_components": null
+      }
+    ],
+    "postmortem_body": null,
+    "postmortem_body_last_updated_at": null,
+    "postmortem_ignored": false,
+    "postmortem_published_at": null,
+    "postmortem_notified_subscribers": false,
+    "postmortem_notified_twitter": false,
+    "components": []
+  },
+  {
+    "name": "Status Site migration notice",
+    "status": "in_progress",
+    "created_at": "2026-04-09T20:30:36.845-07:00",
+    "updated_at": "2026-04-10T09:00:07.283-07:00",
+    "monitoring_at": null,
+    "resolved_at": null,
+    "impact": "maintenance",
+    "shortlink": "https://stspg.io/7g1yc0jl2jv3",
+    "scheduled_for": "2026-04-10T09:00:00.000-07:00",
+    "scheduled_until": "2026-04-13T21:00:00.000-07:00",
+    "scheduled_remind_prior": false,
+    "scheduled_reminded_at": null,
+    "impact_override": null,
+    "scheduled_auto_in_progress": true,
+    "scheduled_auto_completed": true,
+    "metadata": {},
+    "started_at": "2026-04-09T20:30:36.840-07:00",
+    "reminder_intervals": null,
+    "id": "ppszrv3cfz7b",
+    "page_id": "kgl53swp0yg1",
+    "incident_updates": [
+      {
+        "status": "in_progress",
+        "body": "Scheduled maintenance is currently in progress. We will provide updates as necessary.",
+        "created_at": "2026-04-10T09:00:07.280-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-04-10T09:00:07.280-07:00",
+        "display_at": "2026-04-10T09:00:07.280-07:00",
+        "deliver_notifications": true,
+        "tweet_id": null,
+        "id": "5lhw9q0b300f",
+        "incident_id": "ppszrv3cfz7b",
+        "custom_tweet": null,
+        "affected_components": [
+          {
+            "code": "n7wtmfxmc1m3",
+            "name": "Notion Apps",
+            "old_status": "operational",
+            "new_status": "under_maintenance"
+          }
+        ]
+      },
+      {
+        "status": "scheduled",
+        "body": "What is changing?\n\nOn 2026-04-13, we will migrate our status page to a new service provider.\n\nWhat you need to know\n\nDuring this migration:\n\n- Our status page URL will remain the same. You can access it at https://www.notion-status.com/\n- Email subscribers will be migrated to our new Status Page. No action needed.\n- RSS and Atom feeds will be available and no action needed if you are subscribed via the notion-status.com URL.\n\nWhat you need to do\n\n - Email subscribers will be automatically migrated. No action is required.\n - We are providing the maintenance notice for awareness.\n\nIf you need assistance or have any questions, please contact our support team at team@makenotion.com.",
+        "created_at": "2026-04-09T20:30:36.884-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-04-09T21:40:55.886-07:00",
+        "display_at": "2026-04-09T20:30:36.884-07:00",
+        "deliver_notifications": true,
+        "tweet_id": null,
+        "id": "5x272qsfkqfv",
+        "incident_id": "ppszrv3cfz7b",
+        "custom_tweet": null,
+        "affected_components": [
+          {
+            "code": "n7wtmfxmc1m3",
+            "name": "Notion Apps",
+            "old_status": "operational",
+            "new_status": "operational"
+          }
+        ]
+      }
+    ],
+    "postmortem_body": null,
+    "postmortem_body_last_updated_at": null,
+    "postmortem_ignored": false,
+    "postmortem_published_at": null,
+    "postmortem_notified_subscribers": false,
+    "postmortem_notified_twitter": false,
+    "components": [
+      {
+        "status": "under_maintenance",
+        "name": "Notion Apps",
+        "created_at": "2019-10-22T18:34:59.898-07:00",
+        "updated_at": "2026-04-10T09:00:07.239-07:00",
+        "position": 7,
+        "description": "Notion Mobile and Desktop apps",
+        "showcase": false,
+        "start_date": null,
+        "id": "n7wtmfxmc1m3",
+        "page_id": "kgl53swp0yg1",
+        "group_id": null
+      }
+    ]
+  },
+  {
+    "name": "Some users may be experiencing an intermittent something went wrong error when accessing a notion page",
+    "status": "resolved",
+    "created_at": "2026-04-07T16:36:18.610-07:00",
+    "updated_at": "2026-04-07T18:03:10.194-07:00",
+    "monitoring_at": null,
+    "resolved_at": "2026-04-07T18:03:10.177-07:00",
+    "impact": "none",
+    "shortlink": "https://stspg.io/lz2b6q2szxkq",
+    "scheduled_for": null,
+    "scheduled_until": null,
+    "scheduled_remind_prior": false,
+    "scheduled_reminded_at": null,
+    "impact_override": null,
+    "scheduled_auto_in_progress": false,
+    "scheduled_auto_completed": false,
+    "metadata": {},
+    "started_at": "2026-04-07T16:36:18.603-07:00",
+    "reminder_intervals": null,
+    "id": "577ky7f53yp1",
+    "page_id": "kgl53swp0yg1",
+    "incident_updates": [
+      {
+        "status": "resolved",
+        "body": "This incident has been resolved.",
+        "created_at": "2026-04-07T18:03:10.177-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-04-07T18:03:10.177-07:00",
+        "display_at": "2026-04-07T18:03:10.177-07:00",
+        "deliver_notifications": false,
+        "tweet_id": null,
+        "id": "hfzn2fdhg6s8",
+        "incident_id": "577ky7f53yp1",
+        "custom_tweet": null,
+        "affected_components": null
+      },
+      {
+        "status": "identified",
+        "body": "We have identified an issue where some users get a something went wrong error and we believe we’ve found the root cause and are validating our fix",
+        "created_at": "2026-04-07T16:36:18.655-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-04-07T16:36:18.655-07:00",
+        "display_at": "2026-04-07T16:36:18.655-07:00",
+        "deliver_notifications": false,
+        "tweet_id": null,
+        "id": "607l4nnc7d41",
+        "incident_id": "577ky7f53yp1",
+        "custom_tweet": null,
+        "affected_components": null
+      }
+    ],
+    "postmortem_body": null,
+    "postmortem_body_last_updated_at": null,
+    "postmortem_ignored": false,
+    "postmortem_published_at": null,
+    "postmortem_notified_subscribers": false,
+    "postmortem_notified_twitter": false,
+    "components": []
+  },
+  {
+    "name": "Notion AI Queries",
+    "status": "resolved",
+    "created_at": "2026-04-02T10:53:21.000-07:00",
+    "updated_at": "2026-04-07T14:09:22.520-07:00",
+    "monitoring_at": "2026-04-03T15:32:43.534-07:00",
+    "resolved_at": "2026-04-07T14:09:22.499-07:00",
+    "impact": "minor",
+    "shortlink": "https://stspg.io/7hdrsgl64bbg",
+    "scheduled_for": null,
+    "scheduled_until": null,
+    "scheduled_remind_prior": false,
+    "scheduled_reminded_at": null,
+    "impact_override": "minor",
+    "scheduled_auto_in_progress": false,
+    "scheduled_auto_completed": false,
+    "metadata": {},
+    "started_at": "2026-04-02T10:53:21.000-07:00",
+    "reminder_intervals": null,
+    "id": "w1hy63fvgy1r",
+    "page_id": "kgl53swp0yg1",
+    "incident_updates": [
+      {
+        "status": "resolved",
+        "body": "The incident with Notion AI is now resolved.",
+        "created_at": "2026-04-07T14:09:22.499-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-04-07T14:09:22.499-07:00",
+        "display_at": "2026-04-07T14:09:22.499-07:00",
+        "deliver_notifications": false,
+        "tweet_id": null,
+        "id": "wmyptbgjv22s",
+        "incident_id": "w1hy63fvgy1r",
+        "custom_tweet": null,
+        "affected_components": null
+      },
+      {
+        "status": "monitoring",
+        "body": "We are currently experiencing a degradation where Notion MCP cannot query Notion databases. Notion AI and Custom Agents have mostly recovered and can query databases but may get less complete answers.",
+        "created_at": "2026-04-03T15:32:43.534-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-04-03T15:32:43.534-07:00",
+        "display_at": "2026-04-03T15:32:43.534-07:00",
+        "deliver_notifications": false,
+        "tweet_id": null,
+        "id": "y5qtg36680h4",
+        "incident_id": "w1hy63fvgy1r",
+        "custom_tweet": null,
+        "affected_components": null
+      },
+      {
+        "status": "identified",
+        "body": "We are currently experiencing an incident where Notion AI queries, including MCP and Custom Agents that rely on directly querying Notion databases, may be impacted. During this time, Notion AI may get less reliable/complete answers from databases, but this content is still available via the general search tool.",
+        "created_at": "2026-04-02T10:53:21.676-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-04-02T12:00:31.178-07:00",
+        "display_at": "2026-04-02T10:53:21.000-07:00",
+        "deliver_notifications": false,
+        "tweet_id": null,
+        "id": "bxvjdq9f4w1s",
+        "incident_id": "w1hy63fvgy1r",
+        "custom_tweet": null,
+        "affected_components": null
+      }
+    ],
+    "postmortem_body": null,
+    "postmortem_body_last_updated_at": null,
+    "postmortem_ignored": false,
+    "postmortem_published_at": null,
+    "postmortem_notified_subscribers": false,
+    "postmortem_notified_twitter": false,
+    "components": []
+  },
+  {
+    "name": "Some users are experiencing slow exports",
+    "status": "resolved",
+    "created_at": "2026-04-03T19:05:20.736-07:00",
+    "updated_at": "2026-04-04T08:19:41.193-07:00",
+    "monitoring_at": "2026-04-03T23:24:52.397-07:00",
+    "resolved_at": "2026-04-04T08:19:41.158-07:00",
+    "impact": "none",
+    "shortlink": "https://stspg.io/lt8pl6wkstx0",
+    "scheduled_for": null,
+    "scheduled_until": null,
+    "scheduled_remind_prior": false,
+    "scheduled_reminded_at": null,
+    "impact_override": null,
+    "scheduled_auto_in_progress": false,
+    "scheduled_auto_completed": false,
+    "metadata": {},
+    "started_at": "2026-04-03T19:05:20.728-07:00",
+    "reminder_intervals": null,
+    "id": "5fwf8rq041r7",
+    "page_id": "kgl53swp0yg1",
+    "incident_updates": [
+      {
+        "status": "resolved",
+        "body": "This incident has been resolved.",
+        "created_at": "2026-04-04T08:19:41.158-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-04-04T08:19:41.158-07:00",
+        "display_at": "2026-04-04T08:19:41.158-07:00",
+        "deliver_notifications": false,
+        "tweet_id": null,
+        "id": "j1vl5cyg03zd",
+        "incident_id": "5fwf8rq041r7",
+        "custom_tweet": null,
+        "affected_components": null
+      },
+      {
+        "status": "monitoring",
+        "body": "We have mitigated the issue and are continuing to monitor it closely.",
+        "created_at": "2026-04-03T23:24:52.397-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-04-03T23:24:52.397-07:00",
+        "display_at": "2026-04-03T23:24:52.397-07:00",
+        "deliver_notifications": false,
+        "tweet_id": null,
+        "id": "48xgtskqqzmx",
+        "incident_id": "5fwf8rq041r7",
+        "custom_tweet": null,
+        "affected_components": null
+      },
+      {
+        "status": "investigating",
+        "body": "We are currently investigating this issue.",
+        "created_at": "2026-04-03T19:05:20.789-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-04-03T19:05:20.789-07:00",
+        "display_at": "2026-04-03T19:05:20.789-07:00",
+        "deliver_notifications": false,
+        "tweet_id": null,
+        "id": "54zhgs93fm2n",
+        "incident_id": "5fwf8rq041r7",
+        "custom_tweet": null,
+        "affected_components": null
+      }
+    ],
+    "postmortem_body": null,
+    "postmortem_body_last_updated_at": null,
+    "postmortem_ignored": false,
+    "postmortem_published_at": null,
+    "postmortem_notified_subscribers": false,
+    "postmortem_notified_twitter": false,
+    "components": []
+  },
+  {
+    "name": "Some users are experiencing slow exports",
+    "status": "resolved",
+    "created_at": "2026-04-03T01:50:53.000-07:00",
+    "updated_at": "2026-04-03T03:54:22.013-07:00",
+    "monitoring_at": null,
+    "resolved_at": "2026-04-03T03:54:21.998-07:00",
+    "impact": "minor",
+    "shortlink": "https://stspg.io/lwth4n85h6lg",
+    "scheduled_for": null,
+    "scheduled_until": null,
+    "scheduled_remind_prior": false,
+    "scheduled_reminded_at": null,
+    "impact_override": "minor",
+    "scheduled_auto_in_progress": false,
+    "scheduled_auto_completed": false,
+    "metadata": {},
+    "started_at": "2026-04-03T01:50:53.000-07:00",
+    "reminder_intervals": null,
+    "id": "52ylfqy1hg4f",
+    "page_id": "kgl53swp0yg1",
+    "incident_updates": [
+      {
+        "status": "resolved",
+        "body": "This incident has been resolved.",
+        "created_at": "2026-04-03T03:54:21.998-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-04-03T03:54:21.998-07:00",
+        "display_at": "2026-04-03T03:54:21.998-07:00",
+        "deliver_notifications": false,
+        "tweet_id": null,
+        "id": "2r2xrz1jc65w",
+        "incident_id": "52ylfqy1hg4f",
+        "custom_tweet": null,
+        "affected_components": null
+      },
+      {
+        "status": "investigating",
+        "body": "We are continuing to investigate this issue.",
+        "created_at": "2026-04-03T01:51:39.831-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-04-03T01:51:39.831-07:00",
+        "display_at": "2026-04-03T01:51:39.831-07:00",
+        "deliver_notifications": false,
+        "tweet_id": null,
+        "id": "4d9mn0d5q856",
+        "incident_id": "52ylfqy1hg4f",
+        "custom_tweet": null,
+        "affected_components": null
+      },
+      {
+        "status": "investigating",
+        "body": "We are currently investigating this issue.",
+        "created_at": "2026-04-03T01:50:53.117-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-04-03T02:40:56.291-07:00",
+        "display_at": "2026-04-03T01:50:53.000-07:00",
+        "deliver_notifications": false,
+        "tweet_id": null,
+        "id": "1vvzlrptcpl5",
+        "incident_id": "52ylfqy1hg4f",
+        "custom_tweet": null,
+        "affected_components": null
+      }
+    ],
+    "postmortem_body": null,
+    "postmortem_body_last_updated_at": null,
+    "postmortem_ignored": false,
+    "postmortem_published_at": null,
+    "postmortem_notified_subscribers": false,
+    "postmortem_notified_twitter": false,
+    "components": []
+  },
+  {
+    "name": "Degraded performance on Notion affecting several features",
+    "status": "resolved",
+    "created_at": "2026-03-25T18:24:50.428-07:00",
+    "updated_at": "2026-03-26T21:10:07.021-07:00",
+    "monitoring_at": "2026-03-25T21:09:41.289-07:00",
+    "resolved_at": "2026-03-25T21:30:44.000-07:00",
+    "impact": "major",
+    "shortlink": "https://stspg.io/xzz30d01qnsm",
+    "scheduled_for": null,
+    "scheduled_until": null,
+    "scheduled_remind_prior": false,
+    "scheduled_reminded_at": null,
+    "impact_override": "major",
+    "scheduled_auto_in_progress": false,
+    "scheduled_auto_completed": false,
+    "metadata": {},
+    "started_at": "2026-03-25T21:30:44.000-07:00",
+    "reminder_intervals": null,
+    "id": "cz2xkpd8mdj8",
+    "page_id": "kgl53swp0yg1",
+    "incident_updates": [
+      {
+        "status": "resolved",
+        "body": "This incident has been resolved.\n(Audit logs for events between 00:30 and 04:30 UTC were delayed but have been fully recovered)",
+        "created_at": "2026-03-25T21:30:44.891-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-03-26T21:10:06.949-07:00",
+        "display_at": "2026-03-25T21:30:44.000-07:00",
+        "deliver_notifications": true,
+        "tweet_id": null,
+        "id": "md7fkmsnpqxs",
+        "incident_id": "cz2xkpd8mdj8",
+        "custom_tweet": null,
+        "affected_components": [
+          {
+            "code": "nqwd1rh6v0q6",
+            "name": "Notion AI",
+            "old_status": "degraded_performance",
+            "new_status": "operational"
+          },
+          {
+            "code": "v6l41w26n26f",
+            "name": "Administration",
+            "old_status": "degraded_performance",
+            "new_status": "operational"
+          },
+          {
+            "code": "ldd832qfhlfc",
+            "name": "Core Product - Login and user accounts",
+            "old_status": "degraded_performance",
+            "new_status": "operational"
+          },
+          {
+            "code": "dvtzrmc17cgp",
+            "name": "Core Product - Databases",
+            "old_status": "degraded_performance",
+            "new_status": "operational"
+          },
+          {
+            "code": "93zps46yj6j0",
+            "name": "Core Product - Notifications",
+            "old_status": "degraded_performance",
+            "new_status": "operational"
+          }
+        ]
+      },
+      {
+        "status": "monitoring",
+        "body": "A fix has been implemented and we are seeing continued recovery across affected services.\nWe are monitoring this closely and will update once our services are fully restored.",
+        "created_at": "2026-03-25T21:09:41.289-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-03-25T21:09:41.289-07:00",
+        "display_at": "2026-03-25T21:09:41.289-07:00",
+        "deliver_notifications": true,
+        "tweet_id": null,
+        "id": "6yn901n10rmk",
+        "incident_id": "cz2xkpd8mdj8",
+        "custom_tweet": null,
+        "affected_components": [
+          {
+            "code": "nqwd1rh6v0q6",
+            "name": "Notion AI",
+            "old_status": "degraded_performance",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "v6l41w26n26f",
+            "name": "Administration",
+            "old_status": "degraded_performance",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "ldd832qfhlfc",
+            "name": "Core Product - Login and user accounts",
+            "old_status": "degraded_performance",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "dvtzrmc17cgp",
+            "name": "Core Product - Databases",
+            "old_status": "degraded_performance",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "93zps46yj6j0",
+            "name": "Core Product - Notifications",
+            "old_status": "degraded_performance",
+            "new_status": "degraded_performance"
+          }
+        ]
+      },
+      {
+        "status": "investigating",
+        "body": "We are seeing partial recovery, though performance has not yet fully returned to normal.\nOur team is continuing mitigation efforts to restore full service.\nWe will provide updates as more information becomes available.",
+        "created_at": "2026-03-25T19:48:30.314-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-03-25T19:48:30.314-07:00",
+        "display_at": "2026-03-25T19:48:30.314-07:00",
+        "deliver_notifications": true,
+        "tweet_id": null,
+        "id": "njnlttyn2b4r",
+        "incident_id": "cz2xkpd8mdj8",
+        "custom_tweet": null,
+        "affected_components": [
+          {
+            "code": "nqwd1rh6v0q6",
+            "name": "Notion AI",
+            "old_status": "degraded_performance",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "v6l41w26n26f",
+            "name": "Administration",
+            "old_status": "degraded_performance",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "ldd832qfhlfc",
+            "name": "Core Product - Login and user accounts",
+            "old_status": "degraded_performance",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "dvtzrmc17cgp",
+            "name": "Core Product - Databases",
+            "old_status": "degraded_performance",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "93zps46yj6j0",
+            "name": "Core Product - Notifications",
+            "old_status": "degraded_performance",
+            "new_status": "degraded_performance"
+          }
+        ]
+      },
+      {
+        "status": "investigating",
+        "body": "We are observing indications that the impact may be broader than initially identified, and additional features may be affected.\nImpacted areas include AI features, Notifications, Automations, Databases, Audit Logs, and SSO.\n\nOur team is actively investigating the issue and working toward mitigation.\nWe will provide updates as more information becomes available.",
+        "created_at": "2026-03-25T18:43:17.537-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-03-25T18:43:17.537-07:00",
+        "display_at": "2026-03-25T18:43:17.537-07:00",
+        "deliver_notifications": true,
+        "tweet_id": null,
+        "id": "m83bbq0v9ldw",
+        "incident_id": "cz2xkpd8mdj8",
+        "custom_tweet": null,
+        "affected_components": [
+          {
+            "code": "nqwd1rh6v0q6",
+            "name": "Notion AI",
+            "old_status": "degraded_performance",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "v6l41w26n26f",
+            "name": "Administration",
+            "old_status": "degraded_performance",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "ldd832qfhlfc",
+            "name": "Core Product - Login and user accounts",
+            "old_status": "operational",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "dvtzrmc17cgp",
+            "name": "Core Product - Databases",
+            "old_status": "degraded_performance",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "93zps46yj6j0",
+            "name": "Core Product - Notifications",
+            "old_status": "degraded_performance",
+            "new_status": "degraded_performance"
+          }
+        ]
+      },
+      {
+        "status": "investigating",
+        "body": "We are currently experiencing degraded performance affecting several features.\nImpacted areas include AI features, Notifications, Automations, Databases, and Audit Logs.\nOur team is actively investigating the issue and working toward mitigation.\nWe will provide updates as more information becomes available.",
+        "created_at": "2026-03-25T18:24:50.616-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-03-25T18:24:50.616-07:00",
+        "display_at": "2026-03-25T18:24:50.616-07:00",
+        "deliver_notifications": true,
+        "tweet_id": null,
+        "id": "xhptnnmfh957",
+        "incident_id": "cz2xkpd8mdj8",
+        "custom_tweet": null,
+        "affected_components": [
+          {
+            "code": "nqwd1rh6v0q6",
+            "name": "Notion AI",
+            "old_status": "operational",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "v6l41w26n26f",
+            "name": "Administration",
+            "old_status": "operational",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "dvtzrmc17cgp",
+            "name": "Core Product - Databases",
+            "old_status": "operational",
+            "new_status": "degraded_performance"
+          },
+          {
+            "code": "93zps46yj6j0",
+            "name": "Core Product - Notifications",
+            "old_status": "operational",
+            "new_status": "degraded_performance"
+          }
+        ]
+      }
+    ],
+    "postmortem_body": null,
+    "postmortem_body_last_updated_at": null,
+    "postmortem_ignored": false,
+    "postmortem_published_at": null,
+    "postmortem_notified_subscribers": false,
+    "postmortem_notified_twitter": false,
+    "components": [
+      {
+        "status": "operational",
+        "name": "Login and user accounts",
+        "created_at": "2024-01-31T15:03:10.517-08:00",
+        "updated_at": "2026-03-26T10:24:00.026-07:00",
+        "position": 1,
+        "description": "User authentication and management",
+        "showcase": true,
+        "start_date": "2024-01-31T00:00:00.000-08:00",
+        "id": "ldd832qfhlfc",
+        "page_id": "kgl53swp0yg1",
+        "group_id": "mf2s2fplk8z2"
+      },
+      {
+        "status": "operational",
+        "name": "Notion AI",
+        "created_at": "2024-01-31T15:03:36.348-08:00",
+        "updated_at": "2026-03-27T09:56:47.710-07:00",
+        "position": 2,
+        "description": "Agents, Chat, Writer, Autofill, Translate, Enterprise Search, Custom Agents, Meeting Notes",
+        "showcase": false,
+        "start_date": "2024-01-31T00:00:00.000-08:00",
+        "id": "nqwd1rh6v0q6",
+        "page_id": "kgl53swp0yg1",
+        "group_id": null
+      },
+      {
+        "status": "operational",
+        "name": "Databases",
+        "created_at": "2024-01-31T15:04:19.059-08:00",
+        "updated_at": "2026-03-26T10:27:08.041-07:00",
+        "position": 3,
+        "description": "Collections of pages with typed properties, plus views, forms, and automations to organize, collect, and act on them",
+        "showcase": true,
+        "start_date": "2024-01-31T00:00:00.000-08:00",
+        "id": "dvtzrmc17cgp",
+        "page_id": "kgl53swp0yg1",
+        "group_id": "mf2s2fplk8z2"
+      },
+      {
+        "status": "operational",
+        "name": "Notifications",
+        "created_at": "2024-01-31T15:03:48.248-08:00",
+        "updated_at": "2026-03-25T21:30:44.840-07:00",
+        "position": 5,
+        "description": "Notifications for mentions, comments, assignments, reminders, and follow/updates across pages and databases (delivered in-app and, where enabled, via email/push)",
+        "showcase": true,
+        "start_date": "2024-01-31T00:00:00.000-08:00",
+        "id": "93zps46yj6j0",
+        "page_id": "kgl53swp0yg1",
+        "group_id": "mf2s2fplk8z2"
+      },
+      {
+        "status": "operational",
+        "name": "Administration",
+        "created_at": "2024-01-31T15:04:43.283-08:00",
+        "updated_at": "2026-03-25T21:30:44.855-07:00",
+        "position": 10,
+        "description": "Workspace and org controls, users and guests, permissions, security settings, audit/retention, and other account management",
+        "showcase": false,
+        "start_date": "2024-01-31T00:00:00.000-08:00",
+        "id": "v6l41w26n26f",
+        "page_id": "kgl53swp0yg1",
+        "group_id": null
+      }
+    ]
+  },
+  {
+    "name": "Notion Mail login not working on iOS, desktop app",
+    "status": "resolved",
+    "created_at": "2026-03-25T08:07:18.665-07:00",
+    "updated_at": "2026-03-25T12:42:15.270-07:00",
+    "monitoring_at": null,
+    "resolved_at": "2026-03-25T12:42:15.252-07:00",
+    "impact": "major",
+    "shortlink": "https://stspg.io/wctsf8gp2w9f",
+    "scheduled_for": null,
+    "scheduled_until": null,
+    "scheduled_remind_prior": false,
+    "scheduled_reminded_at": null,
+    "impact_override": null,
+    "scheduled_auto_in_progress": false,
+    "scheduled_auto_completed": false,
+    "metadata": {},
+    "started_at": "2026-03-25T08:07:18.658-07:00",
+    "reminder_intervals": null,
+    "id": "tlxts9tcdqvy",
+    "page_id": "kgl53swp0yg1",
+    "incident_updates": [
+      {
+        "status": "resolved",
+        "body": "This incident has been resolved.",
+        "created_at": "2026-03-25T12:42:15.252-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-03-25T12:42:15.252-07:00",
+        "display_at": "2026-03-25T12:42:15.252-07:00",
+        "deliver_notifications": true,
+        "tweet_id": null,
+        "id": "gb9pg7qvr7pt",
+        "incident_id": "tlxts9tcdqvy",
+        "custom_tweet": null,
+        "affected_components": [
+          {
+            "code": "j201qh051f2w",
+            "name": "Notion Mail",
+            "old_status": "partial_outage",
+            "new_status": "operational"
+          }
+        ]
+      },
+      {
+        "status": "investigating",
+        "body": "We are continuing to investigate this issue.",
+        "created_at": "2026-03-25T08:29:52.703-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-03-25T08:29:52.703-07:00",
+        "display_at": "2026-03-25T08:29:52.703-07:00",
+        "deliver_notifications": true,
+        "tweet_id": null,
+        "id": "dvfzxv7z8rt7",
+        "incident_id": "tlxts9tcdqvy",
+        "custom_tweet": null,
+        "affected_components": [
+          {
+            "code": "j201qh051f2w",
+            "name": "Notion Mail",
+            "old_status": "degraded_performance",
+            "new_status": "partial_outage"
+          }
+        ]
+      },
+      {
+        "status": "investigating",
+        "body": "We’re currently investigating an issue affecting SSO login to Notion Mail.",
+        "created_at": "2026-03-25T08:07:18.752-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-03-25T08:07:18.752-07:00",
+        "display_at": "2026-03-25T08:07:18.752-07:00",
+        "deliver_notifications": true,
+        "tweet_id": null,
+        "id": "7m6133k1fqt3",
+        "incident_id": "tlxts9tcdqvy",
+        "custom_tweet": null,
+        "affected_components": [
+          {
+            "code": "j201qh051f2w",
+            "name": "Notion Mail",
+            "old_status": "operational",
+            "new_status": "degraded_performance"
+          }
+        ]
+      }
+    ],
+    "postmortem_body": null,
+    "postmortem_body_last_updated_at": null,
+    "postmortem_ignored": false,
+    "postmortem_published_at": null,
+    "postmortem_notified_subscribers": false,
+    "postmortem_notified_twitter": false,
+    "components": [
+      {
+        "status": "operational",
+        "name": "Notion Mail",
+        "created_at": "2025-04-22T16:16:15.947-07:00",
+        "updated_at": "2026-03-25T12:42:15.214-07:00",
+        "position": 4,
+        "description": "Notion Email app, Custom Agent mail triggers, connections, and tools",
+        "showcase": false,
+        "start_date": "2025-04-22T00:00:00.000-07:00",
+        "id": "j201qh051f2w",
+        "page_id": "kgl53swp0yg1",
+        "group_id": null
+      }
+    ]
+  },
+  {
+    "name": "Images failing to load for few users on Android",
+    "status": "resolved",
+    "created_at": "2026-03-19T14:24:39.332-07:00",
+    "updated_at": "2026-03-19T16:08:35.338-07:00",
+    "monitoring_at": "2026-03-19T14:24:39.419-07:00",
+    "resolved_at": "2026-03-19T16:08:35.319-07:00",
+    "impact": "minor",
+    "shortlink": "https://stspg.io/pgg4wrgt09y2",
+    "scheduled_for": null,
+    "scheduled_until": null,
+    "scheduled_remind_prior": false,
+    "scheduled_reminded_at": null,
+    "impact_override": null,
+    "scheduled_auto_in_progress": false,
+    "scheduled_auto_completed": false,
+    "metadata": {},
+    "started_at": "2026-03-19T14:24:39.326-07:00",
+    "reminder_intervals": null,
+    "id": "gg1xhjm6htk6",
+    "page_id": "kgl53swp0yg1",
+    "incident_updates": [
+      {
+        "status": "resolved",
+        "body": "This issue has been resolved.",
+        "created_at": "2026-03-19T16:08:35.319-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-03-19T16:08:35.319-07:00",
+        "display_at": "2026-03-19T16:08:35.319-07:00",
+        "deliver_notifications": true,
+        "tweet_id": null,
+        "id": "d6rm8z36yc63",
+        "incident_id": "gg1xhjm6htk6",
+        "custom_tweet": null,
+        "affected_components": [
+          {
+            "code": "n7wtmfxmc1m3",
+            "name": "Notion Apps",
+            "old_status": "degraded_performance",
+            "new_status": "operational"
+          }
+        ]
+      },
+      {
+        "status": "monitoring",
+        "body": "We're rolling out a fix for this issue and monitoring it closely.",
+        "created_at": "2026-03-19T14:24:39.419-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-03-19T14:24:39.419-07:00",
+        "display_at": "2026-03-19T14:24:39.419-07:00",
+        "deliver_notifications": true,
+        "tweet_id": null,
+        "id": "995cnszrxslf",
+        "incident_id": "gg1xhjm6htk6",
+        "custom_tweet": null,
+        "affected_components": [
+          {
+            "code": "n7wtmfxmc1m3",
+            "name": "Notion Apps",
+            "old_status": "operational",
+            "new_status": "degraded_performance"
+          }
+        ]
+      }
+    ],
+    "postmortem_body": null,
+    "postmortem_body_last_updated_at": null,
+    "postmortem_ignored": false,
+    "postmortem_published_at": null,
+    "postmortem_notified_subscribers": false,
+    "postmortem_notified_twitter": false,
+    "components": [
+      {
+        "status": "under_maintenance",
+        "name": "Notion Apps",
+        "created_at": "2019-10-22T18:34:59.898-07:00",
+        "updated_at": "2026-04-10T09:00:07.239-07:00",
+        "position": 7,
+        "description": "Notion Mobile and Desktop apps",
+        "showcase": false,
+        "start_date": null,
+        "id": "n7wtmfxmc1m3",
+        "page_id": "kgl53swp0yg1",
+        "group_id": null
+      }
+    ]
+  },
+  {
+    "name": "Images failing to load for few users on android",
+    "status": "resolved",
+    "created_at": "2026-03-18T23:43:31.498-07:00",
+    "updated_at": "2026-03-19T13:24:52.271-07:00",
+    "monitoring_at": null,
+    "resolved_at": "2026-03-19T13:24:52.250-07:00",
+    "impact": "none",
+    "shortlink": "https://stspg.io/qvl0cqjjf2mp",
+    "scheduled_for": null,
+    "scheduled_until": null,
+    "scheduled_remind_prior": false,
+    "scheduled_reminded_at": null,
+    "impact_override": null,
+    "scheduled_auto_in_progress": false,
+    "scheduled_auto_completed": false,
+    "metadata": {},
+    "started_at": "2026-03-18T23:43:31.491-07:00",
+    "reminder_intervals": null,
+    "id": "k0khfvw5sylr",
+    "page_id": "kgl53swp0yg1",
+    "incident_updates": [
+      {
+        "status": "resolved",
+        "body": "This issue has been resolved.",
+        "created_at": "2026-03-19T13:24:52.250-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-03-19T13:24:52.250-07:00",
+        "display_at": "2026-03-19T13:24:52.250-07:00",
+        "deliver_notifications": true,
+        "tweet_id": null,
+        "id": "kg8f7d5rhzg3",
+        "incident_id": "k0khfvw5sylr",
+        "custom_tweet": null,
+        "affected_components": [
+          {
+            "code": "n7wtmfxmc1m3",
+            "name": "Notion Apps",
+            "old_status": "operational",
+            "new_status": "operational"
+          }
+        ]
+      },
+      {
+        "status": "investigating",
+        "body": "A few users have reported that images are failing to load on Android. Our engineering team is actively working to identify the cause",
+        "created_at": "2026-03-18T23:43:31.541-07:00",
+        "wants_twitter_update": false,
+        "twitter_updated_at": null,
+        "updated_at": "2026-03-18T23:43:31.541-07:00",
+        "display_at": "2026-03-18T23:43:31.541-07:00",
+        "deliver_notifications": false,
+        "tweet_id": null,
+        "id": "l72qk71wj6z5",
+        "incident_id": "k0khfvw5sylr",
+        "custom_tweet": null,
+        "affected_components": null
+      }
+    ],
+    "postmortem_body": null,
+    "postmortem_body_last_updated_at": null,
+    "postmortem_ignored": false,
+    "postmortem_published_at": null,
+    "postmortem_notified_subscribers": false,
+    "postmortem_notified_twitter": false,
+    "components": [
+      {
+        "status": "under_maintenance",
+        "name": "Notion Apps",
+        "created_at": "2019-10-22T18:34:59.898-07:00",
+        "updated_at": "2026-04-10T09:00:07.239-07:00",
+        "position": 7,
+        "description": "Notion Mobile and Desktop apps",
+        "showcase": false,
+        "start_date": null,
+        "id": "n7wtmfxmc1m3",
+        "page_id": "kgl53swp0yg1",
+        "group_id": null
+      }
+    ]
+  }
+]

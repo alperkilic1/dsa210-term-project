@@ -8,21 +8,21 @@ DATA_DIR = Path(__file__).parent / "data"
 RAW_DIR = DATA_DIR / "raw"
 
 SERVICES = {
-    "github": "https://www.githubstatus.com/api/v2/incidents.json",
-    "openai": "https://status.openai.com/api/v2/incidents.json",
-    "cloudflare": "https://www.cloudflarestatus.com/api/v2/incidents.json",
-    "twilio": "https://status.twilio.com/api/v2/incidents.json",
-    "datadog": "https://status.datadoghq.com/api/v2/incidents.json",
-    "atlassian": "https://status.atlassian.com/api/v2/incidents.json",
-    "reddit": "https://www.redditstatus.com/api/v2/incidents.json",
-    "discord": "https://discordstatus.com/api/v2/incidents.json",
-    "dropbox": "https://status.dropbox.com/api/v2/incidents.json",
-    "vercel": "https://www.vercel-status.com/api/v2/incidents.json",
-    "netlify": "https://www.netlifystatus.com/api/v2/incidents.json",
-    "heroku": "https://status.heroku.com/api/v2/incidents.json",
-    "digitalocean": "https://status.digitalocean.com/api/v2/incidents.json",
-    "linear": "https://linearstatus.com/api/v2/incidents.json",
-    "notion": "https://status.notion.so/api/v2/incidents.json",
+    "github": "https://www.githubstatus.com",
+    "openai": "https://status.openai.com",
+    "cloudflare": "https://www.cloudflarestatus.com",
+    "twilio": "https://status.twilio.com",
+    "datadog": "https://status.datadoghq.com",
+    "atlassian": "https://status.atlassian.com",
+    "reddit": "https://www.redditstatus.com",
+    "discord": "https://discordstatus.com",
+    "dropbox": "https://status.dropbox.com",
+    "vercel": "https://www.vercel-status.com",
+    "netlify": "https://www.netlifystatus.com",
+    "heroku": "https://status.heroku.com",
+    "digitalocean": "https://status.digitalocean.com",
+    "linear": "https://linearstatus.com",
+    "notion": "https://status.notion.so",
 }
 
 HEADERS = {
@@ -30,31 +30,105 @@ HEADERS = {
     "Accept": "application/json",
 }
 
+MAX_HISTORY_PAGES = 3
+MAX_EXTRA_PER_SERVICE = 60
 
-def fetch_incidents(name, url):
-    all_incidents = []
-    page = 1
 
-    while True:
+def fetch_incidents(name, base_url):
+    recent = _fetch_recent(name, base_url)
+    seen_ids = {inc["id"] for inc in recent}
+
+    history_items = _fetch_history_items(name, base_url)
+    new_items = [(c, h) for c, h in history_items if c not in seen_ids]
+    to_fetch = new_items[:MAX_EXTRA_PER_SERVICE]
+    print(f"  {name}: {len(recent)} recent, {len(new_items)} in history, fetching {len(to_fetch)} extra")
+
+    extra = _fetch_by_codes_with_fallback(name, base_url, to_fetch)
+    all_incidents = recent + extra
+    print(f"  {name}: {len(all_incidents)} total")
+    return all_incidents
+
+
+def _fetch_recent(name, base_url):
+    try:
+        url = f"{base_url}/api/v2/incidents.json"
+        resp = requests.get(url, headers=HEADERS, timeout=30)
+        if resp.status_code == 200:
+            return resp.json().get("incidents", [])
+    except Exception as e:
+        print(f"  {name} recent fetch error: {e}")
+    return []
+
+
+def _fetch_history_items(name, base_url):
+    items = []
+    for page in range(1, MAX_HISTORY_PAGES + 1):
         try:
-            resp = requests.get(f"{url}?page={page}&per_page=100", headers=HEADERS, timeout=30)
+            url = f"{base_url}/history.json?page={page}"
+            resp = requests.get(url, headers=HEADERS, timeout=30)
             if resp.status_code != 200:
                 break
-
-            incidents = resp.json().get("incidents", [])
-            if not incidents:
+            months = resp.json().get("months", [])
+            page_items = []
+            for month in months:
+                for inc in month.get("incidents", []):
+                    code = inc.get("code", "")
+                    if code:
+                        page_items.append((code, inc))
+            if not page_items:
                 break
-
-            all_incidents.extend(incidents)
-            print(f"  {name} page {page}: {len(incidents)} incidents")
-
-            page += 1
-            time.sleep(0.5)
+            items.extend(page_items)
+            time.sleep(0.3)
         except Exception as e:
-            print(f"  {name} error: {e}")
+            print(f"  {name} history page {page} error: {e}")
             break
+    return items
 
-    return all_incidents
+
+def _history_to_incident(code, hist):
+    return {
+        "id": code,
+        "name": hist.get("name", ""),
+        "status": "resolved",
+        "impact": hist.get("impact", "none"),
+        "created_at": "",
+        "resolved_at": None,
+        "incident_updates": [],
+        "components": [],
+        "shortlink": "",
+        "_from_history": True,
+    }
+
+
+def _fetch_by_codes_with_fallback(name, base_url, items):
+    results = []
+    api_ok = 0
+    api_fail = 0
+    for i, (code, hist) in enumerate(items):
+        try:
+            url = f"{base_url}/api/v2/incidents/{code}.json"
+            resp = requests.get(url, headers=HEADERS, timeout=30)
+            if resp.status_code == 200:
+                inc = resp.json().get("incident")
+                if inc:
+                    results.append(inc)
+                    api_ok += 1
+                else:
+                    results.append(_history_to_incident(code, hist))
+                    api_fail += 1
+            else:
+                results.append(_history_to_incident(code, hist))
+                api_fail += 1
+            if (i + 1) % 20 == 0:
+                print(f"    {name}: fetched {i + 1}/{len(items)} (api={api_ok}, fallback={api_fail})")
+            time.sleep(0.15)
+        except Exception as e:
+            results.append(_history_to_incident(code, hist))
+            api_fail += 1
+            print(f"  {name} incident {code} error: {e}")
+    if api_fail > 0:
+        print(f"    {name}: {api_fail} used history fallback (no detailed timestamps)")
+    return results
 
 
 def parse_incident(incident, service):

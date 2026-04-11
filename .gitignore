@@ -3,3 +3,9 @@ proposal.html
 __pycache__/
 .DS_Store
 .idea/
+.venv/
+*.ipynb_checkpoints/
+__pycache__/
+.DS_Store
+eda_report_executed.ipynb
+eda_parts/
