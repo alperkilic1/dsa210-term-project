@@ -19,7 +19,6 @@ SERVICES = {
     "dropbox": "https://status.dropbox.com",
     "vercel": "https://www.vercel-status.com",
     "netlify": "https://www.netlifystatus.com",
-    "heroku": "https://status.heroku.com",
     "digitalocean": "https://status.digitalocean.com",
     "linear": "https://linearstatus.com",
     "notion": "https://status.notion.so",
@@ -144,7 +143,7 @@ def parse_incident(incident, service):
             t1 = datetime.fromisoformat(created.replace("Z", "+00:00"))
             t2 = datetime.fromisoformat(resolved.replace("Z", "+00:00"))
             duration = round((t2 - t1).total_seconds() / 60, 1)
-        except:
+        except ValueError:
             pass
 
     return {
@@ -174,7 +173,7 @@ def add_time_features(record):
             record["created_date"] = dt.strftime("%Y-%m-%d")
             record["created_month"] = dt.month
             record["created_year"] = dt.year
-        except:
+        except ValueError:
             pass
     return record
 

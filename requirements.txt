@@ -1,4 +1,9 @@
-requests
-pandas
-matplotlib
-scikit-learn
+requests>=2.32
+pandas>=2.1
+numpy>=1.26
+matplotlib>=3.8
+seaborn>=0.13
+scipy>=1.11
+scikit-posthocs>=0.9
+jupyter>=1.0
+nbconvert>=7.0
