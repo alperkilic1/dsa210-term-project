@@ -14,7 +14,7 @@ This repo covers the EDA milestone (milestone1). The supervised classifier comes
 
 ## What I did
 
-- Scraped 869 raw incidents from 14 public cloud status pages (GitHub, Cloudflare, OpenAI, Discord, Reddit, Atlassian, Vercel, Netlify, DigitalOcean, Dropbox, Linear, Notion, Twilio, Datadog) via their Statuspage.io API endpoints.
+- Scraped 869 raw incidents from 14 public cloud status pages (GitHub, Cloudflare, OpenAI, Discord, Reddit, Atlassian, Vercel, Netlify, DigitalOcean, Dropbox, Linear, Notion, Twilio, Datadog) via their Statuspage.io API endpoints. Data spans 2019-05-07 to 2026-04-11 (~83 months), though most services only expose their last 12–24 months.
 - Cleaned down to 704 resolved incidents with valid duration (dropped 158 unresolved/scheduled-maintenance, 7 with negative duration).
 - Flagged 84 outliers with IQR (kept them, didn't drop).
 - Built a leakage-free feature `first_hour_updates` (status updates posted within 3600s of incident start) to replace the leaky total `num_updates`.
@@ -34,6 +34,14 @@ This repo covers the EDA milestone (milestone1). The supervised classifier comes
 ![Day × Hour incident heatmap](figures/temporal_heatmap.png)
 
 ![Leakage fix: before and after](figures/leakage_scatter_comparison.png)
+
+![H3: severity vs first-hour update count](figures/h3_severity_updates.png)
+
+![Duration CDF — median 82.5 min with heavy right tail](figures/02d_duration_cdf.png)
+
+![Class imbalance: 272 short vs 432 long (1.59:1)](figures/class_imbalance.png)
+
+![Leakage-free Spearman correlation heatmap](figures/corr_heatmap.png)
 
 ## Instructor-feedback addressed
 

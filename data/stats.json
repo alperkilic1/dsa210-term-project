@@ -37,11 +37,6 @@
       "resolved": 110,
       "avg_duration_min": 118.9
     },
-    "heroku": {
-      "total": 0,
-      "resolved": 0,
-      "avg_duration_min": null
-    },
     "linear": {
       "total": 25,
       "resolved": 25,
