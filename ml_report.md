@@ -15,10 +15,14 @@ Incident sureleri (short vs long) siniflandirmasi. Sadece ilk 1 saat icinde eris
 |--------|-------|
 | Train Accuracy | 0.7762 |
 | CV F1-macro (5-fold) | 0.6412 +/- 0.0370 |
-| Test Accuracy | 0.74 |
+| Test Accuracy | 0.7447 |
 | Test F1 (long) | 0.79 |
 | Test F1 (short) | 0.67 |
-| Test F1-macro | 0.73 |
+| Test F1-macro | 0.7317 |
+
+### Naive baseline karsilastirmasi
+
+432/704 = 0.6136 majority class. "Always predict long" baseline = 61.36% accuracy. Random Forest 74.47% — absolute +13.11pp, relative +21.4%. Model naive baseline'i istatistiksel olarak yeniyor.
 
 ## En Onemli Ozellikler
 Permutation importance (F1-macro drop) sonuclarina gore en etkili ozellikler belirlendi. Detaylar notebook'taki bar chart'ta mevcut.

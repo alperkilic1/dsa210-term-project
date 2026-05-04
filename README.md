@@ -10,7 +10,20 @@ Cloud service outage pattern analysis.
 
 > Using only features that are observable within the first hour of an incident (service, start-hour, day-of-week, first-hour update count, severity at t=0), can we tell whether an outage will be short (< 60 min) or long (≥ 60 min)?
 
-This repo covers the EDA milestone (milestone1). The supervised classifier comes in milestone2.
+Repo covers two milestones: the EDA milestone (`milestone1` tag) and the supervised-classifier ML milestone (commits after the tag, head-of-`main`).
+
+## ML milestone summary (5 May)
+
+| Item | Value |
+|---|---|
+| Models compared | Logistic Regression, Random Forest (baseline), Random Forest (GridSearchCV-tuned) |
+| Test accuracy (RF baseline) | 0.7447 |
+| Test F1-macro (RF baseline) | 0.7317 |
+| 5-fold CV F1-macro (RF baseline) | 0.6412 ± 0.0370 |
+| Naive baseline (always-long) | 0.6136 — beaten by +13.1pp absolute |
+| Top SHAP feature | `first_hour_updates` (mean \|SHAP\| = 0.103, ~5–6× the next feature) |
+
+Full write-up: [`ml_report.md`](ml_report.md) · notebook: [`ml_baseline.ipynb`](ml_baseline.ipynb) · raw metrics: [`data/ml_results.json`](data/ml_results.json).
 
 ## What I did
 
@@ -80,7 +93,16 @@ Re-running `collect_data.py` will pull whatever is live on the status pages toda
 
 ## AI assistance
 
-I used ChatGPT and Claude for: debugging the scraper (HTTP 429 handling, pagination), formatting the proposal document, and double-checking statistical test choices (non-parametric vs parametric, when to use BH vs Bonferroni). All project ideas, data source selection, analysis design, and the leakage fix approach were my own. The notebook text is my wording; where I received a suggestion that I kept, I verified it against a reference (e.g. Tomczak & Tomczak 2014 for epsilon-squared).
+I used ChatGPT and Claude as coding assistants. Per the course guidelines, here is what I delegated and what I kept ownership of:
+
+| Task | Tool | What I asked / received | What I verified |
+|---|---|---|---|
+| Scraper debugging | ChatGPT | "Why does Statuspage.io return 429 here, and how do I paginate /history.json?" → got `time.sleep` + `/api/v2/incidents/{code}` two-step pattern | Tested manually against 14 services; rate-limit handling adjusted |
+| Proposal formatting | ChatGPT | "Convert this draft to half-page single-spaced Markdown" → got Markdown skeleton | Rewrote every claim in my own wording |
+| Statistical test selection | Claude | "Duration is right-skewed (skew ≈ 8) — Mann-Whitney vs t-test for H1?" → recommended Mann-Whitney + Cliff's δ | Cross-checked with Tomczak & Tomczak 2014 for ε² and Cliff 1993 for δ |
+| ML scaffold | Claude | "Pipeline + StratifiedKFold + GridSearchCV + SHAP TreeExplainer template" → got skeleton | Re-wrote with my feature set, my leakage rules; verified each metric against a manual `classification_report` run |
+
+Ownership: project idea, data source selection, analysis design, the leakage discovery and fix (`first_hour_updates`), feature exclusions (`num_updates`/`impact`/`num_components`), interpretation, and all written prose are my own. No AI-generated text is pasted verbatim into the notebook narrative or this README.
 
 ## Submission
 
