@@ -30,8 +30,8 @@ Full write-up: [`ml_report.md`](ml_report.md) · notebook: [`ml_baseline.ipynb`]
 - Scraped 869 raw incidents from 14 public cloud status pages (GitHub, Cloudflare, OpenAI, Discord, Reddit, Atlassian, Vercel, Netlify, DigitalOcean, Dropbox, Linear, Notion, Twilio, Datadog) via their Statuspage.io API endpoints. Data spans 2019-05-07 to 2026-04-11 (~83 months), though most services only expose their last 12–24 months.
 - Cleaned down to 704 resolved incidents with valid duration (dropped 158 unresolved/scheduled-maintenance, 7 with negative duration).
 - Flagged 84 outliers with IQR (kept them, didn't drop).
-- Built a leakage-free feature `first_hour_updates` (status updates posted within 3600s of incident start) to replace the leaky total `num_updates`.
-- 16 figures, 3 hypothesis tests with BH-corrected p-values and effect sizes, bootstrap 95% CI for median duration.
+- Discovered and fixed a data leak: the original `num_updates` ↔ duration correlation (Spearman ρ=+0.46) collapses and *flips sign* (ρ=−0.224) once you restrict to updates posted within the first 3600s — the original signal was post-resolution updates inflating the count for long incidents. Built a leakage-free feature `first_hour_updates` and a side-by-side comparison plot to show the artifact.
+- 16 EDA figures + 3 ML figures, 3 hypothesis tests with BH-corrected p-values and effect sizes, bootstrap 95% CI for median duration.
 
 ## Key findings
 
@@ -56,6 +56,10 @@ Full write-up: [`ml_report.md`](ml_report.md) · notebook: [`ml_baseline.ipynb`]
 
 ![Leakage-free Spearman correlation heatmap](figures/corr_heatmap.png)
 
+![ML confusion matrix — Random Forest baseline on 141-sample test set](figures/ml_confusion_matrix.png)
+
+![SHAP summary — first_hour_updates dominates by ~5–6×](figures/ml_shap_summary.png)
+
 ## Instructor-feedback addressed
 
 | Proposal concern | How it's addressed |
@@ -68,15 +72,18 @@ Full write-up: [`ml_report.md`](ml_report.md) · notebook: [`ml_baseline.ipynb`]
 
 | Path | What's inside |
 |---|---|
-| `eda_report.ipynb` | Main notebook, 14 sections, 29 code cells, all outputs committed |
+| `eda_report.ipynb` | EDA notebook (milestone1), 14 sections, 29 code cells, all outputs committed |
+| `ml_baseline.ipynb` | ML notebook (5 May milestone), 14 code cells: Pipeline + StratifiedKFold CV + GridSearchCV + SHAP |
+| `ml_report.md` | Standalone ML write-up (metrics, SHAP, naive-baseline comparison, hyperparameter analysis, limitations) |
 | `collect_data.py` | Fetches raw incidents from Statuspage.io endpoints, writes JSON to `data/raw/` |
 | `data/incidents.json` | All 869 parsed incidents |
 | `data/incidents_clean.csv` | 704 resolved + feature-enriched rows (target of milestone1 "featurized" rule) |
 | `data/raw/*_raw.json` | Per-service scraped payloads |
 | `data/stats.json` | Per-service counts from the last `collect_data.py` run |
-| `figures/*.png` | 16 EDA figures |
+| `data/ml_results.json` | Cross-val + test metrics for RF baseline, LR, and tuned RF |
+| `figures/*.png` | 19 figures total — 16 EDA + 3 ML (`ml_confusion_matrix`, `ml_feature_importance`, `ml_shap_summary`) |
 | `proposal.md`, `proposal.pdf` | Original proposal (frozen) |
-| `requirements.txt` | Python deps with minimum version pins |
+| `requirements.txt` | Python deps with minimum version pins (Python ≥ 3.10) |
 
 ## How to reproduce
 
@@ -86,10 +93,11 @@ cd dsa210-term-project
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 python collect_data.py           # refreshes data/raw/ and data/incidents.json (~3 min)
-jupyter nbconvert --to notebook --execute eda_report.ipynb --output eda_report.ipynb
+jupyter nbconvert --to notebook --execute eda_report.ipynb --output eda_report.ipynb   # produces data/incidents_clean.csv
+jupyter nbconvert --to notebook --execute ml_baseline.ipynb --output ml_baseline.ipynb # consumes the CSV, writes data/ml_results.json + figures/ml_*.png
 ```
 
-Re-running `collect_data.py` will pull whatever is live on the status pages today — so the incident counts will drift slightly from the committed snapshot. The notebook is set up to run end-to-end in about 30 seconds once `data/incidents.json` exists.
+Re-running `collect_data.py` will pull whatever is live on the status pages today — so the incident counts will drift slightly from the committed snapshot. The EDA notebook runs end-to-end in about 30 seconds once `data/incidents.json` exists; the ML notebook adds another ~30 seconds.
 
 ## AI assistance
 

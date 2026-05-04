@@ -22,7 +22,14 @@ Incident sureleri (short vs long) siniflandirmasi. Sadece ilk 1 saat icinde eris
 
 ### Naive baseline karsilastirmasi
 
-432/704 = 0.6136 majority class. "Always predict long" baseline = 61.36% accuracy. Random Forest 74.47% — absolute +13.11pp, relative +21.4%. Model naive baseline'i istatistiksel olarak yeniyor.
+| Metrik | Always-predict-long | RF baseline | Fark |
+|--------|--------------------:|------------:|-----:|
+| Accuracy | 0.6136 | 0.7447 | +0.1311 (+21.37% relative) |
+| F1-macro | 0.3803 | 0.7317 | +0.3514 |
+
+Always-predict-long F1-macro 0.38'de takiliyor cunku short sinifinda recall = 0 (F1 = 0). RF her iki sinifi da tahmin edebildigi icin F1-macro farki accuracy farkindan cok daha buyuk (+0.35 vs +0.13).
+
+Anlamlilik: 141 ornekli test setinde RF'nin 105 dogru tahmini, baseline orani p=0.6136 H0 altinda one-sided binomial test ile **p < 0.001** -- model naive baseline'in belirgin sekilde ustunde.
 
 ## En Onemli Ozellikler
 Permutation importance (F1-macro drop) sonuclarina gore en etkili ozellikler belirlendi. Detaylar notebook'taki bar chart'ta mevcut.

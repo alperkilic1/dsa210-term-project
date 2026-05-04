@@ -5,6 +5,10 @@
 **Instructors:** Oznur Tastan, Ozgur Asar
 **Date:** May 2026
 
+> **Status:** This file is a working draft for the **18 May 2026** final report deadline.
+> Sections marked TODO will be completed after the ML milestone (5 May).
+> For the **5 May ML milestone deliverable** see [`ml_report.md`](ml_report.md), [`ml_baseline.ipynb`](ml_baseline.ipynb), and the ML summary in [`README.md`](README.md).
+
 ---
 
 ## Abstract
