@@ -6,10 +6,10 @@
     "cv_f1_macro_std": 0.036988780326598886
   },
   "lr_baseline": {
-    "test_accuracy": 0.7375886524822695,
-    "test_f1_macro": 0.7297591297591297,
-    "cv_f1_macro_mean": 0.5797148381655325,
-    "cv_f1_macro_std": 0.02933296385429437
+    "test_accuracy": 0.7092198581560284,
+    "test_f1_macro": 0.6972822956485312,
+    "cv_f1_macro_mean": 0.6032917231836652,
+    "cv_f1_macro_std": 0.0597328232347618
   },
   "rf_tuned": {
     "best_params": {
@@ -30,33 +30,33 @@
       0.63645443196005
     ],
     "lr_baseline_5fold": [
-      0.5614257425742575,
-      0.5614257425742575,
-      0.5458869843352743,
-      0.6171875,
-      0.6126482213438735
+      0.6604996837444655,
+      0.5187625552430695,
+      0.5906142050720364,
+      0.6801305589555283,
+      0.5664516129032258
     ]
   },
   "top_features": [
     {
       "feature": "first_hour_updates",
-      "mean_abs_shap": 0.10330335219979171
+      "mean_abs_shap": 0.1033033521997917
     },
     {
       "feature": "service_netlify",
-      "mean_abs_shap": 0.018517005980238702
+      "mean_abs_shap": 0.018517005980238734
     },
     {
       "feature": "created_hour",
-      "mean_abs_shap": 0.01465833513793239
+      "mean_abs_shap": 0.01465833513793242
     },
     {
       "feature": "hour_sin",
-      "mean_abs_shap": 0.014027255143714189
+      "mean_abs_shap": 0.014027255143714215
     },
     {
       "feature": "hour_cos",
-      "mean_abs_shap": 0.011749850887116641
+      "mean_abs_shap": 0.01174985088711666
     }
   ]
 }

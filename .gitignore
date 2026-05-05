@@ -5,7 +5,7 @@ __pycache__/
 .idea/
 .venv/
 .env
-*.ipynb_checkpoints/
+.ipynb_checkpoints/
 eda_report_executed.ipynb
 eda_parts/
 .claude/
