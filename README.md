@@ -20,7 +20,7 @@ git checkout final
 |-------|------|---------|
 | 1 | `index.html` | Project showcase webpage — open in a browser for a quick visual overview |
 | 2 | `final_report.html` (or `.pdf`) | Design-polished final report (same content as below) |
-| 3 | `final_report.md` | Markdown source — ~3800-word report with all sections |
+| 3 | `final_report.md` | Markdown source — ~4000-word report with all sections |
 | 4 | `eda_report.ipynb` | EDA analysis (14 sections, all outputs committed) |
 | 5 | `ml_baseline.ipynb` | Model training (15 cells executed, outputs visible) |
 | 6 | `data/` | Raw JSON + processed CSV (704 incidents) |
@@ -91,7 +91,7 @@ SHAP interpretation (TreeExplainer, top-5 features)
 
 ## Research question
 
-> Using only features that are observable within the first hour of an incident (service, start-hour, day-of-week, first-hour update count, severity at t=0), can we tell whether an outage will be short (< 60 min) or long (≥ 60 min)?
+> Using only features that are observable within the first hour of an incident (service, start-hour, day-of-week, first-hour update count), can we tell whether an outage will be short (< 60 min) or long (≥ 60 min)?
 
 Repo covers two milestones: the EDA milestone (`milestone1` tag) and the supervised-classifier ML milestone (commits after the tag, head-of-`main`).
 
@@ -159,6 +159,7 @@ Full write-up: [`final_report.md`](final_report.md) · notebook: [`ml_baseline.i
 | `eda_report.ipynb` | EDA notebook (milestone1), 14 sections, 29 code cells, all outputs committed |
 | `ml_baseline.ipynb` | ML notebook (5 May milestone), 15 code cells: Pipeline + StratifiedKFold CV + GridSearchCV + SHAP |
 | `collect_data.py` | Fetches raw incidents from Statuspage.io endpoints, writes JSON to `data/raw/` |
+| `regen_figures.py` | Regenerates 3 print-quality figures from the cleaned data (same `random_state`, no retraining) |
 | `data/incidents.json` | All 869 parsed incidents |
 | `data/incidents_clean.csv` | 704 resolved + feature-enriched rows (target of milestone1 "featurized" rule) |
 | `data/reliability_ranking.csv` | Per-service reliability ranking (incident count, median/mean duration, severity mix) |
@@ -169,6 +170,7 @@ Full write-up: [`final_report.md`](final_report.md) · notebook: [`ml_baseline.i
 | `video-materials/` | Optional video kit: 9-slide PowerPoint deck (narration in speaker notes) + narration script + recording guide |
 | `proposal.md`, `proposal.pdf` | Original proposal (frozen) |
 | `requirements.txt` | Python deps with exact version pins (Python 3.14) |
+| `Makefile` | Convenience targets: `make install` / `make run` (both notebooks in order) / `make report` / `make clean` |
 
 ## How to reproduce
 
@@ -201,4 +203,4 @@ Ownership: project idea, data source selection, analysis design, the leakage dis
 
 - Milestone 1 (EDA) is tagged `milestone1` at commit `0b5147f` (push date 2026-04-14).
 - Milestone 2 (ML) is tagged `milestone2` at commit `1637ac6` (push date 2026-05-05).
-- Final report will be tagged `final` on `main` before the 18 May deadline.
+- Final report is tagged `final` on `main`.
