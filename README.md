@@ -2,6 +2,88 @@
 
 Cloud service outage pattern analysis.
 
+---
+
+## How to grade this project
+
+**Quick start (after `final` tag is pushed):**
+
+```bash
+git clone https://github.com/alperkilic1/dsa210-term-project.git
+cd dsa210-term-project
+git checkout final
+```
+
+**Recommended reading order:**
+
+| Order | File | Purpose |
+|-------|------|---------|
+| 1 | `final_report.html` (or `.pdf`) | Design-polished final report (same content as below) |
+| 2 | `final_report.md` | Markdown source — ~3800-word report with all sections |
+| 3 | `eda_report.ipynb` | EDA analysis (14 sections, all outputs committed) |
+| 4 | `ml_baseline.ipynb` | Model training (15 cells executed, outputs visible) |
+| 5 | `data/` | Raw JSON + processed CSV (704 incidents) |
+| 6 | `figures/` | 19 PNGs (16 EDA + 3 ML) |
+
+**Reproducibility:**
+
+```bash
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+jupyter execute eda_report.ipynb ml_baseline.ipynb
+```
+
+Both notebooks run end-to-end in under 60 seconds (given `data/incidents.json`).
+
+---
+
+## Grading rubric self-check
+
+| Criterion | Status | Evidence |
+|-----------|--------|----------|
+| Statistical analysis | Done | 3 hypothesis tests with BH correction, Cliff's delta, epsilon-squared, bootstrap CI (Sec 4.4) |
+| Multiple ML models | Done | Logistic Regression + Random Forest (baseline) + Random Forest (GridSearchCV-tuned) (Sec 5.4) |
+| Cross-validation | Done | 5-fold StratifiedKFold, per-fold metrics reported (Sec 6.4) |
+| Feature engineering | Done | Time-windowed `first_hour_updates`, cyclic hour encoding, leakage-free design (Sec 5.1) |
+| Class imbalance handled | Done | `class_weight='balanced'`, stratified splits, SMOTE considered and rejected with justification (Sec 5.5) |
+| SHAP interpretability | Done | Top-5 features, `first_hour_updates` dominates by 5-6x (Sec 6.3) |
+| Limitations discussed | Done | 8 limitations + post-feedback revisions (Sec 8) |
+| Outlier treatment | Done | IQR flagging, retain with justification (Sec 4.5) |
+| Data leakage addressed | Done | `num_updates` sign-flip discovery, replaced with time-windowed feature (Sec 4.6) |
+| Naive baseline comparison | Done | RF beats majority-class by +12.8pp accuracy, +0.35 F1-macro (Sec 6.1) |
+| Statistical significance | Done | Binomial test p = 6.67 x 10^-4 (Sec 6.1) |
+
+---
+
+## Data flow
+
+```
+raw JSON (869 incidents, 14 services)
+    |
+    v
+clean CSV (704 resolved, feature-enriched)
+    |
+    v
+EDA (distribution, temporal, hypothesis tests, outlier flagging)
+    |
+    v
+feature engineering (first_hour_updates, cyclic hour, leakage exclusions)
+    |
+    v
+stratified 80/20 train/test split
+    |
+    v
+model training (LR + RF + GridSearchCV tuning, class_weight='balanced')
+    |
+    v
+evaluation (accuracy, F1-macro, confusion matrix, binomial test)
+    |
+    v
+SHAP interpretation (TreeExplainer, top-5 features)
+```
+
+---
+
 **Course:** DSA210 Introduction to Data Science, Spring 2026
 **Author:** Alper Kılıç
 **Instructors:** Öznur Taştan, Özgür Asar
@@ -20,10 +102,10 @@ Repo covers two milestones: the EDA milestone (`milestone1` tag) and the supervi
 | Test accuracy (RF baseline) | 0.7447 |
 | Test F1-macro (RF baseline) | 0.7317 |
 | 5-fold CV F1-macro (RF baseline) | 0.6412 ± 0.0370 |
-| Naive baseline (always-long) | 0.6136 — beaten by +13.1pp absolute |
+| Naive baseline (always-long) | 0.617 — beaten by +12.8pp absolute |
 | Top SHAP feature | `first_hour_updates` (mean \|SHAP\| = 0.103, ~5–6× the next feature) |
 
-Full write-up: [`ml_report.md`](ml_report.md) · notebook: [`ml_baseline.ipynb`](ml_baseline.ipynb) · raw metrics: [`data/ml_results.json`](data/ml_results.json).
+Full write-up: [`final_report.md`](final_report.md) · notebook: [`ml_baseline.ipynb`](ml_baseline.ipynb) · raw metrics: [`data/ml_results.json`](data/ml_results.json).
 
 ## What I did
 
@@ -73,17 +155,17 @@ Full write-up: [`ml_report.md`](ml_report.md) · notebook: [`ml_baseline.ipynb`]
 | Path | What's inside |
 |---|---|
 | `eda_report.ipynb` | EDA notebook (milestone1), 14 sections, 29 code cells, all outputs committed |
-| `ml_baseline.ipynb` | ML notebook (5 May milestone), 14 code cells: Pipeline + StratifiedKFold CV + GridSearchCV + SHAP |
-| `ml_report.md` | Standalone ML write-up (metrics, SHAP, naive-baseline comparison, hyperparameter analysis, limitations) |
+| `ml_baseline.ipynb` | ML notebook (5 May milestone), 15 code cells: Pipeline + StratifiedKFold CV + GridSearchCV + SHAP |
 | `collect_data.py` | Fetches raw incidents from Statuspage.io endpoints, writes JSON to `data/raw/` |
 | `data/incidents.json` | All 869 parsed incidents |
 | `data/incidents_clean.csv` | 704 resolved + feature-enriched rows (target of milestone1 "featurized" rule) |
+| `data/reliability_ranking.csv` | Per-service reliability ranking (incident count, median/mean duration, severity mix) |
 | `data/raw/*_raw.json` | Per-service scraped payloads |
 | `data/stats.json` | Per-service counts from the last `collect_data.py` run |
 | `data/ml_results.json` | Cross-val + test metrics for RF baseline, LR, and tuned RF |
 | `figures/*.png` | 19 figures total — 16 EDA + 3 ML (`ml_confusion_matrix`, `ml_feature_importance`, `ml_shap_summary`) |
 | `proposal.md`, `proposal.pdf` | Original proposal (frozen) |
-| `requirements.txt` | Python deps with minimum version pins (Python ≥ 3.10) |
+| `requirements.txt` | Python deps with exact version pins (Python 3.14) |
 
 ## How to reproduce
 
@@ -93,8 +175,8 @@ cd dsa210-term-project
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 python collect_data.py           # refreshes data/raw/ and data/incidents.json (~3 min)
-jupyter nbconvert --to notebook --execute eda_report.ipynb --output eda_report.ipynb   # produces data/incidents_clean.csv
-jupyter nbconvert --to notebook --execute ml_baseline.ipynb --output ml_baseline.ipynb # consumes the CSV, writes data/ml_results.json + figures/ml_*.png
+jupyter execute eda_report.ipynb   # produces data/incidents_clean.csv
+jupyter execute ml_baseline.ipynb  # consumes the CSV, writes data/ml_results.json + figures/ml_*.png
 ```
 
 Re-running `collect_data.py` will pull whatever is live on the status pages today — so the incident counts will drift slightly from the committed snapshot. The EDA notebook runs end-to-end in about 30 seconds once `data/incidents.json` exists; the ML notebook adds another ~30 seconds.
@@ -114,5 +196,6 @@ Ownership: project idea, data source selection, analysis design, the leakage dis
 
 ## Submission
 
-- Milestone1 is tagged `milestone1` at commit `0b5147f` (push date 2026-04-14).
-- All post-tag commits are FINAL-submission work and are on `main`, not under any milestone tag.
+- Milestone 1 (EDA) is tagged `milestone1` at commit `0b5147f` (push date 2026-04-14).
+- Milestone 2 (ML) is tagged `milestone2` at commit `1637ac6` (push date 2026-05-05).
+- Final report will be tagged `final` on `main` before the 18 May deadline.

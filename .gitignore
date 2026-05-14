@@ -9,3 +9,12 @@ __pycache__/
 eda_report_executed.ipynb
 eda_parts/
 .claude/
+.patches/
+PUSH-COMMAND.sh
+cache-bust.sh
+ml_report.md
+SEC-6.3-VOICE-OPTIONS.md
+SEC-6.3-CHANGE-LOG.md
+FIGURES-AUDIT.md
+EDA-FEEDBACK-VERIFICATION.md
+dsa210_tags_verify.png

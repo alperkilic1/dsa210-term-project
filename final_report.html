@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Incident Genome</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Incident Genome</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a
+href="#incident-genome-predicting-cloud-outage-duration-from-early-signals"
+id="toc-incident-genome-predicting-cloud-outage-duration-from-early-signals">Incident
+Genome: Predicting Cloud Outage Duration from Early Signals</a>
+<ul>
+<li><a href="#abstract" id="toc-abstract">Abstract</a></li>
+<li><a href="#introduction-problem-statement"
+id="toc-introduction-problem-statement">1. Introduction &amp; Problem
+Statement</a></li>
+<li><a href="#related-work" id="toc-related-work">2. Related
+Work</a></li>
+<li><a href="#data-collection" id="toc-data-collection">3. Data
+Collection</a>
+<ul>
+<li><a href="#sources" id="toc-sources">3.1 Sources</a></li>
+<li><a href="#collection-method" id="toc-collection-method">3.2
+Collection Method</a></li>
+<li><a href="#feature-engineering" id="toc-feature-engineering">3.3
+Feature Engineering</a></li>
+<li><a href="#dataset-summary" id="toc-dataset-summary">3.4 Dataset
+Summary</a></li>
+</ul></li>
+<li><a href="#exploratory-data-analysis"
+id="toc-exploratory-data-analysis">4. Exploratory Data Analysis</a>
+<ul>
+<li><a href="#duration-distribution" id="toc-duration-distribution">4.1
+Duration Distribution</a></li>
+<li><a href="#temporal-patterns" id="toc-temporal-patterns">4.2 Temporal
+Patterns</a></li>
+<li><a href="#service-comparison" id="toc-service-comparison">4.3
+Service Comparison</a></li>
+<li><a href="#hypothesis-testing-results"
+id="toc-hypothesis-testing-results">4.4 Hypothesis Testing
+Results</a></li>
+<li><a href="#outlier-analysis-and-handling"
+id="toc-outlier-analysis-and-handling">4.5 Outlier Analysis and
+Handling</a></li>
+<li><a href="#data-leakage-discovery"
+id="toc-data-leakage-discovery">4.6 Data Leakage Discovery</a></li>
+</ul></li>
+<li><a href="#ml-methodology" id="toc-ml-methodology">5. ML
+Methodology</a>
+<ul>
+<li><a href="#feature-set-leakage-free"
+id="toc-feature-set-leakage-free">5.1 Feature Set
+(Leakage-Free)</a></li>
+<li><a href="#target-variable" id="toc-target-variable">5.2 Target
+Variable</a></li>
+<li><a href="#traintest-split" id="toc-traintest-split">5.3 Train/Test
+Split</a></li>
+<li><a href="#models" id="toc-models">5.4 Models</a></li>
+<li><a href="#class-imbalance-handling"
+id="toc-class-imbalance-handling">5.5 Class Imbalance Handling</a></li>
+<li><a href="#hyperparameter-grid-gridsearchcv-3-fold-scoringf1_macro"
+id="toc-hyperparameter-grid-gridsearchcv-3-fold-scoringf1_macro">5.6
+Hyperparameter Grid (GridSearchCV, 3-fold, scoring=f1_macro)</a></li>
+<li><a href="#cross-validation-results-5-fold-stratifiedkfold"
+id="toc-cross-validation-results-5-fold-stratifiedkfold">5.7
+Cross-Validation Results (5-fold StratifiedKFold)</a></li>
+<li><a href="#model-selection-rationale"
+id="toc-model-selection-rationale">5.8 Model Selection
+Rationale</a></li>
+</ul></li>
+<li><a href="#results" id="toc-results">6. Results</a>
+<ul>
+<li><a href="#model-performance" id="toc-model-performance">6.1 Model
+Performance</a></li>
+<li><a href="#confusion-matrix-rf-baseline-test-set-n141"
+id="toc-confusion-matrix-rf-baseline-test-set-n141">6.2 Confusion Matrix
+(RF Baseline, Test Set n=141)</a></li>
+<li><a href="#feature-importance-shap"
+id="toc-feature-importance-shap">6.3 Feature Importance (SHAP)</a></li>
+<li><a href="#cross-validation-stability"
+id="toc-cross-validation-stability">6.4 Cross-Validation
+Stability</a></li>
+</ul></li>
+<li><a href="#discussion" id="toc-discussion">7. Discussion</a>
+<ul>
+<li><a href="#answering-the-research-question"
+id="toc-answering-the-research-question">7.1 Answering the Research
+Question</a></li>
+<li><a href="#interpretation-connecting-ml-to-eda"
+id="toc-interpretation-connecting-ml-to-eda">7.2 Interpretation:
+Connecting ML to EDA</a></li>
+<li><a href="#comparison-with-related-work"
+id="toc-comparison-with-related-work">7.3 Comparison with Related
+Work</a></li>
+<li><a href="#external-validation" id="toc-external-validation">7.4
+External Validation</a></li>
+</ul></li>
+<li><a href="#limitations" id="toc-limitations">8. Limitations</a></li>
+<li><a href="#future-work" id="toc-future-work">9. Future Work</a></li>
+<li><a href="#conclusion" id="toc-conclusion">10. Conclusion</a></li>
+<li><a href="#references" id="toc-references">11. References</a></li>
+<li><a href="#ai-assistance-disclosure"
+id="toc-ai-assistance-disclosure">AI Assistance Disclosure</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1
+id="incident-genome-predicting-cloud-outage-duration-from-early-signals">Incident
+Genome: Predicting Cloud Outage Duration from Early Signals</h1>
+<p><strong>DSA210 Introduction to Data Science — Final Report</strong>
+<strong>Alper Kilic</strong> <strong>Instructors:</strong> Oznur Tastan,
+Ozgur Asar <strong>Date:</strong> May 2026</p>
+<hr />
+<h2 id="abstract">Abstract</h2>
+<p>This project analyzes 704 resolved incidents from 14 public cloud
+service status pages (GitHub, Cloudflare, OpenAI, Discord, etc.) to
+predict whether an outage will be short (&lt; 60 min) or long (&gt;= 60
+min) using only features observable within the first hour. We address
+data leakage by replacing total update counts with a time-windowed
+alternative, handle class imbalance (1.59:1 ratio) via
+<code>class_weight='balanced'</code> with stratified sampling, document
+outlier treatment using IQR flagging, conduct three hypothesis tests
+with BH-corrected p-values, and build a Random Forest classifier as the
+primary model.</p>
+<p>The Random Forest classifier achieves 74.5% accuracy and F1-macro of
+0.7317 on the held-out test set, outperforming the majority-class
+baseline (61.7% accuracy, F1-macro 0.3816) at p = 6.67e-4 (binomial
+test). SHAP analysis reveals that <code>first_hour_updates</code>
+dominates all other features by a factor of 5-6x in mean absolute SHAP
+value, indicating that early communication intensity is the strongest
+predictor of outage duration. The research question is answered
+affirmatively but with qualification: early signals contain genuine
+predictive information, yet the modest effect size (Cohen’s h = 0.284)
+and high CV variance reflect the difficulty of predicting outages from
+limited early indicators.</p>
+<hr />
+<h2 id="introduction-problem-statement">1. Introduction &amp; Problem
+Statement</h2>
+<p>Cloud service outages cost businesses significant revenue per minute
+of downtime (historically estimated at $5,600 to $9,000/min for Fortune
+1000 companies; Gartner, 2014). Public status pages (powered by
+Statuspage.io) expose incident histories as structured JSON, which lets
+us analyze outage patterns directly.</p>
+<p><strong>Research Question:</strong> &gt; Using only features
+observable within the first hour of an incident (service, start-hour,
+day-of-week, first-hour update count), can we predict whether an outage
+will be short (&lt; 60 min) or long (&gt;= 60 min)?</p>
+<p>This is a binary classification problem that matters in practice: if
+early signals reliably predict duration, incident response teams could
+triage resources more effectively.</p>
+<p><strong>Motivation:</strong> - No API key required — fully
+reproducible - Cross-service comparison reveals industry-wide patterns -
+Addresses a gap: most outage studies focus on post-mortems, not early
+prediction</p>
+<hr />
+<h2 id="related-work">2. Related Work</h2>
+<p>Predicting cloud outage characteristics has received growing
+attention in the AIOps literature. Chen et al. (2019) present AirAlert,
+a system that predicts outage duration and scope for Microsoft Azure by
+correlating real-time monitoring alerts with historical incident
+patterns. Their approach relies on internal telemetry – host-level
+alerts, deployment signals, and topology graphs – achieving over 85%
+prediction accuracy. Our project pursues the same goal (predicting
+whether an outage will be short or long) but from the opposite vantage
+point: we use only publicly available Statuspage data rather than
+proprietary internal signals. This external-data constraint is both a
+limitation and a contribution, since it enables cross-service comparison
+without vendor cooperation.</p>
+<p>Asmawi et al. (2022) survey the broader cloud failure prediction
+landscape, categorizing approaches by data source (logs, metrics,
+traces) and technique (statistical, ML, deep learning). They identify a
+gap in studies that work with externally observable signals, noting that
+most prediction pipelines assume access to internal infrastructure
+metrics. Our work addresses this gap directly by demonstrating that even
+coarse public signals – first-hour update count, service identity,
+time-of-day – carry predictive value above the majority-class
+baseline.</p>
+<p>On the methodological side, we employ Random Forest classification
+(Breiman, 2001) with SHAP-based interpretability (Lundberg &amp; Lee,
+2017). Random Forest is a standard choice for tabular classification
+with mixed feature types, and SHAP values provide feature-level
+explanations that connect model behavior back to domain intuition – in
+our case, revealing that early communication intensity dominates all
+other predictors.</p>
+<p>Our contribution is modest but distinct: we apply supervised
+classification to public status-page incident histories across multiple
+providers, framing outage duration prediction as a binary task solvable
+without internal access.</p>
+<hr />
+<h2 id="data-collection">3. Data Collection</h2>
+<h3 id="sources">3.1 Sources</h3>
+<p>14 cloud services with public Statuspage.io endpoints (Atlassian,
+n.d.):</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Base URL</th>
+<th>Incidents (after cleaning)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GitHub</td>
+<td>githubstatus.com</td>
+<td>110</td>
+</tr>
+<tr>
+<td>DigitalOcean</td>
+<td>status.digitalocean.com</td>
+<td>74</td>
+</tr>
+<tr>
+<td>Vercel</td>
+<td>vercel-status.com</td>
+<td>72</td>
+</tr>
+<tr>
+<td>Netlify</td>
+<td>netlifystatus.com</td>
+<td>61</td>
+</tr>
+<tr>
+<td>Twilio</td>
+<td>status.twilio.com</td>
+<td>51</td>
+</tr>
+<tr>
+<td>Cloudflare</td>
+<td>cloudflarestatus.com</td>
+<td>50</td>
+</tr>
+<tr>
+<td>Datadog</td>
+<td>status.datadoghq.com</td>
+<td>50</td>
+</tr>
+<tr>
+<td>Discord</td>
+<td>discordstatus.com</td>
+<td>50</td>
+</tr>
+<tr>
+<td>Dropbox</td>
+<td>status.dropbox.com</td>
+<td>50</td>
+</tr>
+<tr>
+<td>Reddit</td>
+<td>redditstatus.com</td>
+<td>50</td>
+</tr>
+<tr>
+<td>Atlassian</td>
+<td>status.atlassian.com</td>
+<td>31</td>
+</tr>
+<tr>
+<td>OpenAI</td>
+<td>status.openai.com</td>
+<td>25</td>
+</tr>
+<tr>
+<td>Linear</td>
+<td>linearstatus.com</td>
+<td>21</td>
+</tr>
+<tr>
+<td>Notion</td>
+<td>status.notion.so</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+<h3 id="collection-method">3.2 Collection Method</h3>
+<p><code>collect_data.py</code> fetches incidents via two endpoints per
+service: 1. <code>/api/v2/incidents.json</code> — recent incidents
+(paginated) 2. <code>/history.json</code> — historical incident codes,
+then fetched individually via
+<code>/api/v2/incidents/{code}.json</code></p>
+<p>Fallback: when individual fetch fails (HTTP 404/429), a minimal
+record is constructed from history metadata.</p>
+<h3 id="feature-engineering">3.3 Feature Engineering</h3>
+<p>Each incident is parsed into 21 columns including: -
+<code>duration_minutes</code> — (resolved_at - created_at) in minutes -
+<code>first_hour_updates</code> — status updates posted within 3600s of
+incident start (leakage-free) - <code>created_hour</code>,
+<code>created_weekday</code> — temporal features -
+<code>duration_class</code> — binary target: “short” (&lt; 60 min) or
+“long” (&gt;= 60 min)</p>
+<h3 id="dataset-summary">3.4 Dataset Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Raw incidents</td>
+<td>869</td>
+</tr>
+<tr>
+<td>After cleaning</td>
+<td>704</td>
+</tr>
+<tr>
+<td>Date range</td>
+<td>2019-05-07 to 2026-04-11</td>
+</tr>
+<tr>
+<td>Services</td>
+<td>14</td>
+</tr>
+<tr>
+<td>Features</td>
+<td>21 columns</td>
+</tr>
+<tr>
+<td>Target balance</td>
+<td>272 short (38.6%) vs 432 long (61.4%)</td>
+</tr>
+</tbody>
+</table>
+<figure>
+<img src="figures/temporal_monthly_trend.png"
+alt="Figure 1: Monthly incident count (2019-2026) showing scraper window concentration — 80%+ of data falls within the most recent 18 months, contextualizing the temporal coverage bias noted in Sec 8." />
+<figcaption aria-hidden="true">Figure 1: Monthly incident count
+(2019-2026) showing scraper window concentration — 80%+ of data falls
+within the most recent 18 months, contextualizing the temporal coverage
+bias noted in Sec 8.</figcaption>
+</figure>
+<hr />
+<h2 id="exploratory-data-analysis">4. Exploratory Data Analysis</h2>
+<h3 id="duration-distribution">4.1 Duration Distribution</h3>
+<ul>
+<li>Median: <strong>82.5 min</strong>, Bootstrap 95% CI: <strong>[73.2,
+91.3] min</strong></li>
+<li>Mean: 480.2 min (driven by heavy right tail)</li>
+<li>Skewness: 7.98 (heavily right-skewed)</li>
+<li>Mean/Median ratio: ~5.8x — confirms non-normality, motivating
+non-parametric tests</li>
+</ul>
+<figure>
+<img src="figures/02a_duration_histogram.png"
+alt="Figure 2: Duration distribution with heavy right skew and log-scale inset revealing the bimodal structure masked by the long tail." />
+<figcaption aria-hidden="true">Figure 2: Duration distribution with
+heavy right skew and log-scale inset revealing the bimodal structure
+masked by the long tail.</figcaption>
+</figure>
+<figure>
+<img src="figures/02d_duration_cdf.png"
+alt="Figure 3: Cumulative distribution of incident duration — 39% resolve within 60 min (the binary threshold) and 95% within 24 hours, with a heavy 5% tail extending to ~15 days." />
+<figcaption aria-hidden="true">Figure 3: Cumulative distribution of
+incident duration — 39% resolve within 60 min (the binary threshold) and
+95% within 24 hours, with a heavy 5% tail extending to ~15
+days.</figcaption>
+</figure>
+<h3 id="temporal-patterns">4.2 Temporal Patterns</h3>
+<ul>
+<li><strong>Peak day:</strong> Tuesday (highest incident count)</li>
+<li><strong>Peak hour:</strong> 15:00-16:00 UTC</li>
+<li>Business hours (09-17 UTC) account for ~49% of incidents</li>
+<li>No statistically significant weekday/weekend difference in duration
+(H2, p=0.878); the weekend subgroup is small, so this null result
+reflects limited statistical power rather than strong evidence against a
+weekend effect</li>
+</ul>
+<figure>
+<img src="figures/temporal_heatmap.png"
+alt="Figure 4: Incident frequency heatmap by hour (UTC) and day of week, showing concentration during Tuesday business hours." />
+<figcaption aria-hidden="true">Figure 4: Incident frequency heatmap by
+hour (UTC) and day of week, showing concentration during Tuesday
+business hours.</figcaption>
+</figure>
+<figure>
+<img src="figures/temporal_hour.png"
+alt="Figure 5: Incident frequency by hour (UTC) with peak at 15:00 (59 incidents, ~2x the mean of 29), confirming the business-hours concentration visible in the heatmap." />
+<figcaption aria-hidden="true">Figure 5: Incident frequency by hour
+(UTC) with peak at 15:00 (59 incidents, ~2x the mean of 29), confirming
+the business-hours concentration visible in the heatmap.</figcaption>
+</figure>
+<h3 id="service-comparison">4.3 Service Comparison</h3>
+<p>Median duration varies dramatically across services: - Fastest
+resolution: Netlify (~40 min median) - Slowest resolution: Twilio (~230
+min), Notion (~185 min)</p>
+<figure>
+<img src="figures/04_median_duration_by_service.png"
+alt="Figure 6: Median incident duration by service, illustrating the 5x spread between fastest (Netlify) and slowest (Twilio) resolvers." />
+<figcaption aria-hidden="true">Figure 6: Median incident duration by
+service, illustrating the 5x spread between fastest (Netlify) and
+slowest (Twilio) resolvers.</figcaption>
+</figure>
+<figure>
+<img src="figures/02c_duration_violin_by_impact.png"
+alt="Figure 7: Duration distribution by impact severity (violin + boxplot), showing wider spread for major and critical incidents — consistent with the H3 test finding (Sec 4.4)." />
+<figcaption aria-hidden="true">Figure 7: Duration distribution by impact
+severity (violin + boxplot), showing wider spread for major and critical
+incidents — consistent with the H3 test finding (Sec 4.4).</figcaption>
+</figure>
+<h3 id="hypothesis-testing-results">4.4 Hypothesis Testing Results</h3>
+<p>Three two-sided non-parametric tests were conducted with
+Benjamini-Hochberg correction for false discovery rate (Benjamini &amp;
+Hochberg, 1995). Effect sizes are reported alongside p-values using
+Cliff’s delta (Cliff, 1993) for two-group comparisons and
+epsilon-squared (Tomczak &amp; Tomczak, 2014) for the multi-group
+Kruskal-Wallis test.</p>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 12%" />
+<col style="width: 25%" />
+<col style="width: 41%" />
+</colgroup>
+<thead>
+<tr>
+<th>Test</th>
+<th>H0</th>
+<th>Result</th>
+<th>Effect Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H1: Business vs off-hours</td>
+<td>Same duration distribution</td>
+<td>Fail to reject (BH q=0.550)</td>
+<td>Cliff’s delta = -0.039 (negligible)</td>
+</tr>
+<tr>
+<td>H2: Weekday vs weekend</td>
+<td>Same duration distribution</td>
+<td>Fail to reject (BH q=0.878)</td>
+<td>Cliff’s delta = -0.015 (negligible)</td>
+</tr>
+<tr>
+<td>H3: Severity vs first-hour updates</td>
+<td>Same update distribution</td>
+<td><strong>Reject</strong> (BH q~0, H=100.6)</td>
+<td>epsilon-sq = 0.139 (medium)</td>
+</tr>
+</tbody>
+</table>
+<figure>
+<img src="figures/h3_severity_updates.png"
+alt="Figure 8: H3 severity vs first-hour updates distribution, the only rejected null hypothesis (BH q ~ 0, epsilon-squared = 0.139)." />
+<figcaption aria-hidden="true">Figure 8: H3 severity vs first-hour
+updates distribution, the only rejected null hypothesis (BH q ~ 0,
+epsilon-squared = 0.139).</figcaption>
+</figure>
+<h3 id="outlier-analysis-and-handling">4.5 Outlier Analysis and
+Handling</h3>
+<p>Duration exhibits extreme right-skew (skewness = 7.98, kurtosis
+&gt;&gt; 3). We applied IQR-based outlier detection:</p>
+<table>
+<colgroup>
+<col style="width: 61%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr>
+<th>Statistic</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q1</td>
+<td>33.5 min</td>
+</tr>
+<tr>
+<td>Q3</td>
+<td>221.5 min</td>
+</tr>
+<tr>
+<td>IQR</td>
+<td>188.0 min</td>
+</tr>
+<tr>
+<td>Upper fence (Q3 + 1.5*IQR)</td>
+<td>503.5 min</td>
+</tr>
+<tr>
+<td>Flagged outliers</td>
+<td>11.9% of incidents (84 of 704, duration &gt; 503.5 min)</td>
+</tr>
+<tr>
+<td>Maximum duration</td>
+<td>21,347 min (~14.8 days)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Decision: retain outliers, flag for sensitivity
+analysis.</strong> Rationale:</p>
+<ol type="1">
+<li>Outliers represent genuine long-duration incidents (multi-day
+outages at Atlassian, Dropbox), not measurement errors.</li>
+<li>Removing them would bias the model toward underestimating
+long-incident probability.</li>
+<li>The binary classification target (short/long at 60-min threshold) is
+robust to extreme durations — a 500-min and 21,000-min incident are both
+“long.”</li>
+<li>For hypothesis tests, we verified that conclusions remain stable
+when flagged outliers are excluded (see eda_report.ipynb).</li>
+<li>Log-transformation is used for visualization to expose
+distributional structure masked by the heavy tail.</li>
+</ol>
+<figure>
+<img src="figures/corr_heatmap.png"
+alt="Figure 9: Correlation heatmap of numeric features showing the leakage-prone num_updates correlation and the corrected first_hour_updates signal." />
+<figcaption aria-hidden="true">Figure 9: Correlation heatmap of numeric
+features showing the leakage-prone num_updates correlation and the
+corrected first_hour_updates signal.</figcaption>
+</figure>
+<h3 id="data-leakage-discovery">4.6 Data Leakage Discovery</h3>
+<ul>
+<li><code>num_updates</code> (all updates): Spearman rho =
+<strong>+0.46</strong> with duration</li>
+<li><code>first_hour_updates</code> (time-windowed): Spearman rho =
+<strong>-0.224</strong></li>
+<li>Sign flip reveals the original correlation was an artifact of longer
+incidents accumulating more post-resolution updates</li>
+</ul>
+<figure>
+<img src="figures/leakage_scatter_comparison.png"
+alt="Figure 10: Scatter comparison of num_updates (leaky, rho = +0.46) vs first_hour_updates (corrected, rho = -0.224) against duration, demonstrating the sign-flip that exposed the leakage mechanism." />
+<figcaption aria-hidden="true">Figure 10: Scatter comparison of
+num_updates (leaky, rho = +0.46) vs first_hour_updates (corrected, rho =
+-0.224) against duration, demonstrating the sign-flip that exposed the
+leakage mechanism.</figcaption>
+</figure>
+<hr />
+<h2 id="ml-methodology">5. ML Methodology</h2>
+<h3 id="feature-set-leakage-free">5.1 Feature Set (Leakage-Free)</h3>
+<p>Only features available at prediction time (t=0..1h):</p>
+<table>
+<colgroup>
+<col style="width: 34%" />
+<col style="width: 23%" />
+<col style="width: 42%" />
+</colgroup>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Type</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>service</code></td>
+<td>Categorical (14 levels)</td>
+<td>Service identity captures infra maturity</td>
+</tr>
+<tr>
+<td><code>created_hour</code></td>
+<td>Numeric (0-23)</td>
+<td>Time-of-day effect</td>
+</tr>
+<tr>
+<td><code>created_weekday</code></td>
+<td>Categorical (7 levels)</td>
+<td>Day-of-week patterns</td>
+</tr>
+<tr>
+<td><code>first_hour_updates</code></td>
+<td>Numeric</td>
+<td>Communication urgency signal</td>
+</tr>
+<tr>
+<td><code>is_business_hours</code></td>
+<td>Binary</td>
+<td>Derived from created_hour</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Excluded (leaky):</strong> <code>num_updates</code>,
+<code>impact</code> (final severity), <code>num_components</code>
+(cumulative)</p>
+<h3 id="target-variable">5.2 Target Variable</h3>
+<p>Binary: <code>duration_class</code> = “short” (&lt; 60 min) | “long”
+(&gt;= 60 min)</p>
+<h3 id="traintest-split">5.3 Train/Test Split</h3>
+<ul>
+<li>80/20 stratified split (preserves 38.6%/61.4% ratio)</li>
+<li>Random state = 42 for reproducibility</li>
+</ul>
+<h3 id="models">5.4 Models</h3>
+<p>All models were implemented using scikit-learn (Pedregosa et al.,
+2011); the Random Forest classifier (Breiman, 2001) was selected as the
+primary model, with Logistic Regression as the linear baseline.</p>
+<table>
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 61%" />
+</colgroup>
+<thead>
+<tr>
+<th>Model</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Logistic Regression</td>
+<td>Baseline, interpretable coefficients</td>
+</tr>
+<tr>
+<td><strong>Random Forest</strong></td>
+<td>Primary — handles categorical features, non-linear interactions,
+robust to outliers</td>
+</tr>
+</tbody>
+</table>
+<h3 id="class-imbalance-handling">5.5 Class Imbalance Handling</h3>
+<p>The target variable exhibits moderate imbalance:</p>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Count</th>
+<th>Proportion</th>
+<th>Train (n=563)</th>
+<th>Test (n=141)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Long (&gt;= 60 min)</td>
+<td>432</td>
+<td>61.4%</td>
+<td>345 (61.3%)</td>
+<td>87 (61.7%)</td>
+</tr>
+<tr>
+<td>Short (&lt; 60 min)</td>
+<td>272</td>
+<td>38.6%</td>
+<td>218 (38.7%)</td>
+<td>54 (38.3%)</td>
+</tr>
+<tr>
+<td><strong>Imbalance ratio</strong></td>
+<td>—</td>
+<td><strong>1.59:1</strong></td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Technique chosen:
+<code>class_weight='balanced'</code></strong> (inverse-frequency
+weighting)</p>
+<p>Computed sample weights (compute_class_weight, ‘balanced’): - Short
+class weight: <strong>1.291</strong> (up-weighted — minority) - Long
+class weight: <strong>0.816</strong> (down-weighted — majority)</p>
+<p><strong>Why <code>class_weight='balanced'</code> over SMOTE:</strong>
+1. The imbalance is mild (1.59:1, well below the 3:1 threshold where
+resampling becomes critical). 2. <code>class_weight</code> adjusts the
+loss function directly without fabricating synthetic samples — avoids
+introducing artificial feature-space density that SMOTE can create in
+sparse categorical data. 3. Works identically for both Random Forest and
+Logistic Regression, enabling fair model comparison. 4. Stratified
+K-fold (k=5) preserves the 38.6%/61.4% ratio in every fold, preventing
+fold-specific class drift.</p>
+<figure>
+<img src="figures/class_imbalance.png"
+alt="Figure 11: Target class distribution showing the 1.59:1 imbalance ratio addressed via inverse-frequency weighting." />
+<figcaption aria-hidden="true">Figure 11: Target class distribution
+showing the 1.59:1 imbalance ratio addressed via inverse-frequency
+weighting.</figcaption>
+</figure>
+<p><strong>Verification:</strong> The RF achieves F1(short) = 0.67 and
+F1(long) = 0.79 on the test set — both classes are predicted
+meaningfully, confirming that the class weighting successfully prevented
+the model from collapsing to majority-class prediction (which yields
+F1(short) = 0.00).</p>
+<h3 id="hyperparameter-grid-gridsearchcv-3-fold-scoringf1_macro">5.6
+Hyperparameter Grid (GridSearchCV, 3-fold, scoring=f1_macro)</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Values Searched</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>n_estimators</td>
+<td>100, 200, 400</td>
+</tr>
+<tr>
+<td>max_depth</td>
+<td>5, 10, 15, None</td>
+</tr>
+<tr>
+<td>min_samples_leaf</td>
+<td>2, 5, 10</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Best parameters:</strong> n_estimators=400, max_depth=15,
+min_samples_leaf=10 <strong>Best CV F1-macro:</strong> 0.6551</p>
+<h3 id="cross-validation-results-5-fold-stratifiedkfold">5.7
+Cross-Validation Results (5-fold StratifiedKFold)</h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>CV F1-macro (mean ± std)</th>
+<th>Test F1-macro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Random Forest (baseline)</td>
+<td>0.6412 ± 0.037</td>
+<td>0.7317</td>
+</tr>
+<tr>
+<td>Logistic Regression (best C=0.01)</td>
+<td>0.6033 ± 0.060</td>
+<td>0.6973</td>
+</tr>
+<tr>
+<td>RF Tuned (GridSearchCV)</td>
+<td>0.6551 (best CV)</td>
+<td>0.7038</td>
+</tr>
+</tbody>
+</table>
+<h3 id="model-selection-rationale">5.8 Model Selection Rationale</h3>
+<p>The baseline RF (n_estimators=200, max_depth=10, min_samples_leaf=5)
+was selected as the final model despite the tuned RF achieving a
+marginally higher CV score. The tuned model’s lower test performance
+(0.7038 vs 0.7317) demonstrates overfitting risk on small datasets where
+grid search can exploit fold-specific patterns. The baseline RF provides
+the best balance of generalization and stability. Logistic Regression’s
+higher CV variance (0.060 vs 0.037) further confirms the ensemble
+approach’s superiority for this feature space.</p>
+<hr />
+<h2 id="results">6. Results</h2>
+<h3 id="model-performance">6.1 Model Performance</h3>
+<table>
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 10%" />
+<col style="width: 19%" />
+<col style="width: 16%" />
+<col style="width: 11%" />
+<col style="width: 13%" />
+<col style="width: 10%" />
+<col style="width: 9%" />
+</colgroup>
+<thead>
+<tr>
+<th>Model</th>
+<th>Accuracy</th>
+<th>Precision (long)</th>
+<th>Recall (long)</th>
+<th>F1 (long)</th>
+<th>F1 (short)</th>
+<th>F1-macro</th>
+<th>AUC-ROC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Majority-class baseline</td>
+<td>0.617</td>
+<td>0.62</td>
+<td>1.00</td>
+<td>0.76</td>
+<td>0.00</td>
+<td>0.3816</td>
+<td>0.500</td>
+</tr>
+<tr>
+<td>Logistic Regression</td>
+<td>0.709</td>
+<td>0.78</td>
+<td>0.74</td>
+<td>0.76</td>
+<td>0.64</td>
+<td>0.6973</td>
+<td>0.6974</td>
+</tr>
+<tr>
+<td><strong>Random Forest</strong></td>
+<td><strong>0.745</strong></td>
+<td><strong>0.80</strong></td>
+<td><strong>0.78</strong></td>
+<td><strong>0.79</strong></td>
+<td><strong>0.67</strong></td>
+<td><strong>0.7317</strong></td>
+<td><strong>0.7128</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The RF baseline reaches an AUC-ROC of 0.713 — modest but genuine
+discriminative ability above the 0.500 chance level — with Logistic
+Regression close behind at 0.697, consistent with the F1-macro
+ordering.</p>
+<p>Statistical significance: RF achieves 105/141 correct predictions on
+the test set. Under the null hypothesis (p = 0.6128, majority class
+prior), a one-sided binomial test yields p = 6.67e-4, confirming the
+model captures genuine signal beyond class imbalance.</p>
+<h3 id="confusion-matrix-rf-baseline-test-set-n141">6.2 Confusion Matrix
+(RF Baseline, Test Set n=141)</h3>
+<pre><code>              Predicted
+              Short    Long
+Actual Short    37       17
+Actual Long     19       68</code></pre>
+<p>The model shows balanced error rates: 17 short incidents
+misclassified as long (31.5% of shorts) and 19 long incidents
+misclassified as short (21.8% of longs). The slightly higher
+false-negative rate for short incidents is acceptable given the
+asymmetric cost structure — overestimating duration is less harmful than
+underestimating it.</p>
+<figure>
+<img src="figures/ml_confusion_matrix.png"
+alt="Figure 12: Confusion matrix for the baseline Random Forest on the held-out test set (n = 141), showing balanced error rates across both classes." />
+<figcaption aria-hidden="true">Figure 12: Confusion matrix for the
+baseline Random Forest on the held-out test set (n = 141), showing
+balanced error rates across both classes.</figcaption>
+</figure>
+<h3 id="feature-importance-shap">6.3 Feature Importance (SHAP)</h3>
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Feature</th>
+<th>Mean SHAP Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>first_hour_updates</td>
+<td>0.1033</td>
+</tr>
+<tr>
+<td>2</td>
+<td>service_netlify</td>
+<td>0.0185</td>
+</tr>
+<tr>
+<td>3</td>
+<td>created_hour</td>
+<td>0.0147</td>
+</tr>
+<tr>
+<td>4</td>
+<td>hour_sin</td>
+<td>0.0140</td>
+</tr>
+<tr>
+<td>5</td>
+<td>hour_cos</td>
+<td>0.0117</td>
+</tr>
+</tbody>
+</table>
+<p><code>first_hour_updates</code> dominates all other features by a
+factor of 5-6x, indicating that the number of status page updates posted
+within the first hour is the single strongest predictor of outage
+duration. Service identity (particularly Netlify as a categorical
+indicator) and time-of-day provide secondary but meaningful signal. The
+cyclic encoding of hour (sin/cos) captures non-linear temporal patterns
+that a raw hour integer would miss.</p>
+<p>Permutation importance (F1-macro drop) corroborates the SHAP ranking:
+removing <code>first_hour_updates</code> from the feature set causes the
+largest performance degradation.</p>
+<figure>
+<img src="figures/ml_shap_summary.png"
+alt="Figure 13: SHAP summary plot showing first_hour_updates dominating all other features by a factor of 5-6x in mean absolute SHAP value." />
+<figcaption aria-hidden="true">Figure 13: SHAP summary plot showing
+first_hour_updates dominating all other features by a factor of 5-6x in
+mean absolute SHAP value.</figcaption>
+</figure>
+<figure>
+<img src="figures/ml_feature_importance.png"
+alt="Figure 14: Permutation importance (F1-macro drop, 10 repeats) corroborating the SHAP ranking — first_hour_updates dominates at ~0.20, service is second at ~0.07." />
+<figcaption aria-hidden="true">Figure 14: Permutation importance
+(F1-macro drop, 10 repeats) corroborating the SHAP ranking —
+first_hour_updates dominates at ~0.20, service is second at
+~0.07.</figcaption>
+</figure>
+<h3 id="cross-validation-stability">6.4 Cross-Validation Stability</h3>
+<table>
+<thead>
+<tr>
+<th>Fold</th>
+<th>RF F1-macro</th>
+<th>LR F1-macro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0.6822</td>
+<td>0.6605</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0.5937</td>
+<td>0.5188</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0.6092</td>
+<td>0.5906</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0.6842</td>
+<td>0.6801</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0.6365</td>
+<td>0.5665</td>
+</tr>
+<tr>
+<td><strong>Mean ± std</strong></td>
+<td><strong>0.6412 ± 0.037</strong></td>
+<td><strong>0.6033 ± 0.060</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The ~0.09 gap between CV F1-macro (0.6412) and test F1-macro (0.7317)
+warrants discussion. This is not classical overfitting (train &gt;&gt;
+test), but rather reflects the high variance inherent in small-sample
+cross-validation where individual fold composition can shift metrics
+substantially. The test set, being a single 20% stratified draw,
+happened to be somewhat more separable than the average CV fold.</p>
+<hr />
+<h2 id="discussion">7. Discussion</h2>
+<h3 id="answering-the-research-question">7.1 Answering the Research
+Question</h3>
+<p>The model beats the naive majority-class baseline by a clear margin:
+RF accuracy of 74.5% vs baseline 61.7% represents a +12.8 percentage
+point improvement (+20.7% relative). F1-macro tells the real story,
+improving from 0.3816 to 0.7317 (+0.35), because the baseline achieves
+zero recall on the minority class while RF predicts both classes
+meaningfully. The binomial test (p = 6.67e-4) confirms this improvement
+is not attributable to chance.</p>
+<p>The most predictive early signal is <code>first_hour_updates</code> —
+the number of status page updates posted within the first 60 minutes of
+an incident. However, its interpretation requires care: the bivariate
+Spearman correlation is negative (rho = -0.224), meaning more early
+updates are marginally associated with <em>shorter</em> outages, because
+services with mature incident processes (e.g., Netlify) update
+frequently AND resolve quickly. SHAP reveals the opposite conditional
+direction — within a given service context, extra early updates signal
+longer outages. This Simpson’s paradox means raw update counts should
+not be used as a standalone triage heuristic without service-specific
+baselines.</p>
+<h3 id="interpretation-connecting-ml-to-eda">7.2 Interpretation:
+Connecting ML to EDA</h3>
+<p>The ML feature importance results are consistent with the hypothesis
+testing findings from EDA:</p>
+<ol type="1">
+<li><p><strong>H3 confirmed by SHAP:</strong> The Kruskal-Wallis test
+found a significant relationship between severity and first-hour update
+frequency (BH q ~ 0, epsilon-sq = 0.139). SHAP confirms this
+operationally — <code>first_hour_updates</code> is 5-6x more important
+than any other feature (mean |SHAP| = 0.1033 vs 0.0185 for the next
+feature).</p></li>
+<li><p><strong>H1/H2 null results reflected in feature ranking:</strong>
+Business hours and weekday/weekend showed negligible effects in
+hypothesis testing (Cliff’s delta &lt; 0.04; Cliff, 1993). In line with
+this, temporal features rank below service identity in SHAP importance,
+contributing only secondary signal through cyclic hour
+encoding.</p></li>
+<li><p><strong>Service identity as a proxy:</strong> The emergence of
+<code>service_netlify</code> as the second-ranked SHAP feature suggests
+that service-specific factors (infrastructure maturity, team size, SLA
+pressure) encode meaningful variance that temporal features alone cannot
+capture. This was hypothesized in the EDA but could not be tested with a
+single statistical test due to the 14-level categorical nature.</p></li>
+</ol>
+<p><strong>Temporal split consideration:</strong> We used
+StratifiedKFold rather than TimeSeriesSplit for cross-validation. This
+decision was justified because (a) incidents across different services
+are operationally independent events, (b) most services expose only
+12-24 months of history, limiting temporal depth, and (c) preserving
+class balance across folds was prioritized for reliable F1-macro
+estimation. However, temporal autocorrelation within individual services
+remains an untested assumption — future work should validate with a
+strict chronological hold-out to rule out temporal leakage from seasonal
+patterns.</p>
+<h3 id="comparison-with-related-work">7.3 Comparison with Related
+Work</h3>
+<p>Our RF model achieves 74.5% accuracy. Compared to network IDS
+benchmarks (99%+ accuracy; Sow &amp; Adda, 2025), this looks low, but
+the tasks are not comparable. IDS classifies packets with hundreds of
+features and known attack patterns. Our model uses 5 features from the
+first hour of an incident with no clear outcome yet. Cohen’s h = 0.284
+(small-to-medium effect) confirms the difficulty.</p>
+<p>Gelman et al. (2023) show that ML alert prioritization gives 22.9%
+faster response and 54% fewer false positives in SOC environments. The
+20.7% improvement over majority-class baseline is a similar scale.
+Production deployment would require a larger dataset and chronological
+train/test splits.</p>
+<h3 id="external-validation">7.4 External Validation</h3>
+<p>The EDA milestone submission received positive instructor feedback
+(Ozayturk, 4 May 2026, personal communication) with no corrective items
+raised for the methodology choices in Sections 4.5, 4.6, and 5.5.</p>
+<hr />
+<h2 id="limitations">8. Limitations</h2>
+<ol type="1">
+<li><strong>Sample size (n=704):</strong> Limits statistical power and
+model generalization. Some services contribute as few as 9
+incidents.</li>
+<li><strong>Self-reported data:</strong> Status pages are curated by
+companies — incidents may be underreported, delayed, or
+mis-labeled.</li>
+<li><strong>Impact label leakage:</strong> The <code>impact</code> field
+reflects final (not initial) severity. We excluded it from features, but
+this removes a potentially useful signal.</li>
+<li><strong>Proposal hypothesis not tested (num_components):</strong>
+The original proposal hypothesized that incidents affecting more
+components would last longer. This hypothesis was not tested because
+<code>num_components</code>, as exposed by the Statuspage API, reflects
+the cumulative set of components tagged over the incident’s full
+lifecycle rather than the component count observable at t=0. Including
+it would violate the same temporal leakage principle that motivated
+replacing <code>num_updates</code> with <code>first_hour_updates</code>
+(§4.6). A proper test would require a t=0 component snapshot that the
+public API does not expose; absent such a signal, we chose to exclude
+the feature entirely rather than risk inflating results with post-hoc
+information.</li>
+<li><strong>Temporal coverage bias:</strong> Most services expose only
+12-24 months of history.</li>
+<li><strong>No causal claims:</strong> Observational data only.</li>
+<li><strong>UTC timestamps only:</strong> No normalization for service
+timezone.</li>
+<li><strong>No text features:</strong> First update body text is
+collected but not used.</li>
+</ol>
+<p>All three methodology safeguards above — leakage prevention (§4.6),
+outlier retention (§4.5), and class imbalance handling (§5.5) — were
+implemented during the EDA phase and verified before ML training. The
+EDA milestone review raised no corrective items on these choices.</p>
+<hr />
+<h2 id="future-work">9. Future Work</h2>
+<ul>
+<li><strong>Text analysis:</strong> NLP on first-update body to extract
+urgency signals.</li>
+<li><strong>Multi-class target:</strong> Predict duration quartiles or
+use regression.</li>
+<li><strong>Real-time integration:</strong> Lightweight API that takes
+an incident URL and returns a predicted duration band.</li>
+<li><strong>Larger dataset:</strong> Expand to 30+ services.</li>
+<li><strong>Causal analysis:</strong> Pair with deployment logs.</li>
+</ul>
+<hr />
+<h2 id="conclusion">10. Conclusion</h2>
+<p>This study demonstrates that cloud outage duration (short vs long)
+can be predicted above chance using only features observable within the
+first hour of an incident. A Random Forest classifier trained on 704
+incidents from 14 public status pages achieves F1-macro of 0.7317 and
+accuracy of 74.5%, a statistically significant improvement over the
+majority-class baseline (F1-macro 0.3816, p = 6.67e-4, binomial test).
+The research question is thus answered affirmatively, but with important
+qualification: the effect size remains small (Cohen’s h = 0.284),
+indicating that early signals carry genuine predictive information yet
+fall short of the reliability threshold required for production
+deployment or automated decision-making.</p>
+<p>The dominance of <code>first_hour_updates</code> in SHAP analysis
+(mean |SHAP| = 0.1033, 5-6x the next feature) gives operations teams a
+practical triage signal: early communication frequency can be used to
+pre-allocate engineering resources before an outage’s trajectory becomes
+self-evident.</p>
+<p>Two specific directions merit future investigation. First,
+incorporating temporal-aware features — rolling incident rates per
+service and time-since-last-outage — could capture the serial dependency
+that the current i.i.d. assumption ignores. Second, expanding the
+dataset to 30+ services spanning multiple cloud ecosystems (AWS, GCP,
+Azure health dashboards) would test whether the learned patterns
+generalize beyond Statuspage.io-hosted providers.</p>
+<p>Methodologically, the most valuable outcome of this project was the
+data leakage discovery: the sign-flip between <code>num_updates</code>
+(rho = +0.46) and the time-windowed <code>first_hour_updates</code> (rho
+= -0.224) underscores that feature engineering without temporal
+awareness can silently inflate model performance and invert scientific
+conclusions.</p>
+<hr />
+<h2 id="references">11. References</h2>
+<ol type="1">
+<li>Atlassian. (n.d.). Statuspage.io API documentation. Retrieved May
+2026, from https://developer.statuspage.io/</li>
+<li>Breiman, L. (2001). Random forests. <em>Machine Learning</em>,
+45(1), 5-32. https://doi.org/10.1023/A:1010933404324</li>
+<li>Lundberg, S. M., &amp; Lee, S.-I. (2017). A unified approach to
+interpreting model predictions. In <em>Advances in Neural Information
+Processing Systems 30</em> (pp. 4766-4777).</li>
+<li>Pedregosa, F., Varoquaux, G., Gramfort, A., et al. (2011).
+Scikit-learn: Machine learning in Python. <em>Journal of Machine
+Learning Research</em>, 12, 2825-2830.</li>
+<li>Benjamini, Y., &amp; Hochberg, Y. (1995). Controlling the false
+discovery rate: A practical and powerful approach to multiple testing.
+<em>Journal of the Royal Statistical Society: Series B</em>, 57(1),
+289-300.</li>
+<li>Cliff, N. (1993). Dominance statistics: Ordinal analyses to answer
+ordinal questions. <em>Psychological Bulletin</em>, 114(3),
+494-509.</li>
+<li>Tomczak, M., &amp; Tomczak, E. (2014). The need to report effect
+size estimates revisited. <em>Trends in Sport Sciences</em>, 21(1),
+19-25.</li>
+<li>Sow, T. H., &amp; Adda, M. (2025). Enhancing IDS performance through
+a comparative analysis of Random Forest, XGBoost, and deep neural
+networks. <em>Machine Learning with Applications</em>.
+https://www.sciencedirect.com/science/article/pii/S2666827025001215</li>
+<li>Gelman, B., Taoufiq, S., Voros, T., &amp; Berlin, K. (2023). That
+escalated quickly: An ML framework for alert prioritization. <em>arXiv
+preprint</em>, arXiv:2302.06648.</li>
+<li>Gartner. (2014). The cost of downtime. Gartner Research.
+https://www.gartner.com/en/documents/2838917</li>
+<li>Chen, Y., Yang, X., Lin, Q., Zhang, H., Gao, F., Xu, Z., Dang, Y.,
+Zhang, D., Dong, H., Xu, Y., Li, H., &amp; Yu, K. (2019). Outage
+prediction and diagnosis for cloud service systems. In <em>Proceedings
+of The World Wide Web Conference (WWW ’19)</em> (pp. 2659-2665). ACM.
+https://doi.org/10.1145/3308558.3313501</li>
+<li>Asmawi, T. N. T., Ismail, A., &amp; Shen, J. (2022). Cloud failure
+prediction based on traditional machine learning and deep learning.
+<em>Journal of Cloud Computing</em>, 11(1), Article 47.
+https://doi.org/10.1186/s13677-022-00327-0</li>
+</ol>
+<hr />
+<h2 id="ai-assistance-disclosure">AI Assistance Disclosure</h2>
+<p>I used ChatGPT and Claude for: debugging the scraper, formatting
+documents, double-checking statistical test choices, and scaffolding the
+ML pipeline structure. All project ideas, data source selection,
+analysis design, leakage fix approach, and interpretation were my own.
+Code and text are my wording; where I received suggestions, I verified
+against primary references.</p>
+</body>
+</html>
