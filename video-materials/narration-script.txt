@@ -1,0 +1,92 @@
+INCIDENT GENOME - VIDEO NARRATION SCRIPT
+DSA210 Term Project | Alper Kilic | May 2026
+
+Total: ~370 words, ~2.5 minutes at a calm pace.
+This same text is also in the speaker notes of each slide in
+Incident-Genome-Slides.pptx (open the Notes pane in PowerPoint to see it).
+
+======================================================================
+
+SLIDE 1 - TITLE
+
+Hi, I am Alper Kilic, and this is my DSA210 term project: Incident Genome.
+
+----------------------------------------------------------------------
+
+SLIDE 2 - THE PROBLEM
+
+Cloud outages cost companies thousands of dollars per minute. My research
+question is simple: can we predict whether an outage will be short or long,
+using only what we can see in the first hour?
+
+----------------------------------------------------------------------
+
+SLIDE 3 - THE DATA
+
+I collected data from 14 public cloud status pages, including GitHub,
+Cloudflare, Discord, and OpenAI. These services use Statuspage.io, which
+exposes incident history as structured JSON. No API key is needed, so the
+project is fully reproducible. After cleaning, I had 704 incidents. The target
+variable is binary: short means under 60 minutes, long means 60 minutes or
+more. The split is about 39 percent short and 61 percent long.
+
+----------------------------------------------------------------------
+
+SLIDE 4 - EXPLORATORY ANALYSIS
+
+In exploratory analysis, I found that median duration is 82.5 minutes with
+heavy right skew. Incidents peak on Tuesdays around 3 PM UTC. Resolution speed
+varies a lot across services -- Netlify resolves about five times faster than
+Twilio.
+
+----------------------------------------------------------------------
+
+SLIDE 5 - THE KEY FINDING
+
+The most important finding was a data leakage problem. The original feature,
+total number of updates, had a positive correlation of 0.46 with duration. But
+that is because longer incidents naturally get more updates after they end.
+When I replaced it with first-hour updates only, the correlation flipped to
+negative 0.224. This sign flip proved the original correlation was an
+artifact. Catching this leakage was critical for building an honest model.
+
+----------------------------------------------------------------------
+
+SLIDE 6 - THE MODEL
+
+For the ML model, I used a Random Forest classifier with five features:
+service name, hour, weekday, first-hour update count, and a business-hours
+flag. I handled class imbalance with balanced class weights and used
+stratified splits.
+
+----------------------------------------------------------------------
+
+SLIDE 7 - RESULTS
+
+The Random Forest achieved 74.5 percent accuracy and an F1-macro score of
+0.7317. The majority-class baseline only gets 61.7 percent accuracy and 0.3816
+F1-macro. A binomial test confirms this improvement is statistically
+significant, with a p-value of 6.67 times 10 to the negative 4.
+
+----------------------------------------------------------------------
+
+SLIDE 8 - INTERPRETABILITY
+
+SHAP analysis shows that first-hour updates dominates all other features by a
+factor of five to six. Early communication intensity is the strongest
+predictor of outage duration.
+
+----------------------------------------------------------------------
+
+SLIDE 9 - CONCLUSION
+
+To conclude: yes, early signals do predict outage duration above chance. But
+the effect size is small -- Cohen's h is 0.284 -- so this is not
+production-ready yet. Future work includes NLP on update text and expanding to
+more services. Thank you.
+
+======================================================================
+
+TIP: Read the whole thing out loud once before recording. Aim for ~2.5
+minutes. If you run past 3 minutes, trim Slide 3 and Slide 5 first -- they
+are the two longest.

@@ -18,12 +18,13 @@ git checkout final
 
 | Order | File | Purpose |
 |-------|------|---------|
-| 1 | `final_report.html` (or `.pdf`) | Design-polished final report (same content as below) |
-| 2 | `final_report.md` | Markdown source — ~3800-word report with all sections |
-| 3 | `eda_report.ipynb` | EDA analysis (14 sections, all outputs committed) |
-| 4 | `ml_baseline.ipynb` | Model training (15 cells executed, outputs visible) |
-| 5 | `data/` | Raw JSON + processed CSV (704 incidents) |
-| 6 | `figures/` | 19 PNGs (16 EDA + 3 ML) |
+| 1 | `index.html` | Project showcase webpage — open in a browser for a quick visual overview |
+| 2 | `final_report.html` (or `.pdf`) | Design-polished final report (same content as below) |
+| 3 | `final_report.md` | Markdown source — ~3800-word report with all sections |
+| 4 | `eda_report.ipynb` | EDA analysis (14 sections, all outputs committed) |
+| 5 | `ml_baseline.ipynb` | Model training (15 cells executed, outputs visible) |
+| 6 | `data/` | Raw JSON + processed CSV (704 incidents) |
+| 7 | `figures/` | 19 PNGs (16 EDA + 3 ML) |
 
 **Reproducibility:**
 
@@ -110,7 +111,7 @@ Full write-up: [`final_report.md`](final_report.md) · notebook: [`ml_baseline.i
 ## What I did
 
 - Scraped 869 raw incidents from 14 public cloud status pages (GitHub, Cloudflare, OpenAI, Discord, Reddit, Atlassian, Vercel, Netlify, DigitalOcean, Dropbox, Linear, Notion, Twilio, Datadog) via their Statuspage.io API endpoints. Data spans 2019-05-07 to 2026-04-11 (~83 months), though most services only expose their last 12–24 months.
-- Cleaned down to 704 resolved incidents with valid duration (dropped 158 unresolved/scheduled-maintenance, 7 with negative duration).
+- Cleaned down to 704 resolved incidents with valid duration (dropped 5 without `resolved` status, 156 with missing duration, 4 with negative duration).
 - Flagged 84 outliers with IQR (kept them, didn't drop).
 - Discovered and fixed a data leak: the original `num_updates` ↔ duration correlation (Spearman ρ=+0.46) collapses and *flips sign* (ρ=−0.224) once you restrict to updates posted within the first 3600s — the original signal was post-resolution updates inflating the count for long incidents. Built a leakage-free feature `first_hour_updates` and a side-by-side comparison plot to show the artifact.
 - 16 EDA figures + 3 ML figures, 3 hypothesis tests with BH-corrected p-values and effect sizes, bootstrap 95% CI for median duration.
@@ -154,6 +155,7 @@ Full write-up: [`final_report.md`](final_report.md) · notebook: [`ml_baseline.i
 
 | Path | What's inside |
 |---|---|
+| `index.html` | Project showcase webpage — self-contained (no build step), links back to the report and notebooks |
 | `eda_report.ipynb` | EDA notebook (milestone1), 14 sections, 29 code cells, all outputs committed |
 | `ml_baseline.ipynb` | ML notebook (5 May milestone), 15 code cells: Pipeline + StratifiedKFold CV + GridSearchCV + SHAP |
 | `collect_data.py` | Fetches raw incidents from Statuspage.io endpoints, writes JSON to `data/raw/` |
@@ -164,6 +166,7 @@ Full write-up: [`final_report.md`](final_report.md) · notebook: [`ml_baseline.i
 | `data/stats.json` | Per-service counts from the last `collect_data.py` run |
 | `data/ml_results.json` | Cross-val + test metrics for RF baseline, LR, and tuned RF |
 | `figures/*.png` | 19 figures total — 16 EDA + 3 ML (`ml_confusion_matrix`, `ml_feature_importance`, `ml_shap_summary`) |
+| `video-materials/` | Optional video kit: 9-slide PowerPoint deck (narration in speaker notes) + narration script + recording guide |
 | `proposal.md`, `proposal.pdf` | Original proposal (frozen) |
 | `requirements.txt` | Python deps with exact version pins (Python 3.14) |
 

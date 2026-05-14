@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Incident Genome — Predicting Cloud Outage Duration from Early Signals</title>
+<meta name="description" content="A DSA210 term project: predicting whether a cloud service outage will be short or long using only signals observable in the first hour.">
+<style>
+  :root {
+    --bg:        #FAFAF8;
+    --ink:       #1F1E1B;
+    --ink-soft:  #5C5A54;
+    --ink-faint: #8A887F;
+    --accent:    #C45C3E;
+    --accent-bg: #F4E7E1;
+    --rule:      #E4E2DB;
+    --ok:        #3B7D5A;
+    --panel:     #F2F1EC;
+    --mono: "IBM Plex Mono", "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 18px;
+    line-height: 1.72;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* status-bar motif: a thin operational strip pinned to the top */
+  .topbar {
+    height: 5px;
+    background: var(--ok);
+    width: 100%;
+  }
+
+  .wrap { max-width: 680px; margin: 0 auto; padding: 0 28px; }
+
+  /* ---- hero ---- */
+  header { padding: 78px 0 52px; border-bottom: 1px solid var(--rule); }
+  .kicker {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 22px;
+  }
+  h1 {
+    font-family: var(--sans);
+    font-size: 44px;
+    line-height: 1.12;
+    font-weight: 700;
+    letter-spacing: -0.022em;
+    margin-bottom: 16px;
+  }
+  .lede {
+    font-size: 21px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    font-weight: 400;
+    margin-bottom: 30px;
+  }
+  .byline {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink-faint);
+    line-height: 1.9;
+  }
+  .byline strong { color: var(--ink-soft); font-weight: 500; }
+
+  /* statuspage-style component row, used for the headline metrics */
+  .statusrow {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    border-left: 3px solid var(--accent);
+    background: var(--accent-bg);
+    padding: 11px 16px;
+    margin: 6px 0;
+  }
+  .statusrow .val {
+    font-family: var(--mono);
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .statusrow .lab {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+  }
+  .metrics { margin-top: 30px; }
+
+  /* ---- sections ---- */
+  section { padding: 52px 0; border-bottom: 1px solid var(--rule); }
+  .secnum {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.018em;
+    line-height: 1.2;
+    margin-bottom: 22px;
+  }
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 30px 0 10px;
+    letter-spacing: -0.005em;
+  }
+  p { margin-bottom: 18px; }
+  p:last-child { margin-bottom: 0; }
+  strong { font-weight: 650; }
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-bg); }
+  a:hover { border-bottom-color: var(--accent); }
+  code {
+    font-family: var(--mono);
+    font-size: 0.86em;
+    background: var(--panel);
+    padding: 1.5px 5px;
+    border-radius: 3px;
+  }
+  ul { margin: 0 0 18px 0; padding-left: 22px; }
+  li { margin-bottom: 7px; }
+
+  /* incident-entry pullquote for the research question */
+  .question {
+    border-left: 3px solid var(--accent);
+    padding: 4px 0 4px 20px;
+    margin: 26px 0;
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .question .tag {
+    display: block;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  /* figures */
+  figure { margin: 30px 0; }
+  figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--rule);
+    background: #fff;
+  }
+  figcaption {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-faint);
+    margin-top: 9px;
+    font-family: var(--mono);
+  }
+  figcaption b { color: var(--ink-soft); font-weight: 600; }
+
+  /* data table — monospace, statuspage ledger feel */
+  .ledger {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: 13.5px;
+    margin: 24px 0;
+  }
+  .ledger th {
+    text-align: left;
+    border-bottom: 2px solid var(--ink-soft);
+    padding: 7px 10px 7px 0;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+  .ledger td {
+    border-bottom: 1px solid var(--rule);
+    padding: 7px 10px 7px 0;
+    color: var(--ink);
+  }
+  .ledger td.num, .ledger th.num { text-align: right; padding-right: 0; }
+  .ledger tr.win td { color: var(--accent); font-weight: 600; }
+
+  /* before/after leakage callout */
+  .flip {
+    display: flex;
+    gap: 0;
+    margin: 26px 0;
+    border: 1px solid var(--rule);
+  }
+  .flip > div { flex: 1; padding: 18px 18px; }
+  .flip .before { background: var(--panel); }
+  .flip .after  { background: var(--accent-bg); border-left: 1px solid var(--rule); }
+  .flip .ftag {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 6px;
+  }
+  .flip .fval {
+    font-family: var(--mono);
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.1;
+  }
+  .flip .after .fval { color: var(--accent); }
+  .flip .fnote { font-size: 13px; color: var(--ink-soft); margin-top: 7px; line-height: 1.45; }
+
+  .takeaway {
+    background: var(--panel);
+    border-left: 3px solid var(--ink-soft);
+    padding: 18px 20px;
+    margin: 26px 0;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  .takeaway .tag {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: block;
+    margin-bottom: 7px;
+  }
+
+  /* footer */
+  footer { padding: 46px 0 80px; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-bottom: 28px; }
+  .links a {
+    font-family: var(--mono);
+    font-size: 14px;
+    border-bottom: none;
+    color: var(--ink);
+  }
+  .links a::before { content: "→ "; color: var(--accent); }
+  .links a:hover { color: var(--accent); }
+  .colophon {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-faint);
+    line-height: 1.8;
+    border-top: 1px solid var(--rule);
+    padding-top: 22px;
+  }
+
+  @media (max-width: 560px) {
+    body { font-size: 17px; }
+    h1 { font-size: 34px; }
+    h2 { font-size: 24px; }
+    .lede { font-size: 19px; }
+    header { padding: 52px 0 40px; }
+    .flip { flex-direction: column; }
+    .flip .after { border-left: none; border-top: 1px solid var(--rule); }
+    .statusrow { flex-direction: column; gap: 2px; }
+  }
+</style>
+</head>
+<body>
+<div class="topbar"></div>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">DSA210 Term Project · Spring 2026</div>
+    <h1>Incident Genome</h1>
+    <p class="lede">Predicting whether a cloud service outage will be short or long &mdash; using only the signals visible in its first hour.</p>
+    <div class="byline">
+      <strong>Alper K&#305;l&#305;&ccedil;</strong> &middot; Sabanc&#305; University<br>
+      Introduction to Data Science &middot; Instructors: &Ouml;znur Ta&#351;tan, &Ouml;zg&uuml;r Asar
+    </div>
+    <div class="metrics">
+      <div class="statusrow"><span class="val">704</span><span class="lab">resolved incidents analyzed across 14 public cloud status pages</span></div>
+      <div class="statusrow"><span class="val">74.5%</span><span class="lab">test accuracy &mdash; a Random Forest beats the majority-class baseline by +12.8 points</span></div>
+      <div class="statusrow"><span class="val">&rho; +0.46 &rarr; &minus;0.22</span><span class="lab">a correlation that flipped sign &mdash; how the project caught its own data leak</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap">
+    <div class="secnum">01 / The Question</div>
+    <h2>Can early signals tell us how long an outage will last?</h2>
+    <p>When a cloud service goes down, the cost climbs by the minute &mdash; historically estimated in the thousands of dollars per minute for large companies. Yet most outage analysis happens <em>after</em> the fact, in post-mortems. The interesting question is whether the <em>first hour</em> already contains enough signal to triage.</p>
+    <p>Every service in this study runs a public Statuspage.io page that exposes its incident history as structured JSON &mdash; no API key, no vendor cooperation, fully reproducible. That makes a cross-service prediction problem possible from the outside.</p>
+    <div class="question">
+      <span class="tag">Research Question</span>
+      Using only features observable within the first hour of an incident &mdash; service, start-hour, day-of-week, and first-hour update count &mdash; can we predict whether an outage will be <strong>short</strong> (&lt; 60 min) or <strong>long</strong> (&ge; 60 min)?
+    </div>
+    <p>This is deliberately a harder setting than the AIOps literature usually assumes. Systems like Microsoft's AirAlert (Chen et al., 2019) predict outage duration from internal telemetry &mdash; host alerts, deployment signals, topology graphs. Incident Genome works from the opposite vantage point: only what the public can see.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="secnum">02 / The Data</div>
+    <h2>869 raw incidents, cleaned down to 704</h2>
+    <p>The scraper pulls from 14 services &mdash; GitHub, Cloudflare, OpenAI, Discord, Reddit, Atlassian, Vercel, Netlify, DigitalOcean, Dropbox, Linear, Notion, Twilio, and Datadog &mdash; via two Statuspage.io endpoints per service. Cleaning dropped 5 incidents without a <code>resolved</code> status, 156 with missing duration, and 4 with negative duration, leaving <strong>704 resolved incidents</strong> spanning 2019&ndash;2026.</p>
+    <p>The prediction target is mildly imbalanced: <strong>272 short</strong> incidents versus <strong>432 long</strong>, a 1.59:1 ratio. Duration itself is heavily right-skewed &mdash; a median of 82.5 minutes, but a mean of 480, dragged up by a tail that reaches nearly 15 days.</p>
+    <figure>
+      <img src="figures/02a_duration_histogram.png" alt="Histogram of incident duration, raw and log-scaled">
+      <figcaption><b>Most outages cluster under two hours</b> &mdash; but the tail stretches to 15 days. The log-scaled panel exposes the structure the raw histogram hides.</figcaption>
+    </figure>
+    <p>Outages are not evenly spread across the week. The frequency heatmap shows a clear concentration: Tuesdays, mid-afternoon UTC. Business hours (roughly 09&ndash;17 UTC) account for about half of all incidents.</p>
+    <figure>
+      <img src="figures/temporal_heatmap.png" alt="Heatmap of incident frequency by hour of day and day of week">
+      <figcaption><b>When outages strike</b> &mdash; Tuesday afternoon is the danger zone. Frequency by hour (UTC) and weekday.</figcaption>
+    </figure>
+    <p>And the services themselves are far from interchangeable. Median time-to-resolution varies more than 5&times; across the fourteen.</p>
+    <figure>
+      <img src="figures/04_median_duration_by_service.png" alt="Bar chart of median incident duration by service">
+      <figcaption><b>Twilio takes roughly 6&times; longer</b> to resolve an outage than Netlify &mdash; service identity carries real signal.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="secnum">03 / The Discovery</div>
+    <h2>A correlation that flipped sign</h2>
+    <p>The most instructive moment in the project was catching a data leak in its own feature set. An obvious candidate predictor was <code>num_updates</code> &mdash; the number of status-page updates posted during an incident. It correlated with duration at a healthy Spearman &rho; of <strong>+0.46</strong>.</p>
+    <p>But that number is a trap. <code>num_updates</code> counts every update across the incident's <em>entire</em> lifecycle, including the ones posted <em>after</em> it was resolved. Longer incidents accumulate more updates simply by lasting longer &mdash; the feature was quietly leaking the answer.</p>
+    <p>The fix was a time-windowed replacement: <code>first_hour_updates</code>, counting only updates posted within the first 3600 seconds. When the correlation was recomputed on this leakage-free feature, it did not just shrink &mdash; it <strong>reversed</strong>.</p>
+    <div class="flip">
+      <div class="before">
+        <div class="ftag">num_updates &mdash; leaky</div>
+        <div class="fval">&rho; = +0.46</div>
+        <div class="fnote">Counts all updates, including post-resolution. Inflated by duration itself.</div>
+      </div>
+      <div class="after">
+        <div class="ftag">first_hour_updates &mdash; clean</div>
+        <div class="fval">&rho; = &minus;0.22</div>
+        <div class="fnote">Counts only the first hour. The honest signal &mdash; and it points the other way.</div>
+      </div>
+    </div>
+    <p>The sign flip <em>is</em> the proof. A feature engineered without temporal awareness did not just exaggerate model performance &mdash; it inverted the scientific conclusion. <code>impact</code> and <code>num_components</code> were flagged with the same reasoning and excluded from the model.</p>
+    <figure>
+      <img src="figures/leakage_scatter_comparison.png" alt="Side-by-side scatter plots of leaky versus clean update-count feature against duration">
+      <figcaption><b>The correlation flipped sign</b> &mdash; that is how the data leak was caught. Leaky feature (left) versus the time-windowed replacement (right).</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="secnum">04 / The Method</div>
+    <h2>Five honest features, two models, one rule</h2>
+    <p>The rule that governs the whole pipeline: <strong>every feature must be observable within the first hour.</strong> That leaves five &mdash; <code>service</code>, <code>created_hour</code>, <code>created_weekday</code>, <code>first_hour_updates</code>, and a derived <code>is_business_hours</code> flag. The three leaky candidates (<code>num_updates</code>, <code>impact</code>, <code>num_components</code>) are explicitly excluded.</p>
+    <p>The data is split 80/20 with stratification to preserve the class ratio. Imbalance is handled with <code>class_weight='balanced'</code> rather than SMOTE &mdash; at 1.59:1 the imbalance is mild, and inverse-frequency weighting adjusts the loss directly without fabricating synthetic samples in a sparse categorical feature space.</p>
+    <p>Two models are compared: <strong>Logistic Regression</strong> as an interpretable linear baseline, and a <strong>Random Forest</strong> as the primary model &mdash; it handles the categorical features, non-linear interactions, and outliers without fuss. Both are evaluated with 5-fold stratified cross-validation, and the Random Forest is additionally tuned with <code>GridSearchCV</code>.</p>
+    <h3>Why the untuned model won</h3>
+    <p>The grid-searched Random Forest scored marginally higher in cross-validation but <em>lower</em> on the held-out test set (F1-macro 0.704 vs 0.732). On a dataset this size, grid search can exploit fold-specific noise. The baseline Random Forest &mdash; the more stable generalizer &mdash; was kept as the final model.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="secnum">05 / The Results</div>
+    <h2>Genuine signal, modest effect</h2>
+    <p>The Random Forest reaches <strong>74.5% test accuracy</strong> and an F1-macro of <strong>0.732</strong>. The comparison that matters is against the naive majority-class baseline, which always predicts &ldquo;long&rdquo;:</p>
+    <table class="ledger">
+      <thead>
+        <tr><th>Model</th><th class="num">Accuracy</th><th class="num">F1-macro</th><th class="num">AUC</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Majority-class baseline</td><td class="num">0.617</td><td class="num">0.382</td><td class="num">0.500</td></tr>
+        <tr><td>Logistic Regression</td><td class="num">0.709</td><td class="num">0.697</td><td class="num">0.697</td></tr>
+        <tr class="win"><td>Random Forest</td><td class="num">0.745</td><td class="num">0.732</td><td class="num">0.713</td></tr>
+      </tbody>
+    </table>
+    <p>The F1-macro jump &mdash; 0.382 to 0.732 &mdash; is the real story, because the baseline scores zero recall on short incidents while the Random Forest predicts both classes meaningfully. A one-sided binomial test puts the improvement at <strong>p = 6.67 &times; 10<sup>&minus;4</sup></strong>: this is not luck.</p>
+    <figure>
+      <img src="figures/ml_confusion_matrix.png" alt="Confusion matrix for the Random Forest on the test set">
+      <figcaption><b>74.5% accuracy with balanced errors</b> &mdash; the model misclassifies in both directions rather than collapsing onto the majority class.</figcaption>
+    </figure>
+    <h3>One feature rules them all</h3>
+    <p>SHAP analysis is unambiguous: <code>first_hour_updates</code> &mdash; the very feature rescued from the data leak &mdash; dominates every other predictor by a factor of 5&ndash;6&times;. Early communication intensity is the strongest single signal of how long an outage will run.</p>
+    <figure>
+      <img src="figures/ml_shap_summary.png" alt="SHAP summary plot of feature importance">
+      <figcaption><b>first_hour_updates dominates by 5&ndash;6&times;</b> &mdash; service identity and time-of-day provide secondary signal.</figcaption>
+    </figure>
+    <div class="takeaway">
+      <span class="tag">The honest caveat</span>
+      The research question is answered &mdash; yes, early signals carry real predictive information &mdash; but the effect size is small (Cohen's <em>h</em> = 0.28). This is a meaningful research result, not a production-ready triage system.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="secnum">06 / Limitations &amp; Takeaway</div>
+    <h2>What this can&rsquo;t do yet</h2>
+    <p>The honest constraints are worth stating plainly:</p>
+    <ul>
+      <li><strong>Sample size (n = 704)</strong> limits statistical power; some services contribute as few as 9 incidents.</li>
+      <li><strong>Self-reported data</strong> &mdash; status pages are curated by the companies themselves, so incidents may be underreported or relabeled.</li>
+      <li><strong>No text features</strong> &mdash; the first update's body text is collected but unused; it likely holds urgency signal.</li>
+      <li><strong>Observational only</strong> &mdash; no causal claims, and UTC timestamps are not normalized to service-local time.</li>
+    </ul>
+    <p>The natural next steps follow from those gaps: NLP on update text, a temporal-aware validation split, and expanding to 30+ services across AWS, GCP, and Azure health dashboards to test whether the patterns generalize beyond Statuspage.io.</p>
+    <div class="takeaway">
+      <span class="tag">The lasting lesson</span>
+      The most valuable outcome was methodological. The sign-flip between <code>num_updates</code> (&rho; = +0.46) and <code>first_hour_updates</code> (&rho; = &minus;0.22) is a concrete demonstration that feature engineering without temporal awareness can silently inflate model performance <em>and</em> invert the conclusion you draw from it.
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="links">
+      <a href="final_report.html">Full final report</a>
+      <a href="eda_report.ipynb">EDA notebook</a>
+      <a href="ml_baseline.ipynb">ML notebook</a>
+      <a href="https://github.com/alperkilic1/dsa210-term-project">GitHub repository</a>
+    </div>
+    <div class="colophon">
+      Incident Genome &mdash; DSA210 Introduction to Data Science, Sabanc&#305; University, Spring 2026.<br>
+      Data: 14 public Statuspage.io endpoints. Analysis: Python, pandas, scikit-learn, SHAP.<br>
+      All systems operational.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

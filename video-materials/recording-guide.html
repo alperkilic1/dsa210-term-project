@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Incident Genome — Video Recording Guide</title>
+<style>
+  :root {
+    --bg:#FAFAF8; --ink:#1F1E1B; --soft:#5C5A54; --faint:#8A887F;
+    --accent:#C45C3E; --accent-bg:#F4E7E1; --rule:#E4E2DB; --panel:#F2F1EC;
+    --mono:"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);
+    font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .topbar{height:5px;background:#3B7D5A;}
+  .wrap{max-width:660px;margin:0 auto;padding:0 28px;}
+  header{padding:56px 0 32px;border-bottom:1px solid var(--rule);}
+  .kicker{font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+  h1{font-size:34px;font-weight:700;letter-spacing:-.02em;line-height:1.15;}
+  .sub{font-size:18px;color:var(--soft);margin-top:12px;}
+  section{padding:38px 0;border-bottom:1px solid var(--rule);}
+  h2{font-size:21px;font-weight:700;margin-bottom:8px;letter-spacing:-.01em;}
+  h2 .n{font-family:var(--mono);color:var(--accent);font-size:15px;margin-right:8px;}
+  h3{font-size:16px;font-weight:700;margin:22px 0 8px;}
+  p{margin-bottom:14px;}
+  ol,ul{margin:0 0 14px 0;padding-left:24px;}
+  li{margin-bottom:6px;}
+  strong{font-weight:650;}
+  code{font-family:var(--mono);font-size:.85em;background:var(--panel);
+    padding:1.5px 5px;border-radius:3px;}
+  pre{font-family:var(--mono);font-size:13px;line-height:1.55;background:var(--panel);
+    border-left:3px solid var(--accent);padding:14px 16px;overflow-x:auto;
+    margin:14px 0;white-space:pre-wrap;}
+  .note{background:var(--accent-bg);border-left:3px solid var(--accent);
+    padding:14px 16px;margin:16px 0;font-size:15.5px;}
+  table{width:100%;border-collapse:collapse;font-size:14.5px;margin:16px 0;}
+  th{text-align:left;border-bottom:2px solid var(--soft);padding:7px 12px 7px 0;color:var(--soft);}
+  td{border-bottom:1px solid var(--rule);padding:8px 12px 8px 0;vertical-align:top;}
+  .check li{margin-bottom:8px;}
+  footer{padding:34px 0 70px;font-family:var(--mono);font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<div class="topbar"></div>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">Incident Genome · Video Materials</div>
+    <h1>Recording Guide</h1>
+    <p class="sub">How to turn the slide deck into a 2–3 minute narrated video. The video is optional supplementary material — not a required submission.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2><span class="n">A</span>Recommended method — PowerPoint "Record Slide Show"</h2>
+    <p>Everything stays inside one tool, so there are no screen-recording sync issues.</p>
+    <ol>
+      <li>Open <code>Incident-Genome-Slides.pptx</code> in PowerPoint for Mac.</li>
+      <li>Go to <strong>Slide Show &rarr; Record Slide Show</strong>.</li>
+      <li>Narrate each slide and advance manually — PowerPoint records audio and timings per slide. The narration is already in each slide's speaker notes.</li>
+      <li>When done: <strong>File &rarr; Export &rarr; Create a Video</strong>. Choose 720p (HD), keep "Use Recorded Timings and Narrations" on. It saves as <code>.mp4</code>.</li>
+    </ol>
+    <div class="note">You can re-record a single slide without redoing the whole deck — handy if one take goes wrong.</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2><span class="n">B</span>Backup method — QuickTime screen recording</h2>
+    <p>If PowerPoint's recorder misbehaves (it sometimes does on macOS):</p>
+    <ol>
+      <li>Open the slides in Slideshow mode.</li>
+      <li>Press <strong>Cmd+Shift+5</strong> and choose "Record Entire Screen".</li>
+      <li>Click <strong>Options</strong> and set the microphone to your input device.</li>
+      <li>Start recording, present the slides, then stop. It saves a <code>.mov</code> to the Desktop.</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2><span class="n">C</span>Microphone tips</h2>
+    <ul>
+      <li>The built-in mic is fine for 2–3 minutes — just sit in a quiet room and close the window.</li>
+      <li>EarPods or AirPods work even better; the mic sits closer to your mouth.</li>
+      <li><strong>Test first:</strong> record 10 seconds, play it back, listen for echo or fan noise.</li>
+      <li>Quit heavy apps before recording so the laptop fan stays quiet.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2><span class="n">D</span>Keeping the file small</h2>
+    <p>A 2-minute narrated slide video usually lands at 1–3 MB with the settings below. If yours is bigger, compress it with ffmpeg:</p>
+    <pre>ffmpeg -i presentation.mp4 -vcodec libx264 -crf 28 -preset slow \
+  -vf scale=1280:720 -acodec aac -b:a 96k -movflags +faststart \
+  output_compressed.mp4</pre>
+    <ul>
+      <li><code>CRF 28</code> is visually fine for slides and dramatically smaller.</li>
+      <li>720p video + 96k audio is more than enough for narrated slides.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2><span class="n">E</span>Hosting and linking</h2>
+    <table>
+      <tr><th>Option</th><th>Why</th><th>How to link</th></tr>
+      <tr><td><strong>YouTube (Unlisted)</strong></td><td>Streams perfectly, no size worry</td><td>Paste the URL in the report</td></tr>
+      <tr><td>Google Drive</td><td>Simple upload</td><td>Set "Anyone with link can view"</td></tr>
+      <tr><td>In the repo</td><td>Everything in one place</td><td>Only works if the file is small</td></tr>
+    </table>
+    <div class="note"><strong>Recommendation:</strong> YouTube unlisted. Upload, grab the link, paste it into <code>final_report.md</code> near the top. Cleanest option.</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2><span class="n">F</span>Pre-record checklist</h2>
+    <ul class="check">
+      <li>Script rehearsed once out loud, timed under 3 minutes.</li>
+      <li>Slides finalized — no "TODO" placeholders visible.</li>
+      <li>Quiet room, window closed, fan-heavy apps quit.</li>
+      <li>Mic input verified (System Settings &rarr; Sound &rarr; Input — watch the level meter).</li>
+      <li>Do Not Disturb ON — no notification sounds mid-recording.</li>
+      <li>10-second test recording played back — audio clear, no clipping.</li>
+      <li>Phone on silent.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Incident Genome — DSA210, Sabancı University, Spring 2026.<br>
+    Companion files: Incident-Genome-Slides.pptx · narration-script.txt
+  </div>
+</footer>
+
+</body>
+</html>

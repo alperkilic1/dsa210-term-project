@@ -1,0 +1,44 @@
+INCIDENT GENOME - VIDEO MATERIALS
+=================================
+
+This folder has everything needed to record the optional project video.
+
+The video is NOT required for submission. The official DSA210 guidelines say
+the final report and code are required, and you "may additionally include a
+video or project webpage." This is supplementary material that strengthens the
+"presentation" grading criterion.
+
+
+WHAT'S IN HERE
+--------------
+  Incident-Genome-Slides.pptx   9-slide deck. All figures are embedded. The
+                                narration for each slide sits in its speaker
+                                notes -- open the Notes pane in PowerPoint.
+
+  narration-script.txt          The full narration as one continuous script,
+                                slide by slide. ~370 words, ~2.5 minutes.
+
+  recording-guide.html          Step-by-step recording, compression, and
+                                hosting guide. Open it in any browser.
+
+
+HOW TO MAKE THE VIDEO - 3 STEPS
+-------------------------------
+  1. Open Incident-Genome-Slides.pptx in PowerPoint. Read narration-script.txt
+     aloud once to rehearse -- aim for under 3 minutes.
+
+  2. PowerPoint > Slide Show > Record Slide Show. Narrate each slide and
+     advance manually. The script is right there in the speaker notes.
+
+  3. File > Export > Create a Video (720p is fine). If the file is over 2 MB,
+     use the ffmpeg command in recording-guide.html to compress it.
+
+
+WHERE THE VIDEO GOES
+--------------------
+  Upload to YouTube (unlisted) or Google Drive, then paste the link into the
+  final report. Or, if the compressed file is small, drop the .mp4 in this
+  folder.
+
+  Before recording: quiet room, Do Not Disturb on, do a 10-second test first.
+  The full checklist is in recording-guide.html.
